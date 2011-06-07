@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WotC.CharBuilder.Web" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WotC.CharBuilder.Web" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WotC.ContentVault" />
+  <xs:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfRulesEngineUpdate">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RulesEngineUpdate" nillable="true" type="tns:RulesEngineUpdate" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRulesEngineUpdate" nillable="true" type="tns:ArrayOfRulesEngineUpdate" />
+  <xs:complexType name="RulesEngineUpdate">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="RulesEngineUpdate" nillable="true" type="tns:RulesEngineUpdate" />
+  <xs:complexType name="MakeChoice">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ChoiceID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Index" type="xs:int" />
+          <xs:element minOccurs="0" name="ToLoseID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MakeChoice" nillable="true" type="tns:MakeChoice" />
+  <xs:complexType name="EquipItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Count" type="xs:int" />
+          <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Versatile" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="EquipItem" nillable="true" type="tns:EquipItem" />
+  <xs:complexType name="LoadCampaignSettings">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="CampaignID" nillable="true" type="q1:ContentIdentifier" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LoadCampaignSettings" nillable="true" type="tns:LoadCampaignSettings" />
+  <xs:complexType name="GetTextStrings">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineDataRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetTextStrings" nillable="true" type="tns:GetTextStrings" />
+  <xs:complexType name="RulesEngineDataRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RulesEngineDataRequest" nillable="true" type="tns:RulesEngineDataRequest" />
+  <xs:complexType name="SetPortrait">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Explicit" type="xs:boolean" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="PortraitID" nillable="true" type="q2:ContentIdentifier" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetPortrait" nillable="true" type="tns:SetPortrait" />
+  <xs:complexType name="SaveCharacter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SaveCharacter" nillable="true" type="tns:SaveCharacter" />
+  <xs:complexType name="GetPortrait">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineDataRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetPortrait" nillable="true" type="tns:GetPortrait" />
+  <xs:complexType name="AutoCompleteCharacter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="EquipmentOnly" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AutoCompleteCharacter" nillable="true" type="tns:AutoCompleteCharacter" />
+  <xs:complexType name="ReloadAll">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineDataRequest">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ReloadAll" nillable="true" type="tns:ReloadAll" />
+  <xs:complexType name="AddItem">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BaseItemName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BaseItemType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="EnchantName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Quantity" type="xs:int" />
+          <xs:element minOccurs="0" name="SubtractMoney" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ValuePercent" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="AddItem" nillable="true" type="tns:AddItem" />
+  <xs:complexType name="ManageJournalEntry">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GPDelta" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GPStart" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="GPTotal" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LevelAtEnd" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Mode" type="xs:int" />
+          <xs:element minOccurs="0" name="Notes" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Region" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Timestamp" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Treasure" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="XPGain" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="XPStart" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="XPTotal" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ManageJournalEntry" nillable="true" type="tns:ManageJournalEntry" />
+  <xs:complexType name="SetLevel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Level" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetLevel" nillable="true" type="tns:SetLevel" />
+  <xs:complexType name="SetCurrency">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AutoGold" type="xs:boolean" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Banked" nillable="true" type="q3:ArrayOfdouble" />
+          <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Carried" nillable="true" type="q4:ArrayOfdouble" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetCurrency" nillable="true" type="tns:SetCurrency" />
+  <xs:complexType name="SetGrabBag">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ElementID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Remove" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetGrabBag" nillable="true" type="tns:SetGrabBag" />
+  <xs:complexType name="SetTextString">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetTextString" nillable="true" type="tns:SetTextString" />
+  <xs:complexType name="SetAllAbilityScores">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Values" nillable="true" type="q5:ArrayOfint" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetAllAbilityScores" nillable="true" type="tns:SetAllAbilityScores" />
+  <xs:complexType name="SetAbilityScoreBase">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:RulesEngineUpdate">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Index" type="xs:int" />
+          <xs:element minOccurs="0" name="Value" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetAbilityScoreBase" nillable="true" type="tns:SetAbilityScoreBase" />
+  <xs:complexType name="CharacterState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="RawData" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CharacterState" nillable="true" type="tns:CharacterState" />
+</xs:schema>

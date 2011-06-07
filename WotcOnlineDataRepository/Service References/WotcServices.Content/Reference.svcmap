@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b6b5a7e9-a3ce-4339-a84b-2b869c1b814a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>true</GenerateInternalTypes>
+    <GenerateMessageContracts>true</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ioun.wizards.com/ContentVault.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ContentVault.xsd" MetadataType="Schema" ID="75459030-0522-415a-af1d-d785df74f005" SourceId="1" SourceUrl="http://ioun.wizards.com/ContentVault.svc?xsd=xsd4" />
+    <MetadataFile FileName="ContentVaultService.wsdl" MetadataType="Wsdl" ID="c772c5ca-7ccd-4a5f-910a-61ad608ef82f" SourceId="1" SourceUrl="http://ioun.wizards.com/ContentVault.svc?wsdl" />
+    <MetadataFile FileName="ContentVault1.xsd" MetadataType="Schema" ID="056bfeb0-1360-4be6-a029-b6de6b0e1ac3" SourceId="1" SourceUrl="http://ioun.wizards.com/ContentVault.svc?xsd=xsd1" />
+    <MetadataFile FileName="ContentVault.disco" MetadataType="Disco" ID="d5dd5e0f-7e5d-48f3-8086-4a3c10537f86" SourceId="1" SourceUrl="http://ioun.wizards.com/ContentVault.svc?disco" />
+    <MetadataFile FileName="ContentVault2.xsd" MetadataType="Schema" ID="a93eb211-db47-4293-a4be-4c0fef5220cc" SourceId="1" SourceUrl="http://ioun.wizards.com/ContentVault.svc?xsd=xsd3" />
+    <MetadataFile FileName="ContentVault3.xsd" MetadataType="Schema" ID="d9c49351-532e-4911-b619-d238b53faa44" SourceId="1" SourceUrl="http://ioun.wizards.com/ContentVault.svc?xsd=xsd0" />
+    <MetadataFile FileName="ContentVault4.xsd" MetadataType="Schema" ID="17e3f9d9-d9f5-4790-a159-98a6300233ad" SourceId="1" SourceUrl="http://ioun.wizards.com/ContentVault.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/WotC.ContentVault" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WotC.ContentVault" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ContentIdentifier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContentID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Official" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OfficialTypeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ScratchID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TypeID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentIdentifier" nillable="true" type="tns:ContentIdentifier" />
+</xs:schema>

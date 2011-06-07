@@ -1,0 +1,19 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:local="clr-namespace:PrintChar"
+	xmlns:Views="clr-namespace:PrintChar.Templates.Anders.Views"
+	xmlns:ViewModels="clr-namespace:PrintChar.Templates.Anders.ViewModels"
+	mc:Ignorable="d"
+	x:Class="PrintChar.PowerCard"
+	d:DesignWidth="345" d:DesignHeight="250"
+	d:DataContext="{d:DesignInstance ViewModels:PowerDesignData, IsDesignTimeCreatable=True}">
+
+	<Grid x:Name="LayoutRoot">
+		<Views:AndersCard x:Name="Card" CardColor="{Binding CardColor, Mode=OneWay}" Foreground="White" SubtitleText="{}{Bind to power categorization}" TitleText="{Binding Name}" TargetTypeIcon="{Binding TargetIcon, Mode=OneWay}" ActionTypeIcon="{Binding ActionIcon, Mode=OneWay}">
+			<TextBlock Text="{Binding Description, Mode=OneWay}" Foreground="Black" TextWrapping="Wrap" />
+		</Views:AndersCard>
+	</Grid>
+</UserControl>

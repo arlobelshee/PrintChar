@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContentVaultService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="CustomBinding_IContentVaultService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" />
+      <xsd:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WotC.ContentVault" />
+      <xsd:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WotC.XAMLUtilities" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IContentVaultService_Commit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Commit" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Commit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommitResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Commit_TooMuchContentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q1:TooMuchContentFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Create_InputMessage">
+    <wsdl:part name="parameters" element="tns:Create" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Create_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Create_TooMuchScratchFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q2:TooMuchScratchFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Create_TooMuchContentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q3:TooMuchContentFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_DeleteContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteContent" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_DeleteContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Edit_InputMessage">
+    <wsdl:part name="parameters" element="tns:Edit" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Edit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Edit_TooMuchContentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q4:TooMuchContentFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Edit_TooMuchScratchFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q5:TooMuchScratchFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetAvailableContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableContent" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetAvailableContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetData_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetDeletedContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeletedContent" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetDeletedContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeletedContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetOfficialContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOfficialContent" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetOfficialContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOfficialContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetUserID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserID" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_GetUserID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Import_InputMessage">
+    <wsdl:part name="parameters" element="tns:Import" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Import_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Import_TooMuchScratchFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q6:TooMuchScratchFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Import_TooMuchContentFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q7:TooMuchContentFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_UndeleteContent_InputMessage">
+    <wsdl:part name="parameters" element="tns:UndeleteContent" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_UndeleteContent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UndeleteContentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_UpdateData_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateData" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_UpdateData_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_UpdateData_ContentNotFoundFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q8:ContentNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_UpdatePortrait_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortrait" />
+  </wsdl:message>
+  <wsdl:message name="IContentVaultService_UpdatePortrait_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePortraitResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IContentVaultService">
+    <wsdl:operation name="Commit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/Commit" message="tns:IContentVaultService_Commit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/CommitResponse" message="tns:IContentVaultService_Commit_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/CommitTooMuchContentFaultFault" name="TooMuchContentFaultFault" message="tns:IContentVaultService_Commit_TooMuchContentFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/Create" message="tns:IContentVaultService_Create_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/CreateResponse" message="tns:IContentVaultService_Create_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/CreateTooMuchScratchFaultFault" name="TooMuchScratchFaultFault" message="tns:IContentVaultService_Create_TooMuchScratchFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/CreateTooMuchContentFaultFault" name="TooMuchContentFaultFault" message="tns:IContentVaultService_Create_TooMuchContentFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/DeleteContent" message="tns:IContentVaultService_DeleteContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/DeleteContentResponse" message="tns:IContentVaultService_DeleteContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Edit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/Edit" message="tns:IContentVaultService_Edit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/EditResponse" message="tns:IContentVaultService_Edit_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/EditTooMuchContentFaultFault" name="TooMuchContentFaultFault" message="tns:IContentVaultService_Edit_TooMuchContentFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/EditTooMuchScratchFaultFault" name="TooMuchScratchFaultFault" message="tns:IContentVaultService_Edit_TooMuchScratchFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/GetAvailableContent" message="tns:IContentVaultService_GetAvailableContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/GetAvailableContentResponse" message="tns:IContentVaultService_GetAvailableContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/GetData" message="tns:IContentVaultService_GetData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/GetDataResponse" message="tns:IContentVaultService_GetData_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeletedContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/GetDeletedContent" message="tns:IContentVaultService_GetDeletedContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/GetDeletedContentResponse" message="tns:IContentVaultService_GetDeletedContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficialContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/GetOfficialContent" message="tns:IContentVaultService_GetOfficialContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/GetOfficialContentResponse" message="tns:IContentVaultService_GetOfficialContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/GetUserID" message="tns:IContentVaultService_GetUserID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/GetUserIDResponse" message="tns:IContentVaultService_GetUserID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/Import" message="tns:IContentVaultService_Import_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/ImportResponse" message="tns:IContentVaultService_Import_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/ImportTooMuchScratchFaultFault" name="TooMuchScratchFaultFault" message="tns:IContentVaultService_Import_TooMuchScratchFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/ImportTooMuchContentFaultFault" name="TooMuchContentFaultFault" message="tns:IContentVaultService_Import_TooMuchContentFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/Login" message="tns:IContentVaultService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/LoginResponse" message="tns:IContentVaultService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UndeleteContent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/UndeleteContent" message="tns:IContentVaultService_UndeleteContent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/UndeleteContentResponse" message="tns:IContentVaultService_UndeleteContent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/UpdateData" message="tns:IContentVaultService_UpdateData_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/UpdateDataResponse" message="tns:IContentVaultService_UpdateData_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IContentVaultService/UpdateDataContentNotFoundFaultFault" name="ContentNotFoundFaultFault" message="tns:IContentVaultService_UpdateData_ContentNotFoundFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePortrait">
+      <wsdl:input wsaw:Action="http://tempuri.org/IContentVaultService/UpdatePortrait" message="tns:IContentVaultService_UpdatePortrait_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IContentVaultService/UpdatePortraitResponse" message="tns:IContentVaultService_UpdatePortrait_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_IContentVaultService" type="tns:IContentVaultService">
+    <wsp:PolicyReference URI="#CustomBinding_IContentVaultService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Commit">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/Commit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TooMuchContentFaultFault">
+        <soap12:fault use="literal" name="TooMuchContentFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Create">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/Create" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TooMuchScratchFaultFault">
+        <soap12:fault use="literal" name="TooMuchScratchFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="TooMuchContentFaultFault">
+        <soap12:fault use="literal" name="TooMuchContentFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteContent">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/DeleteContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Edit">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/Edit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TooMuchContentFaultFault">
+        <soap12:fault use="literal" name="TooMuchContentFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="TooMuchScratchFaultFault">
+        <soap12:fault use="literal" name="TooMuchScratchFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableContent">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/GetAvailableContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/GetData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeletedContent">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/GetDeletedContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficialContent">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/GetOfficialContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserID">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/GetUserID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Import">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/Import" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="TooMuchScratchFaultFault">
+        <soap12:fault use="literal" name="TooMuchScratchFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="TooMuchContentFaultFault">
+        <soap12:fault use="literal" name="TooMuchContentFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UndeleteContent">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/UndeleteContent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/UpdateData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ContentNotFoundFaultFault">
+        <soap12:fault use="literal" name="ContentNotFoundFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePortrait">
+      <soap12:operation soapAction="http://tempuri.org/IContentVaultService/UpdatePortrait" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ContentVaultService">
+    <wsdl:port name="CustomBinding_IContentVaultService" binding="tns:CustomBinding_IContentVaultService">
+      <soap12:address location="http://ioun.wizards.com/ContentVault.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://ioun.wizards.com/ContentVault.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

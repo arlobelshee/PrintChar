@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="/Imports">
+      <xsd:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd0" />
+      <xsd:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" />
+      <xsd:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/WotC.WebServiceUtilities.Server" />
+      <xsd:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WotC.ContentVault" />
+      <xsd:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WotC.CharBuilder.Web" />
+      <xsd:import schemaLocation="http://vecna.wizards.com/D20WorkspaceService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ID20WorkspaceService_Apply_InputMessage">
+    <wsdl:part name="parameters" element="Apply" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_Apply_OutputMessage">
+    <wsdl:part name="parameters" element="ApplyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_Apply_ContentNotFoundFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" name="detail" element="q1:ContentNotFoundFault" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_Apply_SessionExpiredFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/WotC.WebServiceUtilities.Server" name="detail" element="q2:SessionExpiredFault" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_GetClientRulesElementData_InputMessage">
+    <wsdl:part name="parameters" element="GetClientRulesElementData" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_GetClientRulesElementData_OutputMessage">
+    <wsdl:part name="parameters" element="GetClientRulesElementDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_GetClientRulesElementData_SessionExpiredFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/WotC.WebServiceUtilities.Server" name="detail" element="q3:SessionExpiredFault" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_Login_InputMessage">
+    <wsdl:part name="parameters" element="Login" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_Login_OutputMessage">
+    <wsdl:part name="parameters" element="LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_PreloadClientRulesElementData_InputMessage">
+    <wsdl:part name="parameters" element="PreloadClientRulesElementData" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_PreloadClientRulesElementData_OutputMessage">
+    <wsdl:part name="parameters" element="PreloadClientRulesElementDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="ID20WorkspaceService_PreloadClientRulesElementData_SessionExpiredFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/WotC.WebServiceUtilities.Server" name="detail" element="q4:SessionExpiredFault" />
+  </wsdl:message>
+  <wsdl:portType name="ID20WorkspaceService">
+    <wsdl:operation name="Apply">
+      <wsdl:input wsaw:Action="urn:ID20WorkspaceService/Apply" message="ID20WorkspaceService_Apply_InputMessage" />
+      <wsdl:output wsaw:Action="urn:ID20WorkspaceService/ApplyResponse" message="ID20WorkspaceService_Apply_OutputMessage" />
+      <wsdl:fault wsaw:Action="urn:ID20WorkspaceService/ApplyContentNotFoundFaultFault" name="ContentNotFoundFaultFault" message="ID20WorkspaceService_Apply_ContentNotFoundFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="urn:ID20WorkspaceService/ApplySessionExpiredFaultFault" name="SessionExpiredFaultFault" message="ID20WorkspaceService_Apply_SessionExpiredFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClientRulesElementData">
+      <wsdl:input wsaw:Action="urn:ID20WorkspaceService/GetClientRulesElementData" message="ID20WorkspaceService_GetClientRulesElementData_InputMessage" />
+      <wsdl:output wsaw:Action="urn:ID20WorkspaceService/GetClientRulesElementDataResponse" message="ID20WorkspaceService_GetClientRulesElementData_OutputMessage" />
+      <wsdl:fault wsaw:Action="urn:ID20WorkspaceService/GetClientRulesElementDataSessionExpiredFaultFault" name="SessionExpiredFaultFault" message="ID20WorkspaceService_GetClientRulesElementData_SessionExpiredFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="urn:ID20WorkspaceService/Login" message="ID20WorkspaceService_Login_InputMessage" />
+      <wsdl:output wsaw:Action="urn:ID20WorkspaceService/LoginResponse" message="ID20WorkspaceService_Login_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PreloadClientRulesElementData">
+      <wsdl:input wsaw:Action="urn:ID20WorkspaceService/PreloadClientRulesElementData" message="ID20WorkspaceService_PreloadClientRulesElementData_InputMessage" />
+      <wsdl:output wsaw:Action="urn:ID20WorkspaceService/PreloadClientRulesElementDataResponse" message="ID20WorkspaceService_PreloadClientRulesElementData_OutputMessage" />
+      <wsdl:fault wsaw:Action="urn:ID20WorkspaceService/PreloadClientRulesElementDataSessionExpiredFaultFault" name="SessionExpiredFaultFault" message="ID20WorkspaceService_PreloadClientRulesElementData_SessionExpiredFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

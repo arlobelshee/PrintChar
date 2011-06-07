@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/WotC.ContentVault" />
+  <xs:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:element name="Commit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="id" nillable="true" type="q1:ContentIdentifier" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="targetID" nillable="true" type="q2:ContentIdentifier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CommitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="CommitResult" nillable="true" type="q3:IdentifierWithVersion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Create">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="CreateResult" nillable="true" type="q4:ContentIdentifier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="id" nillable="true" type="q5:ContentIdentifier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteContentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Edit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="id" nillable="true" type="q6:ContentIdentifier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="EditResult" nillable="true" type="q7:ContentIdentifier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contentType" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableContentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="GetAvailableContentResult" nillable="true" type="q8:ArrayOfContentInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="id" nillable="true" type="q9:ContentIdentifier" />
+        <xs:element minOccurs="0" name="version" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="GetDataResult" nillable="true" type="q10:DataWithVersion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeletedContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contentType" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeletedContentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="GetDeletedContentResult" nillable="true" type="q11:ArrayOfContentInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfficialContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="contentType" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOfficialContentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="GetOfficialContentResult" nillable="true" type="q12:ArrayOfContentInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserID">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.microsoft.com/2003/10/Serialization/" minOccurs="0" name="GetUserIDResult" type="q13:guid" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Import">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="typeID" type="xs:int" />
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="ImportResult" nillable="true" type="q14:IdentifierWithVersion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="LoginResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UndeleteContent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="id" nillable="true" type="q15:ContentIdentifier" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UndeleteContentResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="id" nillable="true" type="q16:ContentIdentifier" />
+        <xs:element minOccurs="0" name="data" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateDataResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateDataResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePortrait">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="id" nillable="true" type="q17:ContentIdentifier" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/WotC.ContentVault" minOccurs="0" name="portrait" nillable="true" type="q18:ContentBlob" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdatePortraitResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdatePortraitResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/WotC.ContentVault" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WotC.ContentVault" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" />
+  <xs:import schemaLocation="http://ioun.wizards.com/ContentVault.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/WotC.XAMLUtilities" />
+  <xs:complexType name="ContentIdentifier">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContentID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Official" type="xs:boolean" />
+      <xs:element minOccurs="0" name="OfficialTypeID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ScratchID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="TypeID" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentIdentifier" nillable="true" type="tns:ContentIdentifier" />
+  <xs:complexType name="IdentifierWithVersion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Identifier" nillable="true" type="tns:ContentIdentifier" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IdentifierWithVersion" nillable="true" type="tns:IdentifierWithVersion" />
+  <xs:complexType name="ArrayOfContentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContentInfo" nillable="true" type="tns:ContentInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContentInfo" nillable="true" type="tns:ArrayOfContentInfo" />
+  <xs:complexType name="ContentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CommittedContent" nillable="true" type="tns:ContentDetails" />
+      <xs:element minOccurs="0" name="OwnerID" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/WotC.ContentManagement" minOccurs="0" name="Rights" type="q1:UserContentRights" />
+      <xs:element minOccurs="0" name="ScratchContents" nillable="true" type="tns:ArrayOfContentDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentInfo" nillable="true" type="tns:ContentInfo" />
+  <xs:complexType name="ContentDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ContentTypeID" type="xs:int" />
+      <xs:element minOccurs="0" name="DateCreated" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DateModified" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Details" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Identifier" nillable="true" type="tns:ContentIdentifier" />
+      <xs:element minOccurs="0" name="Portrait" nillable="true" type="tns:ContentBlob" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ContentDetails" nillable="true" type="tns:ContentDetails" />
+  <xs:complexType name="ContentBlob">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/WotC.XAMLUtilities" base="q2:NotifyPropertyChangedBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ContentBlob" nillable="true" type="tns:ContentBlob" />
+  <xs:complexType name="ArrayOfContentDetails">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ContentDetails" nillable="true" type="tns:ContentDetails" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfContentDetails" nillable="true" type="tns:ArrayOfContentDetails" />
+  <xs:complexType name="DataWithVersion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Data" nillable="true" type="tns:ContentBlob" />
+      <xs:element minOccurs="0" name="Version" nillable="true" type="xs:base64Binary" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataWithVersion" nillable="true" type="tns:DataWithVersion" />
+</xs:schema>
