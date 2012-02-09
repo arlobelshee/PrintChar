@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionType.cs" />
-    <Compile Include="Annotations.cs" />
     <Compile Include="AsyncHelpers.cs" />
     <Compile Include="CompendiumClient.cs" />
     <Compile Include="CookieAwareWebClient.cs">
@@ -217,6 +216,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PluginApi\PluginApi.csproj">
+      <Project>{349C1367-38EB-486A-8DE0-241A650E1EE6}</Project>
+      <Name>PluginApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

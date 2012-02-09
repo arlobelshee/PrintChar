@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7B296AF5-E4A6-4A1A-9864-788066734856}</ProjectGuid>
+    <ProjectGuid>{8F51B383-1187-4CFD-B4D6-889F662B96F6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WotcOnlineDataRepository.Tests</RootNamespace>
-    <AssemblyName>WotcOnlineDataRepository.Tests</AssemblyName>
+    <RootNamespace>Plugin.Dnd4e.Tests</RootNamespace>
+    <AssemblyName>Plugin.Dnd4e.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,13 +30,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\WotcOnlineDataRepository\HtmlAgilityPack.dll</HintPath>
-    </Reference>
-    <Reference Include="nunit.framework">
-      <HintPath>..\nunit.framework.dll</HintPath>
-    </Reference>
+   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,29 +38,13 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-  </ItemGroup>
+      <Reference Include="nunit.framework">
+         <HintPath>..\nunit.framework.dll</HintPath>
+      </Reference>
+   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ParseActionType.cs" />
-    <Compile Include="ParseTargetType.cs" />
-    <Compile Include="LogInToServices.cs" />
-    <Compile Include="ParseBasicDataTypes.cs" />
-    <Compile Include="FakeServiceDataIsAsExpected.cs" />
-    <Compile Include="ParsePowers.cs" />
+    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestCredentials.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\PluginApi\PluginApi.csproj">
-      <Project>{349C1367-38EB-486A-8DE0-241A650E1EE6}</Project>
-      <Name>PluginApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WotcOnlineDataRepository\WotcOnlineDataRepository.csproj">
-      <Project>{4014825E-5907-46E8-933F-8FB124D4A6ED}</Project>
-      <Name>WotcOnlineDataRepository</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

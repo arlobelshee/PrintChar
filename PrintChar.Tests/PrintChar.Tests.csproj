@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndersFactoryCreatesValidCards.cs" />
-    <Compile Include="CachingFileIsBackedByDisk.cs" />
     <Compile Include="CharacterParsing.cs" />
     <Compile Include="DataFilesLoadProperly.cs" />
     <Compile Include="DefaultGeneratorMakesCorrectCards.cs" />
@@ -63,6 +62,10 @@
     <Compile Include="TransformChain.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PluginApi\PluginApi.csproj">
+      <Project>{349C1367-38EB-486A-8DE0-241A650E1EE6}</Project>
+      <Name>PluginApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PrintChar\PrintChar.csproj">
       <Project>{BD8BE95C-88F9-42C5-A436-6F035D797C57}</Project>
       <Name>PrintChar</Name>
