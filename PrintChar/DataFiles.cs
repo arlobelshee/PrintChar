@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using JetBrains.Annotations;
 using Microsoft.Win32;
+using PluginApi.Model;
 using PrintChar.Templates;
 using PrintChar.Templates.Anders;
 using WotcOnlineDataRepository;

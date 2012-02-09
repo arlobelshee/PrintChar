@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using PluginApi.Model;
 
-namespace PrintChar.Tests
+namespace PluginApi.Tests
 {
 	[TestFixture]
 	public class CachingFileIsBackedByDisk

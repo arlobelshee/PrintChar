@@ -3,7 +3,7 @@ using System.IO;
 using System.Threading;
 using JetBrains.Annotations;
 
-namespace PrintChar
+namespace PluginApi.Model
 {
 	public class CachedFile : IDisposable
 	{
