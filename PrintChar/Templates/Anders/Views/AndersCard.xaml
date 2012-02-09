@@ -3,14 +3,13 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:PrintChar_Templates="clr-namespace:PrintChar.Templates"
-	mc:Ignorable="d"
+	xmlns:Helpers="clr-namespace:PluginApi.Display.Helpers;assembly=PluginApi" mc:Ignorable="d"
 	x:Class="PrintChar.Templates.Anders.Views.AndersCard"
 	x:Name="UserControl"
 	d:DesignWidth="345" d:DesignHeight="250">
 
 	<UserControl.Resources>
-		<PrintChar_Templates:VisibleIfValidConverter x:Key="VisibleIfValid"/>
+		<Helpers:VisibleIfValidConverter x:Key="VisibleIfValid"/>
 	</UserControl.Resources>
 
 <UserControl.ContentTemplate>
