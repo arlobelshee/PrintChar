@@ -207,6 +207,10 @@
     <Resource Include="Templates\Anders\images\target_touch.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PluginApi\PluginApi.csproj">
+      <Project>{349C1367-38EB-486A-8DE0-241A650E1EE6}</Project>
+      <Name>PluginApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WotcOnlineDataRepository\WotcOnlineDataRepository.csproj">
       <Project>{4014825E-5907-46E8-933F-8FB124D4A6ED}</Project>
       <Name>WotcOnlineDataRepository</Name>
