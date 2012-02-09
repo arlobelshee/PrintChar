@@ -1,3 +1,6 @@
+# Project-specific files to never check in.
+TestCredentials.cs
+
 #OS junk files
 [Tt]humbs.db
 *.DS_Store
