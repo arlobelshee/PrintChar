@@ -33,7 +33,6 @@ Ankh.NoLoad
 
 #Tooling
 _ReSharper*/
-*.resharper
 [Tt]est[Rr]esult*
 
 #Project files
