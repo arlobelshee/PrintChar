@@ -58,6 +58,26 @@ namespace WotcOnlineDataRepository
 						currentPowerDiv.AppendChild(newPara);
 					continue;
 				}
+				if (child.NodeType == HtmlNodeType.Element && child.Name == "p" && !_IsProbablyStatBlock(child))
+				{
+					var currentPara = child;
+					var originalGrandchildren = child.ChildNodes.ToList();
+					foreach (var grandchild in originalGrandchildren)
+					{
+						child.RemoveChild(grandchild);
+						if (grandchild.NodeType == HtmlNodeType.Element && grandchild.Name == "br")
+						{
+							if (currentPowerDiv != null)
+								currentPowerDiv.AppendChild(currentPara);
+							currentPara = data.OwnerDocument.CreateElement("p");
+							continue;
+						}
+						currentPara.AppendChild(grandchild);
+					}
+					if (currentPowerDiv != null)
+						currentPowerDiv.AppendChild(currentPara);
+					continue;
+				}
 				if (null != currentPowerDiv)
 					currentPowerDiv.AppendChild(child);
 			}
@@ -111,9 +131,12 @@ namespace WotcOnlineDataRepository
 				() => { throw new ParseError(string.Format("Found too many bold regions in {0}. I do not know how to interpret them.", para.WriteTo())); });
 			var label = labels.Count == 1 ? labels.First().FirstText() : string.Empty;
 			var details = para.WriteContentTo();
-			details = details.Substring(details.LastIndexOf(@"</b>") + @"</b>".Length);
+			if (labels.Count > 0)
+			{
+				details = details.Substring(details.LastIndexOf(@"</b>") + @"</b>".Length);
+			}
 			if (details.StartsWith(":"))
-				details = details.Substring(1).Trim();
+				details = details.Substring(1);
 			return new Descriptor(label, details);
 		}
 

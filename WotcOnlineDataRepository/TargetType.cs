@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace PrintChar
+namespace WotcOnlineDataRepository
 {
 	public class TargetType : IEquatable<TargetType>
 	{
@@ -102,24 +102,52 @@ namespace PrintChar
 		public static TargetType For([NotNull] string unparsedTargetValue)
 		{
 			unparsedTargetValue = unparsedTargetValue.ToLower();
+			var actionParts = unparsedTargetValue.Split(new[] {' '}, 2);
+			return _PersonalOrTouch(unparsedTargetValue) ?? _Area(actionParts) ?? _Weapon(actionParts) ??
+				_FixedRange(actionParts) ?? _Close(actionParts) ?? _FailToParse(unparsedTargetValue);
+		}
+
+		private static TargetType _PersonalOrTouch(string unparsedTargetValue)
+		{
 			if (unparsedTargetValue == "personal")
 				return Personal;
-			if (unparsedTargetValue == "touch")
+			if (unparsedTargetValue == "touch" || unparsedTargetValue == "melee touch")
 				return Touch;
-			int range;
-			int area;
-			var actionParts = unparsedTargetValue.Split(new[] {' '}, 2);
-			if (actionParts[0] == "area")
+			return null;
+		}
+
+		private static TargetType _Close([NotNull] string[] actionParts)
+		{
+			if (actionParts[0] == "close")
 			{
-				var details = actionParts[1].Split(new[] {' '});
-				if (details.Length == 4 && details[0] == "burst" && details[2] == "within")
+				var details = actionParts[1].Split(new[] {' '}, 2);
+				int area;
+				if (int.TryParse(details[1], out area))
 				{
-					if (int.TryParse(details[1], out area) && int.TryParse(details[3], out range))
-					{
-						return Area(area, range);
-					}
+					if (details[0] == "burst")
+						return CloseBurst(area);
+					if (details[0] == "blast")
+						return CloseBlast(area);
 				}
 			}
+			return null;
+		}
+
+		private static TargetType _FixedRange([NotNull] string[] actionParts)
+		{
+			int range;
+			if (int.TryParse(actionParts[1], out range))
+			{
+				if (actionParts[0] == "melee")
+					return Melee(range);
+				if (actionParts[0] == "ranged")
+					return Ranged(range);
+			}
+			return null;
+		}
+
+		private static TargetType _Weapon([NotNull] string[] actionParts)
+		{
 			if (actionParts[1] == "weapon")
 			{
 				if (actionParts[0] == "melee")
@@ -129,25 +157,32 @@ namespace PrintChar
 				if (actionParts[0] == "any")
 					return AnyWeapon;
 			}
-			if (int.TryParse(actionParts[1], out range))
+			return null;
+		}
+
+		private static TargetType _Area([NotNull] string[] actionParts)
+		{
+			if (actionParts[0] == "area")
 			{
-				if (actionParts[0] == "melee")
-					return Melee(range);
-				if (actionParts[0] == "ranged")
-					return Ranged(range);
-			}
-			if (actionParts[0] == "close")
-			{
-				var details = actionParts[1].Split(new[] {' '}, 2);
-				if (int.TryParse(details[1], out area))
+				var details = actionParts[1].Split(new[] {' '});
+				if (details.Length == 4 && details[0] == "burst" && details[2] == "within")
 				{
-					if (details[0] == "burst")
-						return CloseBurst(area);
-					if (details[0] == "blast")
-						return CloseBlast(area);
+					int range;
+					int area;
+					if (int.TryParse(details[1], out area) && int.TryParse(details[3], out range))
+					{
+						return Area(area, range);
+					}
 				}
 			}
-			throw new NotImplementedException(string.Format("I do not know how to parse the target descriptor '{0}'.", unparsedTargetValue));
+			return null;
+		}
+
+		[NotNull]
+		private static TargetType _FailToParse(string unparsedTargetValue)
+		{
+			throw new NotImplementedException(string.Format("I do not know how to parse the target descriptor '{0}'.",
+				unparsedTargetValue));
 		}
 
 		[NotNull]

@@ -18,17 +18,17 @@ namespace PrintChar.Tests
 		[Test]
 		public void AppendOnlineDataToPowerWhenFound()
 		{
-			_pc.Powers.Add(_MakeLocalPower(TestPowers.Monk));
+			_pc.Powers.Add(_MakeLocalPower(TestPowers.PowerSimple));
 			var dataArrived = _BindOnlineDataArrivalEventToATask(_pc);
 			_testSubject.Update(_pc);
 			Assert.That(dataArrived.Wait(TimeSpan.FromMilliseconds(1800)));
-			Assert.That(_pc.Powers[0].OnlineData.Name, Is.EqualTo(TestPowers.Monk.Name));
+			Assert.That(_pc.Powers[0].OnlineData.Name, Is.EqualTo(TestPowers.PowerSimple.Name));
 		}
 
 		[Test]
 		public void DataFetcherIgnoresPowersWhoseNameDoesNotMatchAnyOfThoseDownloaded()
 		{
-			_pc.Powers.Add(new Power {PowerId = TestPowers.Monk, Name = "Not the correct value"});
+			_pc.Powers.Add(new Power {PowerId = TestPowers.PowerSimple, Name = "Not the correct value"});
 			var dataArrived = _BindOnlineDataArrivalEventToATask(_pc);
 			_testSubject.Update(_pc);
 			Assert.That(dataArrived.Wait(TimeSpan.FromMilliseconds(180)), Is.False);

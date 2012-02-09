@@ -24,7 +24,7 @@ namespace WotcOnlineDataRepository.Tests
 		{
 			var testSubject = _LogInCorrectly();
 			var localData = ServiceFactory.MakeLocalOnlyFakeServiceForTesting().Result;
-			Assert.That(testSubject.Raw.PowerData(TestPowers.Monk).Result.WriteTo(), Is.EqualTo(localData.Raw.PowerData(TestPowers.Monk).Result.WriteTo()));
+			Assert.That(testSubject.Raw.PowerData(TestPowers.PowerSimple).Result.WriteTo(), Is.EqualTo(localData.Raw.PowerData(TestPowers.PowerSimple).Result.WriteTo()));
 		}
 
 		[Test]

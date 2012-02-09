@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParseActionType.cs" />
+    <Compile Include="ParseTargetType.cs" />
     <Compile Include="LogInToServices.cs" />
     <Compile Include="ParseBasicDataTypes.cs" />
     <Compile Include="FakeServiceDataIsAsExpected.cs" />

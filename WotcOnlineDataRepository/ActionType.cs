@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace PrintChar
+namespace WotcOnlineDataRepository
 {
 	public class ActionType : IEquatable<ActionType>
 	{
@@ -96,9 +96,9 @@ namespace PrintChar
 		public static ActionType For([NotNull] string unparsedActionValue)
 		{
 			Func<ActionType> builder;
-			if (!_PARSE_TABLE.TryGetValue(unparsedActionValue.ToLower(), out builder))
-				throw new NotImplementedException(string.Format("I do not know how to parse the action descriptor '{0}'.", unparsedActionValue));
-			return builder();
+			if (_PARSE_TABLE.TryGetValue(unparsedActionValue.ToLower(), out builder))
+				return builder();
+			throw new NotImplementedException(string.Format("I do not know how to parse the action descriptor '{0}'.", unparsedActionValue));
 		}
 
 		public override string ToString()

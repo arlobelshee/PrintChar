@@ -15,12 +15,17 @@ namespace WotcOnlineDataRepository
 
 		public int PowerId { get; private set; }
 
-		public static TestPowers Monk
+		public Power LoadFrom(IDnd4ERepository repository)
+		{
+			return repository.PowerDetails(new[] {PowerId}).Result[Name];
+		}
+
+		public static TestPowers PowerSimple
 		{
 			get { return new TestPowers(7448, "Centered Flurry of Blows"); }
 		}
 
-		public static TestPowers Ardent
+		public static TestPowers PowerWithAugments
 		{
 			get { return new TestPowers(12946, "Unsteadying Rebuke"); }
 		}

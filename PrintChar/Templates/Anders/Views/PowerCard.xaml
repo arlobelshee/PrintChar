@@ -12,8 +12,8 @@
 	d:DataContext="{d:DesignInstance ViewModels:PowerDesignData, IsDesignTimeCreatable=True}">
 
 	<Grid x:Name="LayoutRoot">
-		<Views:AndersCard x:Name="Card" CardColor="{Binding CardColor, Mode=OneWay}" Foreground="White" SubtitleText="{}{Bind to power categorization}" TitleText="{Binding Name}" TargetTypeIcon="{Binding TargetIcon, Mode=OneWay}" ActionTypeIcon="{Binding ActionIcon, Mode=OneWay}">
-			<TextBlock Text="{Binding Description, Mode=OneWay}" Foreground="Black" TextWrapping="Wrap" />
+		<Views:AndersCard x:Name="Card" CardColor="{Binding CardColor, Mode=OneWay}" Foreground="White" SubtitleText="{Binding PowerCategorization, Mode=OneWay}" TitleText="{Binding Name}" TargetTypeIcon="{Binding TargetIcon, Mode=OneWay}" ActionTypeIcon="{Binding ActionIcon, Mode=OneWay}">
+			<FlowDocumentScrollViewer Document="{Binding Description, Mode=OneWay}" Foreground="Black" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Hidden" />
 		</Views:AndersCard>
 	</Grid>
 </UserControl>

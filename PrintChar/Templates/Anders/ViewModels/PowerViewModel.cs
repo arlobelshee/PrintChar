@@ -1,32 +1,39 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 using JetBrains.Annotations;
 using WotcOnlineDataRepository;
-using System.Linq;
 
 namespace PrintChar.Templates.Anders.ViewModels
 {
 	public class PowerViewModel : INotifyPropertyChanged
 	{
-		[NotNull] private static readonly ResourceDictionary _ANDERS_RESOURCES = Template.ResourceDict("Anders", "AndersResources.xaml");
+		[NotNull] private static readonly ResourceDictionary _ANDERS_RESOURCES = Template.ResourceDict("Anders",
+			"AndersResources.xaml");
+
 		[NotNull] private readonly Power _data;
 
 		public PowerViewModel([NotNull] Power data)
 		{
 			_data = data;
-			_data.OnlineDataArrived += () => PropertyChanged.Raise(this, () => Description);
+			_data.OnlineDataArrived += _NotifyAboutNewOnlineData;
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public string Description
+		public FlowDocument Description
+		{
+			get { return _data.OnlineData.ToDocument(_FormatTheDocument, _FormatEachParagraph); }
+		}
+
+		public string PowerCategorization
 		{
 			get
 			{
-				var onlineData = _data.OnlineData;
-				return onlineData == null ? string.Empty : string.Join("\r\n", onlineData.Description);
+				return _data.OnlineData == null ? string.Empty : string.Format("{0} {1} {2}", _data.OnlineData.Source, _data.OnlineData.Type, _data.OnlineData.Level);
 			}
 		}
 
@@ -60,35 +67,43 @@ namespace PrintChar.Templates.Anders.ViewModels
 
 		public Uri ActionIcon
 		{
-			get { return Template.Resource("Anders", string.Format("images/{0}.png", _data.Action.IfValid(action=>action.IconCode))); }
+			get { return Template.Resource("Anders", string.Format("images/{0}.png", _data.Action.IfValid(action => action.IconCode))); }
 		}
 
 		public Uri TargetIcon
 		{
-			get { return Template.Resource("Anders", string.Format("images/{0}.png", _data.Target.IfValid(target=>target.IconCode))); }
+			get { return Template.Resource("Anders", string.Format("images/{0}.png", _data.Target.IfValid(target => target.IconCode))); }
+		}
+
+		private void _NotifyAboutNewOnlineData()
+		{
+			PropertyChanged.Raise(this, () => Description);
+			PropertyChanged.Raise(this, () => PowerCategorization);
+		}
+
+		private static void _FormatTheDocument([NotNull] FlowDocument result)
+		{
+			result.PagePadding = new Thickness(0);
+			result.FontFamily = new FontFamily("Palatino Linotype");
+			result.FontSize = 12.0;
+		}
+
+		private static void _FormatEachParagraph([NotNull] Paragraph result)
+		{
+			result.Margin = new Thickness(0);
 		}
 	}
 
 	public class PowerDesignData : PowerViewModel
 	{
-		public PowerDesignData()
-			: base(
-				new Power
-				{
-					Name = "A Really Cool Power",
-					Refresh = Power.Usage.Encounter,
-					Action = ActionType.Move(),
-					Target = TargetType.AnyWeapon,
-					OnlineData =
-						new WotcOnlineDataRepository.Power
-						{
-							Description =
-								{
-									new Descriptor("Sample label", "These are all the details for this label"),
-									new Descriptor("Augment 664", string.Empty),
-									new Descriptor("Para 2", "A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details. A whole bunch more details.")
-								}
-						}
-				}) {}
+		private static readonly IDnd4ERepository _CARD_DATA = ServiceFactory.MakeLocalOnlyFakeServiceForTesting().Result;
+		public PowerDesignData() : base(new Power
+		{
+			Name = "A Really Cool Power",
+			Refresh = Power.Usage.Encounter,
+			Action = ActionType.Move(),
+			Target = TargetType.AnyWeapon,
+			OnlineData = TestPowers.PowerWithAugments.LoadFrom(_CARD_DATA)
+		}) {}
 	}
 }

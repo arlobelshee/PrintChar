@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActionType.cs" />
     <Compile Include="Annotations.cs" />
     <Compile Include="AsyncHelpers.cs" />
     <Compile Include="CompendiumClient.cs" />
@@ -79,6 +80,7 @@
     </Compile>
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="SimpleEncryption.cs" />
+    <Compile Include="TargetType.cs" />
     <Compile Include="TestPowers.cs" />
     <Compile Include="WorkspaceConnector.cs" />
     <Compile Include="XmlDetailsData.cs" />

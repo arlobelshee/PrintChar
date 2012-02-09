@@ -63,11 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ActionType.cs" />
+    <Compile Include="DocumentExtensions.cs" />
     <Compile Include="EqualityFingerprint.cs" />
     <Compile Include="IFirePropertyChanged.cs" />
     <Compile Include="OnlineDataFetcher.cs" />
-    <Compile Include="TargetType.cs" />
     <Compile Include="CachedFile.cs" />
     <Compile Include="DataFiles.cs" />
     <Compile Include="PropertyChangedExtensions.cs" />
@@ -92,6 +91,7 @@
     <Compile Include="Templates\Template.cs" />
     <Compile Include="Templates\VisibleIfValidConverter.cs" />
     <Compile Include="TrackingNonNullProperty.cs" />
+    <Compile Include="UriExtensions.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

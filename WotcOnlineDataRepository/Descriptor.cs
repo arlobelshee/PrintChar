@@ -7,8 +7,8 @@ namespace WotcOnlineDataRepository
 	{
 		public Descriptor([NotNull] string label, [NotNull] string details)
 		{
-			Label = label;
-			Details = details;
+			Label = _Clean(label);
+			Details = _Clean(details);
 		}
 
 		public bool Equals(Descriptor other)
@@ -25,6 +25,12 @@ namespace WotcOnlineDataRepository
 
 		[NotNull]
 		public string Details { get; private set; }
+
+		[NotNull]
+		private static string _Clean([NotNull] string data)
+		{
+			return data.Trim().Replace("&nbsp;", " ");
+		}
 
 		public override string ToString()
 		{

@@ -15,7 +15,7 @@ namespace WotcOnlineDataRepository.Tests
 		[Test]
 		public void FindTheName()
 		{
-			Assert.That(_MonkPower().Name, Is.EqualTo(TestPowers.Monk.Name));
+			Assert.That(_MonkPower().Name, Is.EqualTo(TestPowers.PowerSimple.Name));
 		}
 
 		[Test]
@@ -55,6 +55,15 @@ namespace WotcOnlineDataRepository.Tests
 		}
 
 		[Test]
+		public void FindTheActionType()
+		{
+			var ardentPower = _ArdentPower();
+			Assert.That(ardentPower.Source, Is.EqualTo("Ardent"));
+			Assert.That(ardentPower.Type, Is.EqualTo("Attack"));
+			Assert.That(ardentPower.Level, Is.EqualTo(3));
+		}
+
+		[Test]
 		public void WhenARequestReturnsMultiplePowersParseThemBoth()
 		{
 			Assert.That(_GetPower(TestPowers.PowerWithSubpower).Keys, Is.EquivalentTo(new[] {TestPowers.PowerWithSubpower.Name, TestPowers.Subpower.Name}));
@@ -69,11 +78,11 @@ namespace WotcOnlineDataRepository.Tests
 		[Test]
 		public void StillGetDataForValidRequestsEvenWhenSomeFail()
 		{
-			Assert.That(_GetPower(TestPowers.Subpower, TestPowers.Monk).Keys, Is.EquivalentTo(new[] {TestPowers.Monk.Name}));
+			Assert.That(_GetPower(TestPowers.Subpower, TestPowers.PowerSimple).Keys, Is.EquivalentTo(new[] {TestPowers.PowerSimple.Name}));
 		}
 
 		[Test]
-		public void CleanWorksWithOnlyOnePower()
+		public void CleanWrapsPowerInDivWithOnlyOnePower()
 		{
 			const string original = @"<div id='detail'>This text should be removed.<h1>Something</h1><p>First</p><p>Second</p></div>";
 			const string cleaned = @"<div id='detail'><div><h1>Something</h1><p>First</p><p>Second</p></div></div>";
@@ -81,7 +90,7 @@ namespace WotcOnlineDataRepository.Tests
 		}
 
 		[Test]
-		public void CleanWorksWithTwoPowers()
+		public void CleanTreatsEachH1AsStartingNewPowerInNewDiv()
 		{
 			const string original = @"<div id='detail'><h1>Power 1</h1><p>First</p><p>Second</p><h1>Second Power</h1><p>Third</p></div>";
 			const string cleaned = @"<div id='detail'><div><h1>Power 1</h1><p>First</p><p>Second</p></div><div><h1>Second Power</h1><p>Third</p></div></div>";
@@ -96,9 +105,33 @@ namespace WotcOnlineDataRepository.Tests
 			_AssertCleansUpAs(original, cleaned);
 		}
 
+		[Test]
+		public void DescriptionConstructorTurnsNbspToSpace()
+		{
+			var descriptor = new Descriptor(" &nbsp; label ", " &nbsp; val ");
+			Assert.That(descriptor.Label, Is.EqualTo("  label"));
+			Assert.That(descriptor.Details, Is.EqualTo("  val"));
+		}
+
+		[Test]
+		public void CleanTreatsBrInNormalParasAsNewPara()
+		{
+			const string original = @"<div id='detail'><h1>Something</h1><p>First<br>&nbsp;&nbsp;&nbsp;Second</p></div>";
+			const string cleaned = @"<div id='detail'><div><h1>Something</h1><p>First</p><p>&nbsp;&nbsp;&nbsp;Second</p></div></div>";
+			_AssertCleansUpAs(original, cleaned);
+		}
+
+		[Test]
+		public void CleanIgnoresBrInStatBlock()
+		{
+			const string original = @"<div id='detail'><h1>Something</h1><p>stats have a bullet <img src=""images/bullet.gif"" alt=""""><br>&nbsp;&nbsp;&nbsp;Second</p></div>";
+			const string cleaned = @"<div id='detail'><div><h1>Something</h1><p>stats have a bullet <img src=""images/bullet.gif"" alt=""""><br>&nbsp;&nbsp;&nbsp;Second</p></div></div>";
+			_AssertCleansUpAs(original, cleaned);
+		}
+
 		private Power _ArdentPower()
 		{
-			var whichPower = TestPowers.Ardent;
+			var whichPower = TestPowers.PowerWithAugments;
 			return _GetPower(whichPower)[whichPower.Name];
 		}
 
@@ -116,7 +149,7 @@ namespace WotcOnlineDataRepository.Tests
 
 		private Power _MonkPower()
 		{
-			var whichPower = TestPowers.Monk;
+			var whichPower = TestPowers.PowerSimple;
 			return _GetPower(whichPower)[whichPower.Name];
 		}
 

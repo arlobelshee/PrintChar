@@ -98,8 +98,7 @@ namespace PrintChar
 			var power = new Power {Name = name, Refresh = _USAGE_PARSER[usage], Action = ActionType.For(action)};
 			if (!string.IsNullOrEmpty(url))
 			{
-				var queryParams = new Uri(url, UriKind.Absolute).Query.Trim('?').Split('&').Select(pair => pair.Split('=')).ToDictionary(parts => parts[0],
-					parts => parts[1]);
+				var queryParams = new Uri(url, UriKind.Absolute).QueryParams();
 				power.PowerId = int.Parse(queryParams["id"]);
 			}
 			return power;
