@@ -6,16 +6,19 @@ using PrintChar;
 
 namespace PluginApi.Model
 {
-	public abstract class Character : INotifyPropertyChanged, IFirePropertyChanged
+	public abstract class Character : INotifyPropertyChanged, IFirePropertyChanged, IEquatable<Character>
 	{
-		[NotNull] protected TrackingNonNullProperty<string> _gender;
-		[NotNull] protected TrackingNonNullProperty<string> _name;
+		[NotNull] protected readonly TrackingNonNullProperty<string> _gender;
+		[NotNull] protected readonly TrackingNonNullProperty<string> _name;
+		[NotNull] protected readonly EqualityFingerprint EqualityFields;
+
 		public virtual event PropertyChangedEventHandler PropertyChanged;
 
 		protected Character()
 		{
 			_gender = new TrackingNonNullProperty<string>(string.Empty, this, () => Gender);
 			_name = new TrackingNonNullProperty<string>(string.Empty, this, () => Name);
+			EqualityFields = new EqualityFingerprint(_gender, _name);
 		}
 
 		[NotNull]
@@ -35,6 +38,25 @@ namespace PluginApi.Model
 		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
 		{
 			PropertyChanged.Raise(this, propertyThatChanged);
+		}
+
+		public bool Equals(Character other)
+		{
+			if (ReferenceEquals(null, other))
+				return false;
+			if (ReferenceEquals(this, other))
+				return true;
+			return Equals(other.EqualityFields, EqualityFields);
+		}
+
+		public override bool Equals(object obj)
+		{
+			return Equals(obj as Character);
+		}
+
+		public override int GetHashCode()
+		{
+			return EqualityFields.GetHashCode();
 		}
 	}
 }
