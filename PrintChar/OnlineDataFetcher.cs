@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
+using Plugin.Dnd4e;
 using WotcOnlineDataRepository;
 
 namespace PrintChar
@@ -21,7 +22,7 @@ namespace PrintChar
 			set { _repository = value; }
 		}
 
-		public void Update([NotNull] Character pc)
+		public void Update([NotNull] CharacterDnd4E pc)
 		{
 			var powersToUpdate = pc.Powers.ToList(); // make a copy, in case underlying data changes while we're talking to the servers.
 			_WhenLoggedIn(repo => _AddOnlineDataToPowers(repo, powersToUpdate));

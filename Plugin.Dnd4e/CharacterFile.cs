@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using JetBrains.Annotations;
+using Plugin.Dnd4e;
 using WotcOnlineDataRepository;
 
 namespace PrintChar
@@ -77,9 +78,9 @@ namespace PrintChar
 		}
 
 		[NotNull]
-		public Character ToCharacter()
+		public CharacterDnd4E ToCharacter()
 		{
-			return _AddPowers(new Character {Name = Name, Gender = Gender, CharClass = CharClass, Race = Race,});
+			return _AddPowers(new CharacterDnd4E {Name = Name, Gender = Gender, CharClass = CharClass, Race = Race,});
 		}
 
 		[NotNull]
@@ -105,7 +106,7 @@ namespace PrintChar
 		}
 
 		[NotNull]
-		private Character _AddPowers([NotNull] Character character)
+		private CharacterDnd4E _AddPowers([NotNull] CharacterDnd4E character)
 		{
 			_dataFile.SelectNodes("//PowerStats/Power").Cast<XmlElement>().Select(_ParseOnePower).Each(pow => character.Powers.Add(pow));
 			return character;

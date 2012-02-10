@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Plugin.Dnd4e;
 using PrintChar.Templates.Anders;
 using PrintChar.Templates.Anders.ViewModels;
 
@@ -17,7 +18,7 @@ namespace PrintChar.Tests
 		[Test]
 		public void CreateACharacterStatsCard()
 		{
-			var data = new Character();
+			var data = new CharacterDnd4E();
 			var card = _testSubject.StatsFor(data);
 			Assert.That(card.DataContext, Is.SameAs(data));
 		}

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using Plugin.Dnd4e;
 using PrintChar.Templates;
 
 namespace PrintChar.Tests
@@ -12,7 +13,7 @@ namespace PrintChar.Tests
 		public void SetUp()
 		{
 			_testSubject = new GenerateCardsWithFactory<string>(new _NameUsingFakeFactory());
-			_bobby = new Character
+			_bobby = new CharacterDnd4E
 			{
 				Name = "Bobby"
 			};
@@ -47,7 +48,7 @@ namespace PrintChar.Tests
 
 		private class _NameUsingFakeFactory : IFactory<string>
 		{
-			public string StatsFor(Character data)
+			public string StatsFor(CharacterDnd4E data)
 			{
 				return string.Format("{0}'s stats", data.Name);
 			}
@@ -58,7 +59,7 @@ namespace PrintChar.Tests
 			}
 		}
 
-		[NotNull] private Character _bobby;
+		[NotNull] private CharacterDnd4E _bobby;
 		[NotNull] private GenerateCardsWithFactory<string> _testSubject;
 	}
 }

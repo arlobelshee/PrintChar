@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
+using Plugin.Dnd4e;
 
 namespace PrintChar
 {
 	public class CharacterTransformer<TResult>
 	{
-		[NotNull] private readonly List<Action<Character>> _charTransforms = new List<Action<Character>>();
-		[NotNull] private readonly Func<Character, IEnumerable<TResult>> _generator;
-		[NotNull] private readonly Func<FileInfo, Character> _parser;
+		[NotNull] private readonly List<Action<CharacterDnd4E>> _charTransforms = new List<Action<CharacterDnd4E>>();
+		[NotNull] private readonly Func<CharacterDnd4E, IEnumerable<TResult>> _generator;
+		[NotNull] private readonly Func<FileInfo, CharacterDnd4E> _parser;
 
-		public CharacterTransformer([NotNull] Func<FileInfo, Character> parser,
-			[NotNull] Func<Character, IEnumerable<TResult>> generator)
+		public CharacterTransformer([NotNull] Func<FileInfo, CharacterDnd4E> parser,
+			[NotNull] Func<CharacterDnd4E, IEnumerable<TResult>> generator)
 		{
 			_parser = parser;
 			_generator = generator;
 		}
 
-		public void Add(Action<Character> transformation)
+		public void Add(Action<CharacterDnd4E> transformation)
 		{
 			_charTransforms.Add(transformation);
 		}
 
 		[NotNull]
-		public IEnumerable<Character> Transform([NotNull] IEnumerable<Character> pcs)
+		public IEnumerable<CharacterDnd4E> Transform([NotNull] IEnumerable<CharacterDnd4E> pcs)
 		{
 			return pcs.Select(pc =>
 			{
@@ -38,13 +39,13 @@ namespace PrintChar
 		}
 
 		[NotNull]
-		public IEnumerable<Character> Parse([NotNull] IEnumerable<FileInfo> charFiles)
+		public IEnumerable<CharacterDnd4E> Parse([NotNull] IEnumerable<FileInfo> charFiles)
 		{
 			return charFiles.Select(_parser);
 		}
 
 		[NotNull]
-		public IEnumerable<TResult> Generate([NotNull] IEnumerable<Character> pcs)
+		public IEnumerable<TResult> Generate([NotNull] IEnumerable<CharacterDnd4E> pcs)
 		{
 			return pcs.SelectMany(_generator);
 		}

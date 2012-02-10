@@ -1,31 +1,28 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Linq.Expressions;
 using JetBrains.Annotations;
+using PluginApi.Model;
+using PrintChar;
 
-namespace PrintChar
+namespace Plugin.Dnd4e
 {
-	public class Character : INotifyPropertyChanged, IFirePropertyChanged
+	public class CharacterDnd4E : Character
 	{
-		[NotNull] private readonly TrackingNonNullProperty<string> _gender;
-		[NotNull] private readonly TrackingNonNullProperty<string> _name;
 		[NotNull] private readonly TrackingNonNullProperty<string> _race;
 		[NotNull] private readonly TrackingNonNullProperty<string> _charClass;
 		[NotNull] private readonly ObservableCollection<Power> _powers = new ObservableCollection<Power>();
 		[NotNull] private readonly EqualityFingerprint _equalityFields;
 
-		public Character()
+		public CharacterDnd4E()
 		{
-			_gender = new TrackingNonNullProperty<string>(string.Empty, this, ()=> Gender, ()=>SummaryLine);
-			_name = new TrackingNonNullProperty<string>(string.Empty, this, () => Name);
+			_gender.AddDependantProperty(() => SummaryLine);
 			_race = new TrackingNonNullProperty<string>(string.Empty, this, () => Race, () => SummaryLine);
 			_charClass = new TrackingNonNullProperty<string>(string.Empty, this, () => CharClass, () => SummaryLine);
 			_equalityFields = new EqualityFingerprint(_gender, _name, _race, _charClass);
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
+		public override event PropertyChangedEventHandler PropertyChanged;
 
 		[NotNull]
 		public string SummaryLine
@@ -34,23 +31,9 @@ namespace PrintChar
 		}
 
 		[NotNull]
-		public string Name
-		{
-			get { return _name.Value; }
-			set { _name.Value = value; }
-		}
-
-		[NotNull]
 		public ObservableCollection<Power> Powers
 		{
 			get { return _powers; }
-		}
-
-		[NotNull]
-		public string Gender
-		{
-			get { return _gender.Value; }
-			set { _gender.Value = value; }
 		}
 
 		[NotNull]
@@ -72,7 +55,7 @@ namespace PrintChar
 			return string.Format("Character(Name: {0}, Gender: {2}, Powers: [{1}])", _name, string.Join(", ", _powers), _gender);
 		}
 
-		public bool Equals(Character other)
+		public bool Equals(CharacterDnd4E other)
 		{
 			if (ReferenceEquals(null, other))
 				return false;
@@ -83,7 +66,7 @@ namespace PrintChar
 
 		public override bool Equals(object obj)
 		{
-			return Equals(obj as Character);
+			return Equals(obj as CharacterDnd4E);
 		}
 
 		public override int GetHashCode()
@@ -95,16 +78,11 @@ namespace PrintChar
 				return result;
 			}
 		}
-
-		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
-		{
-			PropertyChanged.Raise(this, propertyThatChanged);
-		}
 	}
 
-	public class CharacterDesignData : Character
+	public class CharacterDnd4EDesignData : CharacterDnd4E
 	{
-		public CharacterDesignData()
+		public CharacterDnd4EDesignData()
 		{
 			Name = "Sam Ple O'data";
 			Gender = "Male";

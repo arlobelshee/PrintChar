@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Plugin.Dnd4e;
 using WotcOnlineDataRepository;
 
 namespace PrintChar.Tests
@@ -12,7 +13,7 @@ namespace PrintChar.Tests
 		public void SetUp()
 		{
 			_testSubject = new OnlineDataFetcher(ServiceFactory.MakeLocalOnlyFakeServiceForTesting());
-			_pc = new Character();
+			_pc = new CharacterDnd4E();
 		}
 
 		[Test]
@@ -45,7 +46,7 @@ namespace PrintChar.Tests
 			Assert.That(_pc.Powers[0].OnlineData, Is.Null);
 		}
 
-		private static Task<WotcOnlineDataRepository.Power> _BindOnlineDataArrivalEventToATask(Character pc)
+		private static Task<WotcOnlineDataRepository.Power> _BindOnlineDataArrivalEventToATask(CharacterDnd4E pc)
 		{
 			var taskSource = new TaskCompletionSource<WotcOnlineDataRepository.Power>();
 			pc.Powers[0].OnlineDataArrived += () => taskSource.SetResult(pc.Powers[0].OnlineData);
@@ -58,7 +59,7 @@ namespace PrintChar.Tests
 			return new Power {PowerId = (int) whichPower, Name = whichPower.Name};
 		}
 
-		private Character _pc;
+		private CharacterDnd4E _pc;
 		private OnlineDataFetcher _testSubject;
 	}
 }

@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Character.cs" />
+    <Compile Include="CharacterDnd4e.cs" />
     <Compile Include="CharacterFile.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

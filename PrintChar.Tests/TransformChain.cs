@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using Plugin.Dnd4e;
 
 namespace PrintChar.Tests
 {
@@ -60,23 +61,23 @@ namespace PrintChar.Tests
 		}
 
 		[NotNull]
-		private static IEnumerable<string> _GenerateBySelectingNameSeveralTimes([NotNull] Character ch)
+		private static IEnumerable<string> _GenerateBySelectingNameSeveralTimes([NotNull] CharacterDnd4E ch)
 		{
 			return Enumerable.Repeat(ch.Name, ch.Name.Length);
 		}
 
-		private static Character _ParseByJustCreatingCharWithFilenameAsName([NotNull] FileInfo fileName)
+		private static CharacterDnd4E _ParseByJustCreatingCharWithFilenameAsName([NotNull] FileInfo fileName)
 		{
-			return new Character
+			return new CharacterDnd4E
 			{
 				Name = fileName.Name
 			};
 		}
 
 		[NotNull]
-		private static IEnumerable<Character> _PcsNamed([NotNull] params string[] names)
+		private static IEnumerable<CharacterDnd4E> _PcsNamed([NotNull] params string[] names)
 		{
-			return names.Select(name => new Character
+			return names.Select(name => new CharacterDnd4E
 			{
 				Name = name
 			});

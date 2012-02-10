@@ -2,6 +2,7 @@
 using System.IO;
 using JetBrains.Annotations;
 using NUnit.Framework;
+using Plugin.Dnd4e;
 using WotcOnlineDataRepository;
 
 namespace PrintChar.Tests
@@ -33,7 +34,7 @@ namespace PrintChar.Tests
 		public class CharacterExpectations
 		{
 			[NotNull] public FileInfo FileName;
-			[NotNull] public Character Result;
+			[NotNull] public CharacterDnd4E Result;
 		}
 
 		public IEnumerable<CharacterExpectations> SampleData()
@@ -50,7 +51,7 @@ namespace PrintChar.Tests
 			{
 				FileName = new FileInfo(@"SampleData\Varis.dnd4e"),
 				Result =
-					new Character
+					new CharacterDnd4E
 					{
 						Name = "Varis",
 						Gender = "Male",
@@ -171,7 +172,7 @@ namespace PrintChar.Tests
 			return new CharacterExpectations
 			{
 				FileName = new FileInfo(@"SampleData\Shivra.dnd4e"),
-				Result = new Character
+				Result = new CharacterDnd4E
 				{
 					Name = "Shivra",
 					Gender = "female",
@@ -293,7 +294,7 @@ namespace PrintChar.Tests
 			{
 				FileName = new FileInfo(@"SampleData\Pieter.dnd4e"),
 				Result =
-					new Character
+					new CharacterDnd4E
 					{
 						Name = "Pieter",
 						Gender = "Male",
