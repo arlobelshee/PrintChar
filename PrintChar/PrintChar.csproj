@@ -62,26 +62,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DocumentExtensions.cs" />
     <Compile Include="OnlineDataFetcher.cs" />
     <Compile Include="DataFiles.cs" />
     <Compile Include="CharacterTransformer.cs" />
     <Compile Include="SimpleCommand.cs" />
-    <Compile Include="Templates\Anders\CardFactoryAnders.cs" />
-    <Compile Include="Templates\Anders\ViewModels\PowerViewModel.cs" />
-    <Compile Include="Templates\GenerateCardsWithFactory.cs" />
-    <Compile Include="Templates\IFactory.cs" />
-    <Compile Include="Templates\Anders\Views\AndersCard.cs" />
-    <Compile Include="Templates\Anders\Views\AndersCard.xaml.cs">
-      <DependentUpon>AndersCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Anders\Views\CharStatsCard.xaml.cs">
-      <DependentUpon>CharStatsCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Anders\Views\PowerCard.xaml.cs">
-      <DependentUpon>PowerCard.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Templates\Template.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -94,22 +78,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Templates\Anders\AndersResources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Templates\Anders\Views\AndersCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Templates\Anders\Views\CharStatsCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Templates\Anders\Views\PowerCard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -135,23 +103,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Templates\Anders\images\action_free.png" />
-    <Resource Include="Templates\Anders\images\action_immediate.png" />
-    <Resource Include="Templates\Anders\images\action_minor.png" />
-    <Resource Include="Templates\Anders\images\action_move.png" />
-    <Resource Include="Templates\Anders\images\action_no.png" />
-    <Resource Include="Templates\Anders\images\action_opportunity.png" />
-    <Resource Include="Templates\Anders\images\action_standard.png" />
-    <Resource Include="Templates\Anders\images\target_any.png" />
-    <Resource Include="Templates\Anders\images\target_area.png" />
-    <Resource Include="Templates\Anders\images\target_close_blast.png" />
-    <Resource Include="Templates\Anders\images\target_close_burst.png" />
-    <Resource Include="Templates\Anders\images\target_melee.png" />
-    <Resource Include="Templates\Anders\images\target_personal.png" />
-    <Resource Include="Templates\Anders\images\target_ranged.png" />
-    <Resource Include="Templates\Anders\images\target_touch.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Plugin.Dnd4e\Plugin.Dnd4e.csproj">

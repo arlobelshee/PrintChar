@@ -56,8 +56,18 @@
     <Compile Include="Model\UriExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BlendEmbeddedFont Include="Fonts\pala.ttf" />
+    <BlendEmbeddedFont Include="Fonts\palab.ttf" />
+    <BlendEmbeddedFont Include="Fonts\palabi.ttf" />
+    <BlendEmbeddedFont Include="Fonts\palai.ttf" />
+    <BlendEmbeddedFont Include="Fonts\segoeui.ttf" />
+    <BlendEmbeddedFont Include="Fonts\segoeuib.ttf" />
+    <BlendEmbeddedFont Include="Fonts\segoeuii.ttf" />
+    <BlendEmbeddedFont Include="Fonts\segoeuiz.ttf" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.0\Microsoft.Expression.Blend.WPF.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

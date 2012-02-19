@@ -36,6 +36,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -45,8 +46,57 @@
   <ItemGroup>
     <Compile Include="CharacterDnd4e.cs" />
     <Compile Include="CharacterFile.cs" />
+    <Compile Include="DocumentExtensions.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Templates\Anders\CardFactoryAnders.cs" />
+    <Compile Include="Templates\Anders\ViewModels\PowerViewModel.cs" />
+    <Compile Include="Templates\GenerateCardsWithFactory.cs" />
+    <Compile Include="Templates\IFactory.cs" />
+    <Compile Include="Templates\Anders\Views\AndersCard.cs" />
+    <Compile Include="Templates\Anders\Views\AndersCard.xaml.cs">
+      <DependentUpon>AndersCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Anders\Views\CharStatsCard.xaml.cs">
+      <DependentUpon>CharStatsCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Anders\Views\PowerCard.xaml.cs">
+      <DependentUpon>PowerCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Templates\Template.cs" />
+    <Page Include="Templates\Anders\AndersResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Anders\Views\AndersCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Anders\Views\CharStatsCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Templates\Anders\Views\PowerCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Templates\Anders\images\action_free.png" />
+    <Resource Include="Templates\Anders\images\action_immediate.png" />
+    <Resource Include="Templates\Anders\images\action_minor.png" />
+    <Resource Include="Templates\Anders\images\action_move.png" />
+    <Resource Include="Templates\Anders\images\action_no.png" />
+    <Resource Include="Templates\Anders\images\action_opportunity.png" />
+    <Resource Include="Templates\Anders\images\action_standard.png" />
+    <Resource Include="Templates\Anders\images\target_any.png" />
+    <Resource Include="Templates\Anders\images\target_area.png" />
+    <Resource Include="Templates\Anders\images\target_close_blast.png" />
+    <Resource Include="Templates\Anders\images\target_close_burst.png" />
+    <Resource Include="Templates\Anders\images\target_melee.png" />
+    <Resource Include="Templates\Anders\images\target_personal.png" />
+    <Resource Include="Templates\Anders\images\target_ranged.png" />
+    <Resource Include="Templates\Anders\images\target_touch.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PluginApi\PluginApi.csproj">
@@ -58,33 +108,9 @@
       <Name>WotcOnlineDataRepository</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\pala.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\palab.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\palabi.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\palai.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\segoeui.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\segoeuib.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\segoeuii.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <BlendEmbeddedFont Include="Fonts\segoeuiz.ttf" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+		 Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
