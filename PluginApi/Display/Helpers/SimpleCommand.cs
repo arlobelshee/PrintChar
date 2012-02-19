@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Input;
 
-namespace PrintChar
+namespace PluginApi.Display.Helpers
 {
 	public class SimpleCommand : ICommand
 	{

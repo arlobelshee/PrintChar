@@ -6,7 +6,7 @@ using PluginApi.Display.Helpers;
 
 namespace PluginApi.Model
 {
-	public abstract class Character : INotifyPropertyChanged, IFirePropertyChanged, IEquatable<Character>
+	public class Character : INotifyPropertyChanged, IFirePropertyChanged, IEquatable<Character>
 	{
 		[NotNull] protected readonly TrackingNonNullProperty<string> _gender;
 		[NotNull] protected readonly TrackingNonNullProperty<string> _name;
@@ -14,7 +14,7 @@ namespace PluginApi.Model
 
 		public virtual event PropertyChangedEventHandler PropertyChanged;
 
-		protected Character()
+		public Character()
 		{
 			_gender = new TrackingNonNullProperty<string>(string.Empty, this, () => Gender);
 			_name = new TrackingNonNullProperty<string>(string.Empty, this, () => Name);

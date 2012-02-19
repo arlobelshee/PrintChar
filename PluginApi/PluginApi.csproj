@@ -48,10 +48,12 @@
     <Compile Include="Annotations.cs" />
     <Compile Include="Display\Helpers\IFirePropertyChanged.cs" />
     <Compile Include="Display\Helpers\PropertyChangedExtensions.cs" />
+    <Compile Include="Display\Helpers\SimpleCommand.cs" />
     <Compile Include="Display\Helpers\TrackingNonNullProperty.cs" />
     <Compile Include="Model\CachedFile.cs" />
     <Compile Include="Display\Helpers\VisibleIfValidConverter.cs" />
     <Compile Include="Model\Character.cs" />
+    <Compile Include="Model\CharacterTransformer.cs" />
     <Compile Include="Model\EqualityFingerprint.cs" />
     <Compile Include="Model\UriExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -64,8 +64,6 @@
     </ApplicationDefinition>
     <Compile Include="OnlineDataFetcher.cs" />
     <Compile Include="DataFiles.cs" />
-    <Compile Include="CharacterTransformer.cs" />
-    <Compile Include="SimpleCommand.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

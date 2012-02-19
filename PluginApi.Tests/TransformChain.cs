@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using NUnit.Framework;
-using Plugin.Dnd4e;
+using PluginApi.Model;
 
-namespace PrintChar.Tests
+namespace PluginApi.Tests
 {
 	[TestFixture]
 	public class TransformChain
@@ -13,7 +13,7 @@ namespace PrintChar.Tests
 		[SetUp]
 		public void SetUp()
 		{
-			_testSubject = new CharacterTransformer<string>(_ParseByJustCreatingCharWithFilenameAsName, _GenerateBySelectingNameSeveralTimes);
+			_testSubject = new CharacterTransformer<Character, string>(_ParseByJustCreatingCharWithFilenameAsName, _GenerateBySelectingNameSeveralTimes);
 		}
 
 		[Test]
@@ -61,28 +61,28 @@ namespace PrintChar.Tests
 		}
 
 		[NotNull]
-		private static IEnumerable<string> _GenerateBySelectingNameSeveralTimes([NotNull] CharacterDnd4E ch)
+		private static IEnumerable<string> _GenerateBySelectingNameSeveralTimes([NotNull] Character ch)
 		{
 			return Enumerable.Repeat(ch.Name, ch.Name.Length);
 		}
 
-		private static CharacterDnd4E _ParseByJustCreatingCharWithFilenameAsName([NotNull] FileInfo fileName)
+		private static Character _ParseByJustCreatingCharWithFilenameAsName([NotNull] FileInfo fileName)
 		{
-			return new CharacterDnd4E
+			return new Character
 			{
 				Name = fileName.Name
 			};
 		}
 
 		[NotNull]
-		private static IEnumerable<CharacterDnd4E> _PcsNamed([NotNull] params string[] names)
+		private static IEnumerable<Character> _PcsNamed([NotNull] params string[] names)
 		{
-			return names.Select(name => new CharacterDnd4E
+			return names.Select(name => new Character
 			{
 				Name = name
 			});
 		}
 
-		private CharacterTransformer<string> _testSubject;
+		private CharacterTransformer<Character, string> _testSubject;
 	}
 }

@@ -21,7 +21,9 @@ namespace PrintChar
 	{
 		private readonly ObservableCollection<Control> _allCards;
 
-		[NotNull] private readonly CharacterTransformer<Control> _compiler = new CharacterTransformer<Control>(path => new CharacterFile(path).ToCharacter(),
+		[NotNull]
+		private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer<CharacterDnd4E, Control>(
+			path => new CharacterFile(path).ToCharacter(),
 			GenerateCardsWithFactory<Control>.Using(new CardFactoryAnders()));
 
 		private readonly Action<string, string> _logIn;
