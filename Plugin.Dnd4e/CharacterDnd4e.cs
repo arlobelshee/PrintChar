@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using PluginApi.Display.Helpers;
 using PluginApi.Model;
-using Plugin.Dnd4e;
 
 namespace Plugin.Dnd4e
 {

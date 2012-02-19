@@ -7,7 +7,7 @@
 	xmlns:local="clr-namespace:Plugin.Dnd4e" xmlns:Views="clr-namespace:Plugin.Dnd4e.Templates.Anders.Views"
 	x:Class="Plugin.Dnd4e.Templates.Anders.Views.CharStatsCard"
 	d:DesignWidth="345" d:DesignHeight="250"
-	d:DataContext="{d:DesignInstance local:CharacterDesignData, IsDesignTimeCreatable=True}">
+	d:DataContext="{d:DesignInstance local:CharacterDnd4EDesignData, IsDesignTimeCreatable=True}">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
