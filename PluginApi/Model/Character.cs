@@ -35,6 +35,9 @@ namespace PluginApi.Model
 			set { _gender.Value = value; }
 		}
 
+		[NotNull]
+		public CachedFile File { get; protected set; }
+
 		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
 		{
 			PropertyChanged.Raise(this, propertyThatChanged);

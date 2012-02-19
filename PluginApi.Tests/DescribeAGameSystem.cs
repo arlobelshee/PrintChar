@@ -37,27 +37,27 @@ namespace PluginApi.Tests
 		[Test]
 		public void IfHaveAlreadyOpenedCharacterShouldSetOpenDialogToStartInThatLocation()
 		{
-			_testSubject.CharacterFile = _arbitraryFile;
-			_testSubject.CreateOpenDialog().InitialDirectory.Should().Be(_arbitraryFile.Location.DirectoryName);
+			_testSubject.Character = _arbitraryCharacter;
+			_testSubject.CreateOpenDialog().InitialDirectory.Should().Be(_arbitraryCharacter.File.Location.DirectoryName);
 		}
 
 		[Test]
 		public void CancellingTheOpenDialogShouldResultInNoChangeInOpenCharacter()
 		{
-			_testSubject.CharacterFile = _arbitraryFile;
+			_testSubject.Character = _arbitraryCharacter;
 			_testSubject.LoadCharacter(null);
-			_testSubject.CharacterFile.Should().BeSameAs(_arbitraryFile);
+			_testSubject.Character.Should().BeSameAs(_arbitraryCharacter);
 		}
 
 		[Test]
 		public void OpeningANewCharacterShouldUpdateTheCharacterFile()
 		{
 			string tempFile = Path.GetTempFileName();
-			using (new CommitOrUndo(() => File.Delete(tempFile)))
+			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.CharacterFile = _arbitraryFile;
+				_testSubject.Character = _arbitraryCharacter;
 				_testSubject.LoadCharacter(tempFile);
-				_testSubject.CharacterFile.Location.FullName.Should().Be(tempFile);
+				_testSubject.Character.File.Location.FullName.Should().Be(tempFile);
 			}
 		}
 
@@ -75,19 +75,32 @@ namespace PluginApi.Tests
 		}
 
 		private GameSystem _testSubject;
-		private CachedFile _arbitraryFile;
+		private Character _arbitraryCharacter;
 
 		[SetUp]
 		public void Setup()
 		{
 			_testSubject = new _SimplisticGameSystem();
-			_arbitraryFile = new CachedFile(new FileInfo(Path.GetTempPath() + @"ee.dnd4e"), false);
+			_arbitraryCharacter = new SillyCharacter(new CachedFile(new FileInfo(Path.GetTempPath() + @"ee.dnd4e"), false));
+		}
+
+		public class SillyCharacter : Character
+		{
+			public SillyCharacter(CachedFile data)
+			{
+				File = data;
+			}
 		}
 
 		internal class _SimplisticGameSystem : GameSystem
 		{
 			public _SimplisticGameSystem()
 				: base("4th Edition D&D", "dnd4e") {}
+
+			protected override Character Parse(CachedFile characterData)
+			{
+				return new SillyCharacter(characterData);
+			}
 		}
 	}
 }

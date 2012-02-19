@@ -47,7 +47,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annotations.cs" />
-    <Compile Include="CommitOrUndo.cs" />
+    <Compile Include="LinqExtensions.cs" />
+    <Compile Include="Undo.cs" />
     <Compile Include="Display\Helpers\IFirePropertyChanged.cs" />
     <Compile Include="Display\Helpers\PropertyChangedExtensions.cs" />
     <Compile Include="Display\Helpers\SimpleCommand.cs" />

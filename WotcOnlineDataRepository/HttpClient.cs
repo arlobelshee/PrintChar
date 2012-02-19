@@ -118,7 +118,7 @@ namespace WotcOnlineDataRepository
 			public void CopyCookiesBetweenServers(Uri from, Uri to)
 			{
 				var dest = _cookies.GetCookies(to);
-				_cookies.GetCookies(from).Cast<Cookie>().Each(cookie => dest.Add(cookie));
+				_cookies.GetCookies(from).Cast<Cookie>().Each(dest.Add);
 			}
 		}
 	}

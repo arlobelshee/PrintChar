@@ -60,7 +60,6 @@
     <Compile Include="ICompendiumClient.cs" />
     <Compile Include="IDnd4ERepository.cs" />
     <Compile Include="ILoginProvider.cs" />
-    <Compile Include="LinqExtensions.cs" />
     <Compile Include="LoginFailureException.cs" />
     <Compile Include="NodeExtensions.cs" />
     <Compile Include="Convert.cs" />

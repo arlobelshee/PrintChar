@@ -5,10 +5,10 @@ using Microsoft.Win32;
 
 namespace PluginApi.Model
 {
-	public class GameSystem
+	public abstract class GameSystem
 	{
 		[CanBeNull]
-		public CachedFile CharacterFile { get; set; }
+		public Character Character { get; set; }
 
 		public GameSystem(string systemLabel, string fileExtension)
 		{
@@ -38,10 +38,12 @@ namespace PluginApi.Model
 
 		public void LoadCharacter([CanBeNull] string fileName)
 		{
-			if (string.IsNullOrEmpty(fileName) || (CharacterFile != null && CharacterFile.Location.FullName == fileName))
+			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
 				return;
-			CharacterFile = new CachedFile(new FileInfo(fileName));
+			Character = Parse(new CachedFile(new FileInfo(fileName)));
 		}
+
+		protected abstract Character Parse(CachedFile characterData);
 
 		[CanBeNull]
 		private string _Open([NotNull] OpenFileDialog dialog)
@@ -58,7 +60,7 @@ namespace PluginApi.Model
 				DefaultExt = FileExtension,
 				CheckFileExists = true,
 				Multiselect = false,
-				InitialDirectory = CharacterFile == null ? null : CharacterFile.Location.DirectoryName
+				InitialDirectory = Character == null ? null : Character.File.Location.DirectoryName
 			};
 		}
 	}
