@@ -32,10 +32,10 @@ namespace PluginApi.Model
 
 		public void SwitchCharacter()
 		{
-			_LoadCharacter(_Open(CreateOpenDialog()));
+			LoadCharacter(_Open(CreateOpenDialog()));
 		}
 
-		private void _LoadCharacter([CanBeNull] string fileName)
+		public void LoadCharacter([CanBeNull] string fileName)
 		{
 		}
 

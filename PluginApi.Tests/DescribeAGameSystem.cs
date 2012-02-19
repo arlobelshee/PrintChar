@@ -37,8 +37,16 @@ namespace PluginApi.Tests
 		[Test]
 		public void IfHaveAlreadyOpenedCharacterShouldSetOpenDialogToStartInThatLocation()
 		{
-			_testSubject.CharacterFile = new CachedFile(new FileInfo(Path.GetTempPath() + @"ee.dnd4e"), false);
-			_testSubject.CreateOpenDialog().InitialDirectory.Should().Be(Path.GetTempPath().TrimEnd('\\'));
+			_testSubject.CharacterFile = _arbitraryFile;
+			_testSubject.CreateOpenDialog().InitialDirectory.Should().Be(_arbitraryFile.Location.DirectoryName);
+		}
+
+		[Test]
+		public void CancellingTheOpenDialogShouldResultInNoChangeInOpenCharacter()
+		{
+			_testSubject.CharacterFile = _arbitraryFile;
+			_testSubject.LoadCharacter(null);
+			_testSubject.CharacterFile.Should().BeSameAs(_arbitraryFile);
 		}
 
 		[Test]
@@ -55,11 +63,19 @@ namespace PluginApi.Tests
 		}
 
 		private GameSystem _testSubject;
+		private CachedFile _arbitraryFile;
 
 		[SetUp]
-		private void Setup()
+		public void Setup()
 		{
-			_testSubject = new GameSystem("4th Edition D&D", "dnd4e");
+			_testSubject = new _SimplisticGameSystem();
+			_arbitraryFile = new CachedFile(new FileInfo(Path.GetTempPath() + @"ee.dnd4e"), false);
+		}
+
+		internal class _SimplisticGameSystem : GameSystem
+		{
+			public _SimplisticGameSystem()
+				: base("4th Edition D&D", "dnd4e") { }
 		}
 	}
 }
