@@ -6,7 +6,7 @@ using PluginApi.Display.Helpers;
 
 namespace PluginApi.Model
 {
-	public class Character : INotifyPropertyChanged, IFirePropertyChanged, IEquatable<Character>
+	public class Character : IFirePropertyChanged, IEquatable<Character>
 	{
 		[NotNull] protected readonly TrackingNonNullProperty<string> _gender;
 		[NotNull] protected readonly TrackingNonNullProperty<string> _name;

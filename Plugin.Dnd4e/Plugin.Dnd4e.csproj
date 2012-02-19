@@ -53,6 +53,7 @@
     <Compile Include="DocumentExtensions.cs" />
     <Compile Include="GameSystem4E.cs" />
     <Compile Include="OnlineDataFetcher.cs" />
+    <Compile Include="OnlineRepositoryViewModel.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\Anders\CardFactoryAnders.cs" />

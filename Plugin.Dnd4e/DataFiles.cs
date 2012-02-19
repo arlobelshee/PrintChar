@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using JetBrains.Annotations;
@@ -12,36 +11,26 @@ using Plugin.Dnd4e.Templates;
 using Plugin.Dnd4e.Templates.Anders;
 using PluginApi.Display.Helpers;
 using PluginApi.Model;
-using WotcOnlineDataRepository;
 
 namespace Plugin.Dnd4e
 {
-	public class DataFiles : INotifyPropertyChanged, IDisposable
+	public class DataFiles : OnlineRepositoryViewModel, IDisposable
 	{
 		private readonly ObservableCollection<Control> _allCards;
 
-		[NotNull]
-		private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer<CharacterDnd4E, Control>(
+		[NotNull] private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer
+			<CharacterDnd4E, Control>(
 			path => new CharacterFile(path).ToCharacter(),
 			GenerateCardsWithFactory<Control>.Using(new CardFactoryAnders()));
 
-		private readonly Action<string, string> _logIn;
-
-		private readonly Task<IDnd4ERepository> _repository;
 		private FileInfo _charFileLocation;
 		private CachedFile _configFile;
 
 		public DataFiles()
 		{
-			Username = string.Empty;
-			Password = string.Empty;
 			OpenCharCommand = new SimpleCommand(() => true, _AskUserToSelectNewCharacter);
-			LogInCommand = new SimpleCommand(() => !_repository.IsCompleted, () => _logIn(Username, Password));
 			_allCards = new ObservableCollection<Control>();
-			var orchestration = ServiceFactory.LogInToRealServiceEventually();
-			_repository = orchestration.Item1;
-			_logIn = orchestration.Item2;
-			_compiler.Add(new OnlineDataFetcher(_repository).Update);
+			_compiler.Add(new OnlineDataFetcher(Repository).Update);
 		}
 
 		public void Dispose()
@@ -50,13 +39,7 @@ namespace Plugin.Dnd4e
 				_configFile.Dispose();
 		}
 
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		[NotNull]
-		public string Username { get; set; }
-
-		[NotNull]
-		public string Password { get; set; }
+		public override event PropertyChangedEventHandler PropertyChanged;
 
 		[NotNull]
 		public string Path
@@ -104,17 +87,22 @@ namespace Plugin.Dnd4e
 		}
 
 		public SimpleCommand OpenCharCommand { get; private set; }
-		public SimpleCommand LogInCommand { get; private set; }
 
 		private void _UpdateCards()
 		{
 			_allCards.Clear();
-			_compiler.Compile(new[] {new CachedFile(_charFileLocation), }).Each(card => _allCards.Add(card));
+			_compiler.Compile(new[] {new CachedFile(_charFileLocation),}).Each(card => _allCards.Add(card));
 		}
 
 		private void _AskUserToSelectNewCharacter()
 		{
-			var dialog = new OpenFileDialog {Filter = "Character Builder file (*.dnd4e)|*.dnd4e", DefaultExt = "dnd4e", CheckFileExists = true, Multiselect = false};
+			var dialog = new OpenFileDialog
+			{
+				Filter = "Character Builder file (*.dnd4e)|*.dnd4e",
+				DefaultExt = "dnd4e",
+				CheckFileExists = true,
+				Multiselect = false
+			};
 			if (_charFileLocation != null)
 				dialog.InitialDirectory = _charFileLocation.DirectoryName;
 			if (dialog.ShowDialog() == true)
@@ -123,8 +111,9 @@ namespace Plugin.Dnd4e
 
 		private void _LocateConfigFile()
 		{
-			var charFile = _charFileLocation.FullName;
-			var fileNameWithoutExtension = charFile.Substring(0, charFile.Length - System.IO.Path.GetExtension(charFile).Length);
+			string charFile = _charFileLocation.FullName;
+			string fileNameWithoutExtension = charFile.Substring(0,
+				charFile.Length - System.IO.Path.GetExtension(charFile).Length);
 			_configFile = new CachedFile(new FileInfo(fileNameWithoutExtension + ".conf"), false);
 		}
 	}
