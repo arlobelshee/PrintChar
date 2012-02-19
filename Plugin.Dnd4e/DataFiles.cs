@@ -8,14 +8,13 @@ using System.Windows;
 using System.Windows.Controls;
 using JetBrains.Annotations;
 using Microsoft.Win32;
-using Plugin.Dnd4e;
 using Plugin.Dnd4e.Templates;
 using Plugin.Dnd4e.Templates.Anders;
 using PluginApi.Display.Helpers;
 using PluginApi.Model;
 using WotcOnlineDataRepository;
 
-namespace PrintChar
+namespace Plugin.Dnd4e
 {
 	public class DataFiles : INotifyPropertyChanged, IDisposable
 	{

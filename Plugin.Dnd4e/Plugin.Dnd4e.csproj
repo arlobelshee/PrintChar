@@ -46,7 +46,9 @@
   <ItemGroup>
     <Compile Include="CharacterDnd4e.cs" />
     <Compile Include="CharacterFile.cs" />
+    <Compile Include="DataFiles.cs" />
     <Compile Include="DocumentExtensions.cs" />
+    <Compile Include="OnlineDataFetcher.cs" />
     <Compile Include="Power.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\Anders\CardFactoryAnders.cs" />

@@ -2,7 +2,7 @@
 using System.Windows;
 using NUnit.Framework;
 
-namespace PrintChar.Tests
+namespace Plugin.Dnd4e.Tests
 {
 	[TestFixture, Explicit]
 	public class DataFilesLoadProperly

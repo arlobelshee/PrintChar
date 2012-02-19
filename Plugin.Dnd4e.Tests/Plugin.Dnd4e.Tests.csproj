@@ -49,7 +49,9 @@
   <ItemGroup>
     <Compile Include="AndersFactoryCreatesValidCards.cs" />
     <Compile Include="CharacterParsing.cs" />
+    <Compile Include="DataFilesLoadProperly.cs" />
     <Compile Include="DefaultGeneratorMakesCorrectCards.cs" />
+    <Compile Include="FetchOnlineDataForPowers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
