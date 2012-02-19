@@ -36,7 +36,7 @@ namespace PluginApi.Model
 		}
 
 		[NotNull]
-		public CachedFile File { get; protected set; }
+		public IDataFile File { get; protected set; }
 
 		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
 		{

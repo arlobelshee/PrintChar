@@ -48,7 +48,7 @@ namespace PluginApi.Model
 			Character = Parse(new CachedFile(new FileInfo(fileName)));
 		}
 
-		protected abstract TCharacter Parse(CachedFile characterData);
+		protected abstract TCharacter Parse(IDataFile characterData);
 
 		[CanBeNull]
 		private string _Open([NotNull] OpenFileDialog dialog)

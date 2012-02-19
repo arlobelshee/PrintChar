@@ -81,12 +81,12 @@ namespace PluginApi.Tests
 		public void Setup()
 		{
 			_testSubject = new _SimplisticGameSystem();
-			_arbitraryCharacter = new SillyCharacter(new CachedFile(new FileInfo(Path.GetTempPath() + @"ee.dnd4e"), false));
+			_arbitraryCharacter = new SillyCharacter(Data.EmptyAt(new FileInfo(@"R:\arbitrary\path\ee.dnd4e")));
 		}
 
 		public class SillyCharacter : Character
 		{
-			public SillyCharacter(CachedFile data)
+			public SillyCharacter(IDataFile data)
 			{
 				File = data;
 			}
@@ -97,7 +97,7 @@ namespace PluginApi.Tests
 			public _SimplisticGameSystem()
 				: base("Trivial", "simple") {}
 
-			protected override SillyCharacter Parse(CachedFile characterData)
+			protected override SillyCharacter Parse(IDataFile characterData)
 			{
 				return new SillyCharacter(characterData);
 			}

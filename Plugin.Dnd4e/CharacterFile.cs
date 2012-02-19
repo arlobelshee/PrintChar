@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 using JetBrains.Annotations;
-using Plugin.Dnd4e;
 using PluginApi.Model;
 using WotcOnlineDataRepository;
 
@@ -27,6 +26,12 @@ namespace Plugin.Dnd4e
 		{
 			_dataFile = new XmlDocument();
 			_dataFile.Load(fileName.OpenText());
+		}
+
+		public CharacterFile([NotNull] IDataFile data)
+		{
+			_dataFile = new XmlDocument();
+			_dataFile.LoadXml(data.Contents);
 		}
 
 		[NotNull]

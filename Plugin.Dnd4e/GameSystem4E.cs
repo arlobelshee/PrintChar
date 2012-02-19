@@ -11,7 +11,7 @@ namespace Plugin.Dnd4e
 {
 	public class GameSystem4E : GameSystem<CharacterDnd4E>
 	{
-		[NotNull] private CachedFile _configFile;
+		[NotNull] private IDataFile _configFile;
 
 		[NotNull]
 		private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer<CharacterDnd4E, Control>(
@@ -20,7 +20,7 @@ namespace Plugin.Dnd4e
 
 		public GameSystem4E() : base("4th Edition D&D", "dnd4e") {}
 
-		protected override CharacterDnd4E Parse(CachedFile characterData)
+		protected override CharacterDnd4E Parse(IDataFile characterData)
 		{
 			throw new NotImplementedException();
 			_LocateConfigFile();
