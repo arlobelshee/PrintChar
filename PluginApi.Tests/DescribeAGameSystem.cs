@@ -74,8 +74,8 @@ namespace PluginApi.Tests
 			_testSubject.IsReadOnly.Should().BeTrue();
 		}
 
-		private GameSystem _testSubject;
-		private Character _arbitraryCharacter;
+		private GameSystem<SillyCharacter> _testSubject;
+		private SillyCharacter _arbitraryCharacter;
 
 		[SetUp]
 		public void Setup()
@@ -92,12 +92,12 @@ namespace PluginApi.Tests
 			}
 		}
 
-		internal class _SimplisticGameSystem : GameSystem
+		internal class _SimplisticGameSystem : GameSystem<SillyCharacter>
 		{
 			public _SimplisticGameSystem()
 				: base("Trivial", "simple") {}
 
-			protected override Character Parse(CachedFile characterData)
+			protected override SillyCharacter Parse(CachedFile characterData)
 			{
 				return new SillyCharacter(characterData);
 			}

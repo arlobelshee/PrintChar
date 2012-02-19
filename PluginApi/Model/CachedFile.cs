@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 
 namespace PluginApi.Model
 {
-	public class CachedFile : IDisposable
+	public class CachedFile : IDataFile
 	{
 		private static readonly TimeSpan _ONLY_ONCE = TimeSpan.FromMilliseconds(-1);
 		private static readonly TimeSpan _SAVE_DELAY = TimeSpan.FromMilliseconds(500);

@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Annotations.cs" />
     <Compile Include="LinqExtensions.cs" />
+    <Compile Include="Model\IDataFile.cs" />
     <Compile Include="Undo.cs" />
     <Compile Include="Display\Helpers\IFirePropertyChanged.cs" />
     <Compile Include="Display\Helpers\PropertyChangedExtensions.cs" />

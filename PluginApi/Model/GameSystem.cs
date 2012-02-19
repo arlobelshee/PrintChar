@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Controls;
 using JetBrains.Annotations;
@@ -5,16 +6,17 @@ using Microsoft.Win32;
 
 namespace PluginApi.Model
 {
-	public abstract class GameSystem
+	public abstract class GameSystem<TCharacter> where TCharacter : Character
 	{
 		[CanBeNull]
-		public Character Character { get; set; }
+		public TCharacter Character { get; set; }
 
-		public GameSystem(string systemLabel, string fileExtension)
+		protected GameSystem(string systemLabel, string fileExtension)
 		{
 			Name = systemLabel;
 			FileExtension = string.Format("{0}", fileExtension);
 			FilePattern = string.Format("*.{0}", fileExtension);
+			Cards = new ObservableCollection<Control>();
 		}
 
 		[NotNull]
@@ -31,6 +33,9 @@ namespace PluginApi.Model
 		[NotNull]
 		public Control EditorDisplay { get; private set; }
 
+		[NotNull]
+		public ObservableCollection<Control> Cards { get; private set; }
+
 		public void SwitchCharacter()
 		{
 			LoadCharacter(_Open(CreateOpenDialog()));
@@ -43,7 +48,7 @@ namespace PluginApi.Model
 			Character = Parse(new CachedFile(new FileInfo(fileName)));
 		}
 
-		protected abstract Character Parse(CachedFile characterData);
+		protected abstract TCharacter Parse(CachedFile characterData);
 
 		[CanBeNull]
 		private string _Open([NotNull] OpenFileDialog dialog)
