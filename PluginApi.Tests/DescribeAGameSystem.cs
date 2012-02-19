@@ -11,14 +11,14 @@ namespace PluginApi.Tests
 		[Test]
 		public void ShouldHaveAName()
 		{
-			_testSubject.Name.Should().Be("4th Edition D&D");
+			_testSubject.Name.Should().Be("Trivial");
 		}
 
 		[Test]
 		public void ShouldDescribeFileFilters()
 		{
-			_testSubject.FileExtension.Should().Be("dnd4e");
-			_testSubject.FilePattern.Should().Be("*.dnd4e");
+			_testSubject.FileExtension.Should().Be("simple");
+			_testSubject.FilePattern.Should().Be("*.simple");
 		}
 
 		[Test]
@@ -26,8 +26,8 @@ namespace PluginApi.Tests
 		{
 			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
 			{
-				Filter = "4th Edition D&D file (*.dnd4e)|*.dnd4e",
-				DefaultExt = "dnd4e",
+				Filter = "Trivial file (*.simple)|*.simple",
+				DefaultExt = "simple",
 				CheckFileExists = true,
 				Multiselect = false,
 				InitialDirectory = string.Empty
@@ -95,7 +95,7 @@ namespace PluginApi.Tests
 		internal class _SimplisticGameSystem : GameSystem
 		{
 			public _SimplisticGameSystem()
-				: base("4th Edition D&D", "dnd4e") {}
+				: base("Trivial", "simple") {}
 
 			protected override Character Parse(CachedFile characterData)
 			{
