@@ -11,5 +11,4 @@
   <UseBuildConfiguration></UseBuildConfiguration>
   <ProxyProcessPath></ProxyProcessPath>
   <UseCPUArchitecture>AutoDetect</UseCPUArchitecture>
-  <AdditionalFilesToInclude>Fonts\*.*</AdditionalFilesToInclude>
 </ProjectConfiguration>
