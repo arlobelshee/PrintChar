@@ -34,7 +34,10 @@ namespace Plugin.Dnd4e
 
 		private static void _AddOnlineDataToPowers(IDnd4ERepository repo, [NotNull] List<Power> powersToUpdate)
 		{
-			var powerDetails = repo.PowerDetails(powersToUpdate.Where(power => power.PowerId.HasValue).Select(power => power.PowerId.Value));
+			var powerDetails = repo.PowerDetails(
+				powersToUpdate
+					.Where(power => power.PowerId.HasValue)
+					.Select(power => power.PowerId.Value));
 			powerDetails.ContinueWith(allPowers => powersToUpdate.Each(power =>
 			{
 				WotcOnlineDataRepository.Power powerData;

@@ -16,17 +16,17 @@ namespace Plugin.Dnd4e.Tests
 		}
 
 		[Test]
-		public void AppendOnlineDataToPowerWhenFound()
+		public void ShouldFindOnlineDataForPowers()
 		{
 			_pc.Powers.Add(_MakeLocalPower(TestPowers.PowerSimple));
 			var dataArrived = _BindOnlineDataArrivalEventToATask(_pc);
 			_testSubject.Update(_pc);
-			Assert.That(dataArrived.Wait(TimeSpan.FromMilliseconds(1800)));
-			Assert.That(_pc.Powers[0].OnlineData.Name, Is.EqualTo(TestPowers.PowerSimple.Name));
+			Assert.That(dataArrived.Wait(TimeSpan.FromMilliseconds(180)));
+			Assert.That(dataArrived.Result.Name, Is.EqualTo(TestPowers.PowerSimple.Name));
 		}
 
 		[Test]
-		public void DataFetcherIgnoresPowersWhoseNameDoesNotMatchAnyOfThoseDownloaded()
+		public void ShouldSafelyIgnorePowersNotFoundOnServer()
 		{
 			_pc.Powers.Add(new Power {PowerId = TestPowers.PowerSimple, Name = "Not the correct value"});
 			var dataArrived = _BindOnlineDataArrivalEventToATask(_pc);
@@ -36,7 +36,7 @@ namespace Plugin.Dnd4e.Tests
 		}
 
 		[Test]
-		public void DataFetcherIgnoresPowersWithoutIDs()
+		public void ShouldIgnorePowersWithoutIDs()
 		{
 			_pc.Powers.Add(new Power {PowerId = null});
 			var dataArrived = _BindOnlineDataArrivalEventToATask(_pc);
@@ -49,8 +49,7 @@ namespace Plugin.Dnd4e.Tests
 		{
 			var taskSource = new TaskCompletionSource<WotcOnlineDataRepository.Power>();
 			pc.Powers[0].OnlineDataArrived += () => taskSource.SetResult(pc.Powers[0].OnlineData);
-			var dataArrived = taskSource.Task;
-			return dataArrived;
+			return taskSource.Task;
 		}
 
 		private static Power _MakeLocalPower(TestPowers whichPower)

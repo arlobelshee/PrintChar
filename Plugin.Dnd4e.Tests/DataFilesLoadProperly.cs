@@ -4,10 +4,10 @@ using NUnit.Framework;
 
 namespace Plugin.Dnd4e.Tests
 {
-	[TestFixture, Explicit]
+	[TestFixture]
 	public class DataFilesLoadProperly
 	{
-		[Test, RequiresSTA]
+		[Test, RequiresSTA, Explicit]
 		public void DesignDataShouldLoadShivra()
 		{
 			var testSubject = new DataFilesDesignData();
