@@ -55,6 +55,7 @@
     <Compile Include="Model\Character.cs" />
     <Compile Include="Model\CharacterTransformer.cs" />
     <Compile Include="Model\EqualityFingerprint.cs" />
+    <Compile Include="Model\GameSystem.cs" />
     <Compile Include="Model\UriExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
