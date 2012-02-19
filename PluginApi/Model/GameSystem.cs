@@ -6,10 +6,10 @@ using Microsoft.Win32;
 
 namespace PluginApi.Model
 {
-	public abstract class GameSystem<TCharacter> where TCharacter : Character
+	public abstract class GameSystem
 	{
 		[CanBeNull]
-		public TCharacter Character { get; set; }
+		public Character Character { get; protected set; }
 
 		protected GameSystem(string systemLabel, string fileExtension)
 		{
@@ -48,7 +48,7 @@ namespace PluginApi.Model
 			Character = Parse(new CachedFile(new FileInfo(fileName)));
 		}
 
-		protected abstract TCharacter Parse(IDataFile characterData);
+		protected abstract Character Parse(IDataFile characterData);
 
 		[CanBeNull]
 		private string _Open([NotNull] OpenFileDialog dialog)

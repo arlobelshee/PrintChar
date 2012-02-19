@@ -37,14 +37,14 @@ namespace PluginApi.Tests
 		[Test]
 		public void IfHaveAlreadyOpenedCharacterShouldSetOpenDialogToStartInThatLocation()
 		{
-			_testSubject.Character = _arbitraryCharacter;
+			_testSubject.CurrentCharacter = _arbitraryCharacter;
 			_testSubject.CreateOpenDialog().InitialDirectory.Should().Be(_arbitraryCharacter.File.Location.DirectoryName);
 		}
 
 		[Test]
 		public void CancellingTheOpenDialogShouldResultInNoChangeInOpenCharacter()
 		{
-			_testSubject.Character = _arbitraryCharacter;
+			_testSubject.CurrentCharacter = _arbitraryCharacter;
 			_testSubject.LoadCharacter(null);
 			_testSubject.Character.Should().BeSameAs(_arbitraryCharacter);
 		}
@@ -55,7 +55,7 @@ namespace PluginApi.Tests
 			string tempFile = Path.GetTempFileName();
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.Character = _arbitraryCharacter;
+				_testSubject.CurrentCharacter = _arbitraryCharacter;
 				_testSubject.LoadCharacter(tempFile);
 				_testSubject.Character.File.Location.FullName.Should().Be(tempFile);
 			}
@@ -74,7 +74,7 @@ namespace PluginApi.Tests
 			_testSubject.IsReadOnly.Should().BeTrue();
 		}
 
-		private GameSystem<SillyCharacter> _testSubject;
+		private _SimplisticGameSystem _testSubject;
 		private SillyCharacter _arbitraryCharacter;
 
 		[SetUp]
@@ -92,14 +92,19 @@ namespace PluginApi.Tests
 			}
 		}
 
-		internal class _SimplisticGameSystem : GameSystem<SillyCharacter>
+		internal class _SimplisticGameSystem : GameSystem
 		{
 			public _SimplisticGameSystem()
 				: base("Trivial", "simple") {}
 
-			protected override SillyCharacter Parse(IDataFile characterData)
+			protected override Character Parse(IDataFile characterData)
 			{
 				return new SillyCharacter(characterData);
+			}
+
+			public SillyCharacter CurrentCharacter
+			{
+				set { Character = value; }
 			}
 		}
 	}
