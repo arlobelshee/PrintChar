@@ -58,6 +58,11 @@ namespace PluginApi.Model
 			return new CachedFile(new FileInfo(Path.Combine(Location.DirectoryName, targetFileName)), false);
 		}
 
+		public void EnsureCacheIsCurrent()
+		{
+			_EnsureMemoryCacheIsUpToDate();
+		}
+
 		private void _PrepareADelayedSave()
 		{
 			if (_currentSaver == null)

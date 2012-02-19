@@ -18,6 +18,7 @@ namespace Plugin.Dnd4e.Tests
 		{
 			_testSubject.ConfigData.Location.DirectoryName.Should().Be(_mainCharFile.Location.DirectoryName);
 			_testSubject.ConfigData.Location.Name.Should().Be("charname.conf");
+			((Data) _testSubject.ConfigData).CacheIsCurrent.Should().BeTrue();
 		}
 
 		private IDataFile _mainCharFile;

@@ -14,7 +14,9 @@ namespace Plugin.Dnd4e
 
 		private static IDataFile _LoadConfigData(IDataFile primaryFile)
 		{
-			return primaryFile.FromSameDirectory(Path.GetFileNameWithoutExtension(primaryFile.Location.Name) + ".conf");
+			var data = primaryFile.FromSameDirectory(Path.GetFileNameWithoutExtension(primaryFile.Location.Name) + ".conf");
+			data.EnsureCacheIsCurrent();
+			return data;
 		}
 
 		private readonly Task<CharacterFile> _charData;

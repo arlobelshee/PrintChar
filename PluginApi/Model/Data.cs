@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using JetBrains.Annotations;
 
@@ -10,16 +11,37 @@ namespace PluginApi.Model
 		[NotNull]
 		public FileInfo Location { get; private set; }
 
-		[NotNull]
-		public string Contents { get; set; }
+		private string _contents;
 
-		public IDataFile FromSameDirectory(string targetFileName)
+		[NotNull]
+		public string Contents
 		{
-			return new Data
+			get
 			{
-				Location = new FileInfo(Path.Combine(Location.DirectoryName, targetFileName)),
-				Contents = string.Empty
-			};
+				CacheIsCurrent = true;
+				return _contents;
+			}
+			set
+			{
+				CacheIsCurrent = true;
+				_contents = value;
+			}
+		}
+
+		public bool CacheIsCurrent { get; private set; }
+
+		public Data([NotNull] FileInfo location, [CanBeNull] string contents = null)
+		{
+			if (location == null)
+				throw new ArgumentNullException("location");
+			Location = location;
+			Contents = contents ?? string.Empty;
+			CacheIsCurrent = false;
+		}
+
+		public void EnsureCacheIsCurrent()
+		{
+			CacheIsCurrent = true;
 		}
 
 		[NotNull]
@@ -31,18 +53,22 @@ namespace PluginApi.Model
 		[NotNull]
 		public static IDataFile EmptyAt([NotNull] FileInfo location)
 		{
-			return new Data
-			{
-				Contents = string.Empty,
-				Location = location
-			};
+			return new Data(location);
 		}
 
+		[NotNull]
+		public IDataFile FromSameDirectory(string targetFileName)
+		{
+			return EmptyAt(Path.Combine(Location.DirectoryName, targetFileName));
+		}
+
+		[NotNull]
 		public static IDataFile Anything()
 		{
 			return EmptyAt(@"L:\does\not\exist\file.extension");
 		}
 
+		[NotNull]
 		public static IDataFile AnyXmlFile()
 		{
 			return XmlNamed("anything.xml");
@@ -50,11 +76,7 @@ namespace PluginApi.Model
 
 		public static IDataFile XmlNamed(string fileName)
 		{
-			return new Data
-			{
-				Contents = "<xml />",
-				Location = new FileInfo(string.Format(@"X:\another\path\to\{0}", fileName))
-			};
+			return new Data(new FileInfo(string.Format(@"X:\another\path\to\{0}", fileName)), "<xml />");
 		}
 	}
 }
