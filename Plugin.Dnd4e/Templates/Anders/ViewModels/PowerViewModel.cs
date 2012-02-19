@@ -14,6 +14,7 @@ namespace Plugin.Dnd4e.Templates.Anders.ViewModels
 	{
 		[NotNull] private static readonly ResourceDictionary _ANDERS_RESOURCES = Template.ResourceDict("Anders",
 			"AndersResources.xaml");
+		[NotNull] private static readonly FontFamily _serifFont = new FontFamily("Palatino Linotype, Times New Roman, GlobalSerif.CompositeFont");
 
 		[NotNull] private readonly Power _data;
 
@@ -85,7 +86,7 @@ namespace Plugin.Dnd4e.Templates.Anders.ViewModels
 		private static void _FormatTheDocument([NotNull] FlowDocument result)
 		{
 			result.PagePadding = new Thickness(0);
-			result.FontFamily = new FontFamily("Palatino Linotype");
+			result.FontFamily = _serifFont;
 			result.FontSize = 12.0;
 		}
 

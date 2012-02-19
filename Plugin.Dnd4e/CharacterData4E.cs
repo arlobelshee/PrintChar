@@ -31,5 +31,10 @@ namespace Plugin.Dnd4e
 		{
 			get { return _configData.Result; }
 		}
+
+		public CharacterDnd4E ToCharacter()
+		{
+			return _charData.Result.ToCharacter();
+		}
 	}
 }

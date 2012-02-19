@@ -14,7 +14,7 @@ namespace Plugin.Dnd4e
 
 		[NotNull] private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer
 			<CharacterDnd4E, Control>(
-			path => new CharacterFile(path).ToCharacter(),
+			data => new CharacterData4E(data).ToCharacter(),
 			GenerateCardsWithFactory<Control>.Using(new CardFactoryAnders()));
 
 		public GameSystem4E() : base("4th Edition D&D", "dnd4e") {}
