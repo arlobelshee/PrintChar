@@ -44,6 +44,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterData4E.cs" />
     <Compile Include="CharacterDnd4e.cs" />
     <Compile Include="CharacterFile.cs" />
     <Compile Include="DataFiles.cs" />

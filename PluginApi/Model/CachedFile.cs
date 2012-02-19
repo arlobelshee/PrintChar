@@ -53,6 +53,11 @@ namespace PluginApi.Model
 			}
 		}
 
+		public IDataFile FromSameDirectory(string targetFileName)
+		{
+			return new CachedFile(new FileInfo(Path.Combine(Location.DirectoryName, targetFileName)), false);
+		}
+
 		private void _PrepareADelayedSave()
 		{
 			if (_currentSaver == null)

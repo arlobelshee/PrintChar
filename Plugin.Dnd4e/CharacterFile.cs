@@ -25,13 +25,15 @@ namespace Plugin.Dnd4e
 		public CharacterFile([NotNull] FileInfo fileName)
 		{
 			_dataFile = new XmlDocument();
-			_dataFile.Load(fileName.OpenText());
+			_dataFile.Load(fileName.OpenRead());
+			Source = fileName;
 		}
 
 		public CharacterFile([NotNull] IDataFile data)
 		{
 			_dataFile = new XmlDocument();
 			_dataFile.LoadXml(data.Contents);
+			Source = data.Location;
 		}
 
 		[NotNull]
@@ -57,6 +59,8 @@ namespace Plugin.Dnd4e
 		{
 			get { return _Rule("Class"); }
 		}
+
+		public FileInfo Source { get; private set; }
 
 		[NotNull]
 		private string _Detail([NotNull] string detailNodeName)

@@ -7,5 +7,6 @@ namespace PluginApi.Model
 	{
 		FileInfo Location { get; }
 		string Contents { get; set; }
+		IDataFile FromSameDirectory(string targetFileName);
 	}
 }

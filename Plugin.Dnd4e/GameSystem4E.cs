@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Controls;
 using JetBrains.Annotations;
 using Plugin.Dnd4e.Templates;
@@ -13,8 +12,8 @@ namespace Plugin.Dnd4e
 	{
 		[NotNull] private IDataFile _configFile;
 
-		[NotNull]
-		private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer<CharacterDnd4E, Control>(
+		[NotNull] private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer
+			<CharacterDnd4E, Control>(
 			path => new CharacterFile(path).ToCharacter(),
 			GenerateCardsWithFactory<Control>.Using(new CardFactoryAnders()));
 
@@ -22,6 +21,7 @@ namespace Plugin.Dnd4e
 
 		protected override CharacterDnd4E Parse(IDataFile characterData)
 		{
+			var data = new CharacterData4E(characterData);
 			throw new NotImplementedException();
 			_LocateConfigFile();
 			_UpdateCards();
