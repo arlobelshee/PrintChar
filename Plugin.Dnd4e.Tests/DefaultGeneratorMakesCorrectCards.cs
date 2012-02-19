@@ -1,10 +1,9 @@
 ﻿using System.Linq;
 using JetBrains.Annotations;
 using NUnit.Framework;
-using Plugin.Dnd4e;
 using Plugin.Dnd4e.Templates;
 
-namespace PrintChar.Tests
+namespace Plugin.Dnd4e.Tests
 {
 	[TestFixture]
 	public class DefaultGeneratorMakesCorrectCards
