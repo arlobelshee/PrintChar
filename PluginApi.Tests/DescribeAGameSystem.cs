@@ -50,6 +50,18 @@ namespace PluginApi.Tests
 		}
 
 		[Test]
+		public void OpeningANewCharacterShouldUpdateTheCharacterFile()
+		{
+			string tempFile = Path.GetTempFileName();
+			using (new CommitOrUndo(() => File.Delete(tempFile)))
+			{
+				_testSubject.CharacterFile = _arbitraryFile;
+				_testSubject.LoadCharacter(tempFile);
+				_testSubject.CharacterFile.Location.FullName.Should().Be(tempFile);
+			}
+		}
+
+		[Test]
 		public void ShouldAllowCreatingNewCharactersByDefault()
 		{
 			_testSubject.IsReadOnly.Should().BeFalse();
@@ -75,7 +87,7 @@ namespace PluginApi.Tests
 		internal class _SimplisticGameSystem : GameSystem
 		{
 			public _SimplisticGameSystem()
-				: base("4th Edition D&D", "dnd4e") { }
+				: base("4th Edition D&D", "dnd4e") {}
 		}
 	}
 }

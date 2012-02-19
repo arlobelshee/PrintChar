@@ -1,3 +1,4 @@
+using System.IO;
 using System.Windows.Controls;
 using JetBrains.Annotations;
 using Microsoft.Win32;
@@ -37,6 +38,9 @@ namespace PluginApi.Model
 
 		public void LoadCharacter([CanBeNull] string fileName)
 		{
+			if (string.IsNullOrEmpty(fileName) || (CharacterFile != null && CharacterFile.Location.FullName == fileName))
+				return;
+			CharacterFile = new CachedFile(new FileInfo(fileName));
 		}
 
 		[CanBeNull]
