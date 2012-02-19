@@ -13,7 +13,14 @@ namespace PluginApi.Model
 		[NotNull]
 		public string Contents { get; set; }
 
-		public static IDataFile EmptyAt(FileInfo location)
+		[NotNull]
+		public static IDataFile EmptyAt([NotNull] string location)
+		{
+			return EmptyAt(new FileInfo(location));
+		}
+
+		[NotNull]
+		public static IDataFile EmptyAt([NotNull] FileInfo location)
 		{
 			return new Data
 			{

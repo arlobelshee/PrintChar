@@ -10,9 +10,9 @@ namespace PluginApi.Model
 	{
 		[NotNull] private readonly List<Action<TCharacter>> _charTransforms = new List<Action<TCharacter>>();
 		[NotNull] private readonly Func<TCharacter, IEnumerable<TResult>> _generator;
-		[NotNull] private readonly Func<FileInfo, TCharacter> _parser;
+		[NotNull] private readonly Func<IDataFile, TCharacter> _parser;
 
-		public CharacterTransformer([NotNull] Func<FileInfo, TCharacter> parser,
+		public CharacterTransformer([NotNull] Func<IDataFile, TCharacter> parser,
 			[NotNull] Func<TCharacter, IEnumerable<TResult>> generator)
 		{
 			_parser = parser;
@@ -38,7 +38,7 @@ namespace PluginApi.Model
 		}
 
 		[NotNull]
-		public IEnumerable<TCharacter> Parse([NotNull] IEnumerable<FileInfo> charFiles)
+		public IEnumerable<TCharacter> Parse([NotNull] IEnumerable<IDataFile> charFiles)
 		{
 			return charFiles.Select(_parser);
 		}
@@ -50,7 +50,7 @@ namespace PluginApi.Model
 		}
 
 		[NotNull]
-		public IEnumerable<TResult> Compile([NotNull] IEnumerable<FileInfo> characterFiles)
+		public IEnumerable<TResult> Compile([NotNull] IEnumerable<IDataFile> characterFiles)
 		{
 			return Generate(Transform(Parse(characterFiles)));
 		}

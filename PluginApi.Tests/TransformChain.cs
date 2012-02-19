@@ -55,9 +55,9 @@ namespace PluginApi.Tests
 		}
 
 		[NotNull]
-		private static IEnumerable<FileInfo> _FilesNamed([NotNull] params string[] fileNames)
+		private static IEnumerable<IDataFile> _FilesNamed([NotNull] params string[] fileNames)
 		{
-			return fileNames.Select(fn => new FileInfo(fn));
+			return fileNames.Select(fn => Data.EmptyAt(new FileInfo(fn)));
 		}
 
 		[NotNull]
@@ -66,11 +66,11 @@ namespace PluginApi.Tests
 			return Enumerable.Repeat(ch.Name, ch.Name.Length);
 		}
 
-		private static Character _ParseByJustCreatingCharWithFilenameAsName([NotNull] FileInfo fileName)
+		private static Character _ParseByJustCreatingCharWithFilenameAsName([NotNull] IDataFile data)
 		{
 			return new Character
 			{
-				Name = fileName.Name
+				Name = data.Location.Name
 			};
 		}
 

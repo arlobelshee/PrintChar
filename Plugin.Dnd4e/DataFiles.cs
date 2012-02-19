@@ -109,7 +109,7 @@ namespace Plugin.Dnd4e
 		private void _UpdateCards()
 		{
 			_allCards.Clear();
-			_compiler.Compile(new[] {_charFileLocation}).Each(card => _allCards.Add(card));
+			_compiler.Compile(new[] {new CachedFile(_charFileLocation), }).Each(card => _allCards.Add(card));
 		}
 
 		private void _AskUserToSelectNewCharacter()
