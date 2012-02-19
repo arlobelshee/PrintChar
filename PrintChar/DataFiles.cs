@@ -132,7 +132,7 @@ namespace PrintChar
 	{
 		public DataFilesDesignData()
 		{
-			Path = new FileInfo(@"..\..\..\PrintChar.Tests\SampleData\Shivra.dnd4e").FullName;
+			Path = new FileInfo(@"..\..\..\Plugin.Dnd4e.Tests\SampleData\Shivra.dnd4e").FullName;
 		}
 	}
 }

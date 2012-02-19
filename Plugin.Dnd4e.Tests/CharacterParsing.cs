@@ -2,11 +2,9 @@
 using System.IO;
 using JetBrains.Annotations;
 using NUnit.Framework;
-using Plugin.Dnd4e;
 using WotcOnlineDataRepository;
-using Power = Plugin.Dnd4e.Power;
 
-namespace PrintChar.Tests
+namespace Plugin.Dnd4e.Tests
 {
 	[TestFixture]
 	public class CharacterParsing

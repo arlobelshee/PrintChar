@@ -1,9 +1,8 @@
 ﻿using NUnit.Framework;
-using Plugin.Dnd4e;
 using Plugin.Dnd4e.Templates.Anders;
 using Plugin.Dnd4e.Templates.Anders.ViewModels;
 
-namespace PrintChar.Tests
+namespace Plugin.Dnd4e.Tests
 {
 	[TestFixture, Explicit, RequiresSTA]
 	public class AndersFactoryCreatesValidCards
