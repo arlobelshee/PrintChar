@@ -2,7 +2,7 @@ using System;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace PrintChar
+namespace PluginApi.Display.Helpers
 {
 	public interface IFirePropertyChanged
 	{

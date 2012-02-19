@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
-using PrintChar;
+using PluginApi.Display.Helpers;
 
 namespace PluginApi.Model
 {

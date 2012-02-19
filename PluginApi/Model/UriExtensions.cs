@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 
-namespace PrintChar
+namespace PluginApi.Model
 {
 	public static class UriExtensions
 	{

@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using JetBrains.Annotations;
-using PrintChar;
+using PluginApi.Display.Helpers;
 using WotcOnlineDataRepository;
 
 namespace Plugin.Dnd4e.Templates.Anders.ViewModels

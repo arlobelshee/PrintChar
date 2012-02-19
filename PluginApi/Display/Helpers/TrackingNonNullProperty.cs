@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace PrintChar
+namespace PluginApi.Display.Helpers
 {
 	public class TrackingNonNullProperty<TProperty> : IEquatable<TrackingNonNullProperty<TProperty>>
 		where TProperty : class

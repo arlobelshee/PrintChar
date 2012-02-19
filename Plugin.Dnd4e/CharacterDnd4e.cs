@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using JetBrains.Annotations;
+using PluginApi.Display.Helpers;
 using PluginApi.Model;
 using Plugin.Dnd4e;
-using PrintChar;
 
 namespace Plugin.Dnd4e
 {

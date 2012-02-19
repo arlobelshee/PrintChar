@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace PrintChar
+namespace PluginApi.Display.Helpers
 {
 	public static class PropertyChangedExtensions
 	{

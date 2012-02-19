@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml;
 using JetBrains.Annotations;
 using Plugin.Dnd4e;
-using PrintChar;
+using PluginApi.Model;
 using WotcOnlineDataRepository;
 
 namespace Plugin.Dnd4e
