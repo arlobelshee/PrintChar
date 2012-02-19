@@ -13,14 +13,13 @@
 	<Grid d:DataContext="{d:DesignInstance {x:Type Dnd4e:DataFilesDesignData}, IsDesignTimeCreatable=True}" DataContext="{Binding Source={StaticResource DataSource}}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="28"/>
-			<RowDefinition Height="28"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="2*"/>
 			<ColumnDefinition Width="3*"/>
 		</Grid.ColumnDefinitions>
-		<ScrollViewer x:Name="PrintPreviewArea" Grid.RowSpan="3" Grid.Column="1">
+		<ScrollViewer x:Name="PrintPreviewArea" Grid.RowSpan="2" Grid.Column="1">
 			<Viewbox x:Name="PageWidthContinuousScroll">
 				<ItemsControl x:Name="AllTheCards" ItemsSource="{Binding Cards}" Width="1008">
 					<ItemsControl.ItemsPanel>
@@ -31,19 +30,11 @@
 				</ItemsControl>
 			</Viewbox>
 		</ScrollViewer>
-		<StackPanel x:Name="CredentialsArea" Orientation="Horizontal">
-			<TextBox x:Name="Username" Margin="6,2,0,2" Width="144" Text="{Binding Username}" />
-			<TextBox x:Name="Password" Margin="6,2,0,2" Width="144" Text="{Binding Password}" />
-			<Button x:Name="LogInButton" Content="Log In ..." Margin="4,2,0,2" Padding="10,1" Command="{Binding LogInCommand, Mode=OneWay}"/>
-		</StackPanel>
-		<StackPanel x:Name="FileManagementArea" Grid.Row="1" Orientation="Horizontal">
+		<StackPanel x:Name="FileManagementArea" Orientation="Horizontal">
 			<TextBlock x:Name="FileToLoad" Text="{Binding CharFileName, Mode=OneWay}" Margin="6,6,10,0" />
 			<Button x:Name="BrowseButton" Content="Open ..." Margin="0,2" Padding="10,1" Command="{Binding OpenCharCommand, Mode=OneWay}" />
 			<Button x:Name="PrintButton" Content="Print ..." Margin="4,2,0,2" Padding="10,1" Visibility="{Binding IsValid, Mode=OneWay}"/>
 		</StackPanel>
-		<Grid x:Name="EditorArea" Grid.Row="2" Visibility="{Binding IsValid, Mode=OneWay}" >
-			<TextBlock TextWrapping="Wrap" Text="Use the config file, below, to change how your character prints" Margin="6,2,0,0" FontFamily="/PrintChar;component/Fonts/#Segoe UI" FontWeight="Bold"/>
-			<TextBox x:Name="ConfigEditor" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" HorizontalAlignment="Stretch" Margin="0,22,0,0" VerticalAlignment="Stretch" FontSize="16" FontFamily="/PrintChar;component/Fonts/#Segoe UI" Text="{Binding ConfigData, Mode=TwoWay}"/>
-		</Grid>
+		<local:EditAreaDnd4E Grid.Row="1"/>
 	</Grid>
 </Window>

@@ -14,6 +14,7 @@ namespace PrintChar
 		{
 			new GameSystem4E()
 		};
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
