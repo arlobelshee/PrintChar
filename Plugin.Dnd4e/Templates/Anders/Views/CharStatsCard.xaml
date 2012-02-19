@@ -4,14 +4,14 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	xmlns:local="clr-namespace:PrintChar" xmlns:Views="clr-namespace:PrintChar.Templates.Anders.Views"
-	x:Class="PrintChar.Templates.Anders.Views.CharStatsCard"
+	xmlns:local="clr-namespace:Plugin.Dnd4e" xmlns:Views="clr-namespace:Plugin.Dnd4e.Templates.Anders.Views"
+	x:Class="Plugin.Dnd4e.Templates.Anders.Views.CharStatsCard"
 	d:DesignWidth="345" d:DesignHeight="250"
 	d:DataContext="{d:DesignInstance local:CharacterDesignData, IsDesignTimeCreatable=True}">
 	<UserControl.Resources>
 		<ResourceDictionary>
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="/PrintChar;component/Templates/Anders/AndersResources.xaml"/>
+				<ResourceDictionary Source="/Plugin.Dnd4e;component/Templates/Anders/AndersResources.xaml"/>
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</UserControl.Resources>

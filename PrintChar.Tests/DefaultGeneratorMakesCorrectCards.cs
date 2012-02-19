@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using NUnit.Framework;
 using Plugin.Dnd4e;
-using PrintChar.Templates;
+using Plugin.Dnd4e.Templates;
 
 namespace PrintChar.Tests
 {

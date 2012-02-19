@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Media;
 
-namespace PrintChar.Templates.Anders.Views
+namespace Plugin.Dnd4e.Templates.Anders.Views
 {
 	public partial class AndersCard
 	{

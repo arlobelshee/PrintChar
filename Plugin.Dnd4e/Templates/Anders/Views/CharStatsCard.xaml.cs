@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace PrintChar.Templates.Anders.Views
+namespace Plugin.Dnd4e.Templates.Anders.Views
 {
 	/// <summary>
 	/// Interaction logic for CharStatsCard.xaml

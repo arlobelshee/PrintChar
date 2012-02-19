@@ -8,9 +8,10 @@ using System.Windows;
 using System.Windows.Controls;
 using JetBrains.Annotations;
 using Microsoft.Win32;
+using Plugin.Dnd4e;
+using Plugin.Dnd4e.Templates;
+using Plugin.Dnd4e.Templates.Anders;
 using PluginApi.Model;
-using PrintChar.Templates;
-using PrintChar.Templates.Anders;
 using WotcOnlineDataRepository;
 
 namespace PrintChar

@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using WotcOnlineDataRepository;
 
-namespace PrintChar
+namespace Plugin.Dnd4e
 {
 	public class Power
 	{

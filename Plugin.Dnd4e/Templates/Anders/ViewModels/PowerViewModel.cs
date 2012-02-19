@@ -5,9 +5,10 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
 using JetBrains.Annotations;
+using PrintChar;
 using WotcOnlineDataRepository;
 
-namespace PrintChar.Templates.Anders.ViewModels
+namespace Plugin.Dnd4e.Templates.Anders.ViewModels
 {
 	public class PowerViewModel : INotifyPropertyChanged
 	{

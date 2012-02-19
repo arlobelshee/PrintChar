@@ -1,8 +1,7 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using Plugin.Dnd4e;
-using PrintChar.Templates.Anders;
-using PrintChar.Templates.Anders.ViewModels;
+using Plugin.Dnd4e.Templates.Anders;
+using Plugin.Dnd4e.Templates.Anders.ViewModels;
 
 namespace PrintChar.Tests
 {

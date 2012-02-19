@@ -10,7 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PrintChar
+namespace Plugin.Dnd4e
 {
 	/// <summary>
 	/// Interaction logic for PowerCard.xaml

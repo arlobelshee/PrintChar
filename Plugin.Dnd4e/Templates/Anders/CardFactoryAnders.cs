@@ -1,9 +1,9 @@
 ﻿using System.Windows.Controls;
 using Plugin.Dnd4e;
-using PrintChar.Templates.Anders.ViewModels;
-using PrintChar.Templates.Anders.Views;
+using Plugin.Dnd4e.Templates.Anders.ViewModels;
+using Plugin.Dnd4e.Templates.Anders.Views;
 
-namespace PrintChar.Templates.Anders
+namespace Plugin.Dnd4e.Templates.Anders
 {
 	public class CardFactoryAnders : IFactory<Control>
 	{

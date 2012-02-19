@@ -4,7 +4,7 @@ using System.Windows.Documents;
 using JetBrains.Annotations;
 using WotcOnlineDataRepository;
 
-namespace PrintChar
+namespace Plugin.Dnd4e
 {
 	public static class DocumentExtensions
 	{

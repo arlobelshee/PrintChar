@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:Helpers="clr-namespace:PluginApi.Display.Helpers;assembly=PluginApi" mc:Ignorable="d"
-	x:Class="PrintChar.Templates.Anders.Views.AndersCard"
+	x:Class="Plugin.Dnd4e.Templates.Anders.Views.AndersCard"
 	x:Name="UserControl"
 	d:DesignWidth="345" d:DesignHeight="250">
 
@@ -107,8 +107,8 @@
 			</Ellipse.Fill>
 		</Ellipse>
 		<Image x:Name="TargetTypeImage" HorizontalAlignment="Right" Margin="0,2,2,0" Height="42" VerticalAlignment="Top" Width="42" Source="{Binding TargetTypeIcon, ElementName=UserControl}" Stretch="Fill" />
-		<TextBlock x:Name="TitleBlock" Margin="0,1,0,0" TextWrapping="Wrap" Text="{Binding TitleText, ElementName=UserControl}" VerticalAlignment="Top" HorizontalAlignment="Center" d:LayoutOverrides="Width" FontSize="18" FontFamily="/PrintChar;component/Fonts/#Palatino Linotype" Foreground="{Binding Foreground, ElementName=UserControl}"/>
-		<TextBlock x:Name="SubtitleBlock" Margin="0,24,0,0" TextWrapping="Wrap" Text="{Binding SubtitleText, ElementName=UserControl}" VerticalAlignment="Top" HorizontalAlignment="Center" d:LayoutOverrides="Width" FontSize="12" FontFamily="/PrintChar;component/Fonts/#Palatino Linotype" Foreground="{Binding Foreground, ElementName=UserControl}"/>
+		<TextBlock x:Name="TitleBlock" Margin="0,1,0,0" TextWrapping="Wrap" Text="{Binding TitleText, ElementName=UserControl}" VerticalAlignment="Top" HorizontalAlignment="Center" d:LayoutOverrides="Width" FontSize="18" FontFamily="/PluginApi;component/Fonts/#Palatino Linotype" Foreground="{Binding Foreground, ElementName=UserControl}"/>
+		<TextBlock x:Name="SubtitleBlock" Margin="0,24,0,0" TextWrapping="Wrap" Text="{Binding SubtitleText, ElementName=UserControl}" VerticalAlignment="Top" HorizontalAlignment="Center" d:LayoutOverrides="Width" FontSize="12" FontFamily="/PluginApi;component/Fonts/#Palatino Linotype" Foreground="{Binding Foreground, ElementName=UserControl}"/>
 	</Grid>
 </DataTemplate>
 </UserControl.ContentTemplate>

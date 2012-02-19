@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Plugin.Dnd4e;
 using WotcOnlineDataRepository;
+using Power = Plugin.Dnd4e.Power;
 
 namespace PrintChar
 {

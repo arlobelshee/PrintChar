@@ -4,7 +4,7 @@ using System.Linq;
 using JetBrains.Annotations;
 using Plugin.Dnd4e;
 
-namespace PrintChar.Templates
+namespace Plugin.Dnd4e.Templates
 {
 	public class GenerateCardsWithFactory<TResult>
 	{

@@ -5,9 +5,10 @@ using System.Linq;
 using System.Xml;
 using JetBrains.Annotations;
 using Plugin.Dnd4e;
+using PrintChar;
 using WotcOnlineDataRepository;
 
-namespace PrintChar
+namespace Plugin.Dnd4e
 {
 	public class CharacterFile
 	{

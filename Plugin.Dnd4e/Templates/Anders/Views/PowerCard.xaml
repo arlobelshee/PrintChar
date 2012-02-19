@@ -3,11 +3,11 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:local="clr-namespace:PrintChar"
-	xmlns:Views="clr-namespace:PrintChar.Templates.Anders.Views"
-	xmlns:ViewModels="clr-namespace:PrintChar.Templates.Anders.ViewModels"
+	xmlns:local="clr-namespace:Plugin.Dnd4e"
+	xmlns:Views="clr-namespace:Plugin.Dnd4e.Templates.Anders.Views"
+	xmlns:ViewModels="clr-namespace:Plugin.Dnd4e.Templates.Anders.ViewModels"
 	mc:Ignorable="d"
-	x:Class="PrintChar.PowerCard"
+	x:Class="Plugin.Dnd4e.PowerCard"
 	d:DesignWidth="345" d:DesignHeight="250"
 	d:DataContext="{d:DesignInstance ViewModels:PowerDesignData, IsDesignTimeCreatable=True}">
 
