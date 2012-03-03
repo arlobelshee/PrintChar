@@ -5,15 +5,27 @@ namespace Plugin.Dnd4e
 {
 	public class GameSystem4E : GameSystem
 	{
-		[NotNull] private OnlineRepositoryViewModel _login = new OnlineRepositoryViewModel();
+		public GameSystem4E() : base("4th Edition D&D", "dnd4e")
+		{
+			Login = new OnlineRepositoryViewModel();
+		}
 
-		public GameSystem4E() : base("4th Edition D&D", "dnd4e") {}
+		[NotNull]
+		public OnlineRepositoryViewModel Login { get; private set; }
 
 		protected override Character Parse(IDataFile characterData)
 		{
 			var data = new CharacterData4E(characterData);
 			CharacterDnd4E viewModel = data.ToCharacter();
 			return viewModel;
+		}
+	}
+
+	public class GameSystem4EDesignData : GameSystem4E
+	{
+		public GameSystem4EDesignData()
+		{
+			LoadCharacter(@"..\..\..\Plugin.Dnd4e.Tests\SampleData\Shivra.dnd4e");
 		}
 	}
 }

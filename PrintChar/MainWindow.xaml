@@ -34,6 +34,6 @@
 			<Button x:Name="BrowseButton" Content="Open ..." Margin="0,2" Padding="10,1" Command="{Binding OpenCharCommand, Mode=OneWay}" />
 			<Button x:Name="PrintButton" Content="Print ..." Margin="4,2,0,2" Padding="10,1" Visibility="{Binding IsValid, Mode=OneWay}"/>
 		</StackPanel>
-		<local:EditAreaDnd4E Grid.Row="1"/>
+		<local:EditAreaDnd4E Grid.Row="1" DataContext="{Binding GameSystem}" />
 	</Grid>
 </Window>

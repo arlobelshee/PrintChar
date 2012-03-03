@@ -31,7 +31,10 @@ namespace Plugin.Dnd4e
 			OpenCharCommand = new SimpleCommand(() => true, _AskUserToSelectNewCharacter);
 			_allCards = new ObservableCollection<Control>();
 			_compiler.Add(new OnlineDataFetcher(Repository).Update);
+			GameSystem = new GameSystem4E();
 		}
+
+		public GameSystem4E GameSystem { get; private set; }
 
 		public void Dispose()
 		{

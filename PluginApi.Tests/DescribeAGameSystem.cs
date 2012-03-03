@@ -22,42 +22,12 @@ namespace PluginApi.Tests
 		}
 
 		[Test]
-		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
-		{
-			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
-			{
-				Filter = "Trivial file (*.simple)|*.simple",
-				DefaultExt = "simple",
-				CheckFileExists = true,
-				Multiselect = false,
-				InitialDirectory = string.Empty
-			});
-		}
-
-		[Test]
-		public void IfHaveAlreadyOpenedCharacterShouldSetOpenDialogToStartInThatLocation()
-		{
-			_testSubject.CurrentCharacter = _arbitraryCharacter;
-			_testSubject.CreateOpenDialog().InitialDirectory.Should().Be(_arbitraryCharacter.File.Location.DirectoryName);
-		}
-
-		[Test]
-		public void CancellingTheOpenDialogShouldResultInNoChangeInOpenCharacter()
-		{
-			_testSubject.CurrentCharacter = _arbitraryCharacter;
-			_testSubject.LoadCharacter(null);
-			_testSubject.Character.Should().BeSameAs(_arbitraryCharacter);
-		}
-
-		[Test]
-		public void OpeningANewCharacterShouldUpdateTheCharacterFile()
+		public void ShouldLoadCharactersFromFilesOnCommand()
 		{
 			string tempFile = Path.GetTempFileName();
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.CurrentCharacter = _arbitraryCharacter;
-				_testSubject.LoadCharacter(tempFile);
-				_testSubject.Character.File.Location.FullName.Should().Be(tempFile);
+				_testSubject.LoadCharacter(tempFile).File.Location.FullName.Should().Be(tempFile);
 			}
 		}
 
@@ -75,13 +45,11 @@ namespace PluginApi.Tests
 		}
 
 		private _SimplisticGameSystem _testSubject;
-		private SillyCharacter _arbitraryCharacter;
 
 		[SetUp]
 		public void Setup()
 		{
 			_testSubject = new _SimplisticGameSystem();
-			_arbitraryCharacter = new SillyCharacter(Data.EmptyAt(new FileInfo(@"R:\arbitrary\path\ee.dnd4e")));
 		}
 
 		public class SillyCharacter : Character

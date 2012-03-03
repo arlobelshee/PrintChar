@@ -36,37 +36,14 @@ namespace PluginApi.Model
 		[NotNull]
 		public ObservableCollection<Control> Cards { get; private set; }
 
-		public void SwitchCharacter()
-		{
-			LoadCharacter(_Open(CreateOpenDialog()));
-		}
-
-		public void LoadCharacter([CanBeNull] string fileName)
+		public Character LoadCharacter([CanBeNull] string fileName)
 		{
 			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
-				return;
+				return null;
 			Character = Parse(new CachedFile(new FileInfo(fileName)));
+			return Character;
 		}
 
 		protected abstract Character Parse(IDataFile characterData);
-
-		[CanBeNull]
-		private string _Open([NotNull] OpenFileDialog dialog)
-		{
-			return dialog.ShowDialog() == true ? dialog.FileName : null;
-		}
-
-		[NotNull]
-		public OpenFileDialog CreateOpenDialog()
-		{
-			return new OpenFileDialog
-			{
-				Filter = string.Format("{0} file ({1})|{1}", Name, FilePattern),
-				DefaultExt = FileExtension,
-				CheckFileExists = true,
-				Multiselect = false,
-				InitialDirectory = Character == null ? null : Character.File.Location.DirectoryName
-			};
-		}
 	}
 }
