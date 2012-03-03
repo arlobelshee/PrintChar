@@ -14,12 +14,16 @@ namespace PluginApi.Model
 
 		public virtual event PropertyChangedEventHandler PropertyChanged;
 
-		public Character()
+		public Character([NotNull] GameSystem system)
 		{
+			System = system;
 			_gender = new TrackingNonNullProperty<string>(string.Empty, this, () => Gender);
 			_name = new TrackingNonNullProperty<string>(string.Empty, this, () => Name);
 			EqualityFields = new EqualityFingerprint(_gender, _name);
 		}
+
+		[NotNull]
+		public GameSystem System { get; private set; }
 
 		[NotNull]
 		public string Name

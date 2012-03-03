@@ -52,6 +52,7 @@
     <Compile Include="CachingFileIsBackedByDisk.cs" />
     <Compile Include="DescribeAGameSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimplisticGameSystem.cs" />
     <Compile Include="TransformChain.cs" />
   </ItemGroup>
   <ItemGroup>

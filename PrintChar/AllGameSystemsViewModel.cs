@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 using Microsoft.Win32;
@@ -12,14 +14,12 @@ namespace PrintChar
 	public class AllGameSystemsViewModel : IFirePropertyChanged
 	{
 		[NotNull] private readonly GameSystem[] _allGameSystems;
-		[NotNull] private readonly GameSystem _currentGameSystem;
 
 		public AllGameSystemsViewModel() : this(new GameSystem4E()) {}
 
 		public AllGameSystemsViewModel(params GameSystem[] gameSystems)
 		{
 			_allGameSystems = gameSystems;
-			_currentGameSystem = _allGameSystems[0];
 		}
 
 		public void SwitchCharacter()
@@ -31,7 +31,9 @@ namespace PrintChar
 		{
 			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
 				return;
-			Character = _currentGameSystem.LoadCharacter(fileName);
+
+			var extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
+			Character = _allGameSystems.First(g=>g.FileExtension == extensionWithoutPeriod).LoadCharacter(fileName);
 		}
 
 		[NotNull]
@@ -39,14 +41,16 @@ namespace PrintChar
 		{
 			return new OpenFileDialog
 			{
-				Filter = string.Format("{0} file ({1})|{1}", _currentGameSystem.Name, _currentGameSystem.FilePattern),
-				DefaultExt = _currentGameSystem.FileExtension,
+				Filter = string.Join("|",
+					_allGameSystems.Select(g => string.Format("{0} file ({1})|{1}", g.Name, g.FilePattern))),
+				DefaultExt = (Character == null ? _allGameSystems[0] : Character.System).FileExtension,
 				CheckFileExists = true,
 				Multiselect = false,
 				InitialDirectory = Character == null ? null : Character.File.Location.DirectoryName
 			};
 		}
 
+		[CanBeNull]
 		public Character Character { get; protected set; }
 
 		public event PropertyChangedEventHandler PropertyChanged;

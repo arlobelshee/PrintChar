@@ -14,11 +14,21 @@ namespace PrintChar.Tests
 		{
 			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
 			{
-				Filter = "Trivial file (*.simple)|*.simple",
+				Filter = "Trivial file (*.simple)|*.simple|Not Done file (*.nope)|*.nope",
 				DefaultExt = "simple",
 				CheckFileExists = true,
 				Multiselect = false,
 				InitialDirectory = string.Empty
+			});
+		}
+
+		[Test]
+		public void DefaultExtensionShouldBeSameAsCurrentCharacter()
+		{
+			_testSubject.CurrentCharacter = new SillyCharacter(_dataFile, new _IncompleteGameSystem());
+			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
+			{
+				DefaultExt = "nope",
 			});
 		}
 
@@ -40,28 +50,52 @@ namespace PrintChar.Tests
 		[Test]
 		public void OpeningANewCharacterShouldUpdateTheCharacterFile()
 		{
-			string tempFile = Path.GetTempFileName();
+			string tempFile = MakeTempFile(_simpleSystem.FileExtension);
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.CurrentCharacter = _arbitraryCharacter;
 				_testSubject.LoadCharacter(tempFile);
 				_testSubject.Character.File.Location.FullName.Should().Be(tempFile);
+				_testSubject.Character.System.Should().BeSameAs(_simpleSystem);
 			}
+		}
+
+		[Test]
+		public void NewCharactersShouldBeOpenedWithCorrectGameSystem()
+		{
+			string tempFile = MakeTempFile(_unfinishedSystem.FileExtension);
+			using (Undo.Step(() => File.Delete(tempFile)))
+			{
+				_testSubject.LoadCharacter(tempFile);
+				_testSubject.Character.System.Should().BeSameAs(_unfinishedSystem);
+			}
+		}
+
+		private static string MakeTempFile(string extension)
+		{
+			string tempFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + "." + extension);
+			File.WriteAllText(tempFile, string.Empty);
+			return tempFile;
 		}
 
 		private _AllGameSystemsViewModel _testSubject;
 		private SillyCharacter _arbitraryCharacter;
+		private IDataFile _dataFile;
+		private _SimplisticGameSystem _simpleSystem;
+		private _IncompleteGameSystem _unfinishedSystem;
 
 		[SetUp]
 		public void Setup()
 		{
-			_testSubject = new _AllGameSystemsViewModel(new _SimplisticGameSystem());
-			_arbitraryCharacter = new SillyCharacter(Data.EmptyAt(new FileInfo(@"R:\arbitrary\path\ee.dnd4e")));
+			_simpleSystem = new _SimplisticGameSystem();
+			_unfinishedSystem = new _IncompleteGameSystem();
+			_testSubject = new _AllGameSystemsViewModel(_simpleSystem, _unfinishedSystem);
+			_dataFile = Data.EmptyAt(new FileInfo(@"R:\arbitrary\path\ee.dnd4e"));
+			_arbitraryCharacter = new SillyCharacter(_dataFile, new _SimplisticGameSystem());
 		}
 
 		public class SillyCharacter : Character
 		{
-			public SillyCharacter(IDataFile data)
+			public SillyCharacter(IDataFile data, GameSystem system) : base(system)
 			{
 				File = data;
 			}
@@ -84,12 +118,18 @@ namespace PrintChar.Tests
 
 			protected override Character Parse(IDataFile characterData)
 			{
-				return new SillyCharacter(characterData);
+				return new SillyCharacter(characterData, this);
 			}
+		}
 
-			public SillyCharacter CurrentCharacter
+		internal class _IncompleteGameSystem : GameSystem
+		{
+			public _IncompleteGameSystem()
+				: base("Not Done", "nope") {}
+
+			protected override Character Parse(IDataFile characterData)
 			{
-				set { Character = value; }
+				return new SillyCharacter(characterData, this);
 			}
 		}
 	}

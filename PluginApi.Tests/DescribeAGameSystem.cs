@@ -54,25 +54,9 @@ namespace PluginApi.Tests
 
 		public class SillyCharacter : Character
 		{
-			public SillyCharacter(IDataFile data)
+			public SillyCharacter(IDataFile data, GameSystem system) : base(system)
 			{
 				File = data;
-			}
-		}
-
-		internal class _SimplisticGameSystem : GameSystem
-		{
-			public _SimplisticGameSystem()
-				: base("Trivial", "simple") {}
-
-			protected override Character Parse(IDataFile characterData)
-			{
-				return new SillyCharacter(characterData);
-			}
-
-			public SillyCharacter CurrentCharacter
-			{
-				set { Character = value; }
 			}
 		}
 	}

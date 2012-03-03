@@ -11,7 +11,7 @@ namespace Plugin.Dnd4e
 		[NotNull] private readonly TrackingNonNullProperty<string> _charClass;
 		[NotNull] private readonly ObservableCollection<Power> _powers = new ObservableCollection<Power>();
 
-		public CharacterDnd4E()
+		public CharacterDnd4E() : base(new GameSystem4E())
 		{
 			_gender.AddDependantProperty(() => SummaryLine);
 			_race = new TrackingNonNullProperty<string>(string.Empty, this, () => Race, () => SummaryLine);
