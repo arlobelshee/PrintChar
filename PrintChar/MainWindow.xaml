@@ -1,11 +1,10 @@
 ﻿<Window
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:PrintChar" xmlns:PrintChar="clr-namespace:PrintChar;assembly=Plugin.Dnd4e"
-        xmlns:Dnd4e="clr-namespace:Plugin.Dnd4e;assembly=Plugin.Dnd4e" mc:Ignorable="d" x:Class="PrintChar.MainWindow"
-        Title="Print Your Character" Height="700" Width="1200">
+		xmlns:local="clr-namespace:PrintChar" xmlns:Dnd4e="clr-namespace:Plugin.Dnd4e;assembly=Plugin.Dnd4e" mc:Ignorable="d" x:Class="PrintChar.MainWindow"
+		  Title="Print Your Character" Height="700" Width="1200">
 	<Window.Resources>
 		<Dnd4e:DataFiles x:Key="DataSource" />
 	</Window.Resources>
