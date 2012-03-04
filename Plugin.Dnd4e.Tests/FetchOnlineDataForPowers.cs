@@ -12,7 +12,7 @@ namespace Plugin.Dnd4e.Tests
 		public void SetUp()
 		{
 			_testSubject = new OnlineDataFetcher(ServiceFactory.MakeLocalOnlyFakeServiceForTesting());
-			_pc = new CharacterDnd4E();
+			_pc = new CharacterDnd4E(new GameSystem4E());
 		}
 
 		[Test]

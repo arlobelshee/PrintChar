@@ -50,6 +50,7 @@
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\IDataFile.cs" />
+    <Compile Include="Require.cs" />
     <Compile Include="Undo.cs" />
     <Compile Include="Display\Helpers\IFirePropertyChanged.cs" />
     <Compile Include="Display\Helpers\PropertyChangedExtensions.cs" />

@@ -5,13 +5,13 @@ using PluginApi.Model;
 
 namespace Plugin.Dnd4e
 {
-	public class CharacterDnd4E : Character
+	public class CharacterDnd4E : Character<GameSystem4E>
 	{
 		[NotNull] private readonly TrackingNonNullProperty<string> _race;
 		[NotNull] private readonly TrackingNonNullProperty<string> _charClass;
 		[NotNull] private readonly ObservableCollection<Power> _powers = new ObservableCollection<Power>();
 
-		public CharacterDnd4E() : base(new GameSystem4E())
+		public CharacterDnd4E([NotNull] GameSystem4E system) : base(system)
 		{
 			_gender.AddDependantProperty(() => SummaryLine);
 			_race = new TrackingNonNullProperty<string>(string.Empty, this, () => Race, () => SummaryLine);
@@ -54,7 +54,7 @@ namespace Plugin.Dnd4e
 
 	public class CharacterDnd4EDesignData : CharacterDnd4E
 	{
-		public CharacterDnd4EDesignData()
+		public CharacterDnd4EDesignData() : base(new GameSystem4E())
 		{
 			Name = "Sam Ple O'data";
 			Gender = "Male";

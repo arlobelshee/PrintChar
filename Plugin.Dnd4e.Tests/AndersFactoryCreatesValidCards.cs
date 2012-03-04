@@ -16,7 +16,7 @@ namespace Plugin.Dnd4e.Tests
 		[Test]
 		public void CreateACharacterStatsCard()
 		{
-			var data = new CharacterDnd4E();
+			var data = new CharacterDnd4E(new GameSystem4E());
 			var card = _testSubject.StatsFor(data);
 			Assert.That(card.DataContext, Is.SameAs(data));
 		}

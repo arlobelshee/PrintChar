@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using FluentAssertions;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using PluginApi.Model;
 
@@ -52,9 +53,9 @@ namespace PluginApi.Tests
 			_testSubject = new _SimplisticGameSystem();
 		}
 
-		public class SillyCharacter : Character
+		public class SillyCharacter : Character<GameSystem>
 		{
-			public SillyCharacter(IDataFile data, GameSystem system) : base(system)
+			public SillyCharacter([NotNull] IDataFile data, [NotNull] GameSystem system) : base(system)
 			{
 				File = data;
 			}

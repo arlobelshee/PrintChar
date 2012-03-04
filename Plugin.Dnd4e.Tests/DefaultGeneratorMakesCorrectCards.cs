@@ -12,7 +12,7 @@ namespace Plugin.Dnd4e.Tests
 		public void SetUp()
 		{
 			_testSubject = new GenerateCardsWithFactory<string>(new _NameUsingFakeFactory());
-			_bobby = new CharacterDnd4E
+			_bobby = new CharacterDnd4E(new GameSystem4E())
 			{
 				Name = "Bobby"
 			};

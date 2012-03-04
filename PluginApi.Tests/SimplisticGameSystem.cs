@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using PluginApi.Model;
 
 namespace PluginApi.Tests
@@ -7,7 +8,8 @@ namespace PluginApi.Tests
 		public _SimplisticGameSystem()
 			: base("Trivial", "simple") {}
 
-		protected override Character Parse(IDataFile characterData)
+		[NotNull]
+		protected override Character Parse([NotNull] IDataFile characterData)
 		{
 			return new DescribeAGameSystem.SillyCharacter(characterData, this);
 		}

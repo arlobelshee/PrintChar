@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using FluentAssertions;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using PluginApi;
 using PluginApi.Model;
@@ -55,7 +56,7 @@ namespace PrintChar.Tests
 			{
 				_testSubject.LoadCharacter(tempFile);
 				_testSubject.Character.File.Location.FullName.Should().Be(tempFile);
-				_testSubject.Character.System.Should().BeSameAs(_simpleSystem);
+				_testSubject.Character.GameSystem.Should().BeSameAs(_simpleSystem);
 			}
 		}
 
@@ -66,7 +67,7 @@ namespace PrintChar.Tests
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
 				_testSubject.LoadCharacter(tempFile);
-				_testSubject.Character.System.Should().BeSameAs(_unfinishedSystem);
+				_testSubject.Character.GameSystem.Should().BeSameAs(_unfinishedSystem);
 			}
 		}
 
@@ -93,7 +94,7 @@ namespace PrintChar.Tests
 			_arbitraryCharacter = new SillyCharacter(_dataFile, new _SimplisticGameSystem());
 		}
 
-		public class SillyCharacter : Character
+		public class SillyCharacter : Character<GameSystem>
 		{
 			public SillyCharacter(IDataFile data, GameSystem system) : base(system)
 			{
@@ -127,7 +128,8 @@ namespace PrintChar.Tests
 			public _IncompleteGameSystem()
 				: base("Not Done", "nope") {}
 
-			protected override Character Parse(IDataFile characterData)
+			[NotNull]
+			protected override Character Parse([NotNull] IDataFile characterData)
 			{
 				return new SillyCharacter(characterData, this);
 			}

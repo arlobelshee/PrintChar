@@ -33,7 +33,8 @@ namespace PluginApi.Model
 		[NotNull]
 		public ObservableCollection<Control> Cards { get; private set; }
 
-		public Character LoadCharacter([CanBeNull] string fileName)
+		[NotNull]
+		public Character LoadCharacter([NotNull] string fileName)
 		{
 			return Parse(new CachedFile(new FileInfo(fileName)));
 		}

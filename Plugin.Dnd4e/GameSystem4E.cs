@@ -16,16 +16,8 @@ namespace Plugin.Dnd4e
 		protected override Character Parse(IDataFile characterData)
 		{
 			var data = new CharacterData4E(characterData);
-			CharacterDnd4E viewModel = data.ToCharacter();
+			CharacterDnd4E viewModel = data.ToCharacter(this);
 			return viewModel;
-		}
-	}
-
-	public class GameSystem4EDesignData : GameSystem4E
-	{
-		public GameSystem4EDesignData()
-		{
-			LoadCharacter(@"..\..\..\Plugin.Dnd4e.Tests\SampleData\Shivra.dnd4e");
 		}
 	}
 }

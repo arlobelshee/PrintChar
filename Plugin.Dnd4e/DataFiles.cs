@@ -20,7 +20,7 @@ namespace Plugin.Dnd4e
 
 		[NotNull] private readonly CharacterTransformer<CharacterDnd4E, Control> _compiler = new CharacterTransformer
 			<CharacterDnd4E, Control>(
-			path => new CharacterFile(path).ToCharacter(),
+			path => new CharacterFile(path).ToCharacter(new GameSystem4E()),
 			GenerateCardsWithFactory<Control>.Using(new CardFactoryAnders()));
 
 		private FileInfo _charFileLocation;

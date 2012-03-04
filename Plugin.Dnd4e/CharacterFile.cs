@@ -88,9 +88,9 @@ namespace Plugin.Dnd4e
 		}
 
 		[NotNull]
-		public CharacterDnd4E ToCharacter()
+		public CharacterDnd4E ToCharacter([NotNull] GameSystem4E system)
 		{
-			return _AddPowers(new CharacterDnd4E {Name = Name, Gender = Gender, CharClass = CharClass, Race = Race,});
+			return _AddPowers(new CharacterDnd4E(system) {Name = Name, Gender = Gender, CharClass = CharClass, Race = Race,});
 		}
 
 		[NotNull]

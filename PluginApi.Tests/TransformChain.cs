@@ -68,7 +68,7 @@ namespace PluginApi.Tests
 
 		private static Character _ParseByJustCreatingCharWithFilenameAsName([NotNull] IDataFile data)
 		{
-			return new Character(new _SimplisticGameSystem())
+			return new Character<GameSystem>(new _SimplisticGameSystem())
 			{
 				Name = data.Location.Name
 			};
@@ -77,7 +77,7 @@ namespace PluginApi.Tests
 		[NotNull]
 		private static IEnumerable<Character> _PcsNamed([NotNull] params string[] names)
 		{
-			return names.Select(name => new Character(new _SimplisticGameSystem())
+			return names.Select(name => new Character<GameSystem>(new _SimplisticGameSystem())
 			{
 				Name = name
 			});

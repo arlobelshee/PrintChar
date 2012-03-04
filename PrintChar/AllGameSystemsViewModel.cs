@@ -27,7 +27,7 @@ namespace PrintChar
 			LoadCharacter(_Open(CreateOpenDialog()));
 		}
 
-		public void LoadCharacter(string fileName)
+		public void LoadCharacter([CanBeNull] string fileName)
 		{
 			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
 				return;
@@ -43,7 +43,7 @@ namespace PrintChar
 			{
 				Filter = string.Join("|",
 					_allGameSystems.Select(g => string.Format("{0} file ({1})|{1}", g.Name, g.FilePattern))),
-				DefaultExt = (Character == null ? _allGameSystems[0] : Character.System).FileExtension,
+				DefaultExt = (Character == null ? _allGameSystems[0] : Character.GameSystem).FileExtension,
 				CheckFileExists = true,
 				Multiselect = false,
 				InitialDirectory = Character == null ? null : Character.File.Location.DirectoryName
@@ -64,6 +64,14 @@ namespace PrintChar
 		private string _Open([NotNull] OpenFileDialog dialog)
 		{
 			return dialog.ShowDialog() == true ? dialog.FileName : null;
+		}
+	}
+
+	public class AllGameSystemsViewModelDesignData : AllGameSystemsViewModel
+	{
+		public AllGameSystemsViewModelDesignData() : base(new GameSystem4E())
+		{
+			LoadCharacter(@"..\..\..\Plugin.Dnd4e.Tests\SampleData\Shivra.dnd4e");
 		}
 	}
 }

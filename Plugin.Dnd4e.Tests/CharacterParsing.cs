@@ -13,21 +13,21 @@ namespace Plugin.Dnd4e.Tests
 		public void ShouldParseEarlyOfflineFormat()
 		{
 			var runData = _EarlyOffline();
-			Assert.That(new CharacterFile(runData.FileName).ToCharacter(), Is.EqualTo(runData.Result));
+			Assert.That(new CharacterFile(runData.FileName).ToCharacter(new GameSystem4E()), Is.EqualTo(runData.Result));
 		}
 
 		[Test]
 		public void ShouldParseFinalOfflineFormat()
 		{
 			var runData = _LateOffline();
-			Assert.That(new CharacterFile(runData.FileName).ToCharacter(), Is.EqualTo(runData.Result));
+			Assert.That(new CharacterFile(runData.FileName).ToCharacter(new GameSystem4E()), Is.EqualTo(runData.Result));
 		}
 
 		[Test]
 		public void ShouldParseInitialOnlineFormat()
 		{
 			var runData = _EarlyOnline();
-			Assert.That(new CharacterFile(runData.FileName).ToCharacter(), Is.EqualTo(runData.Result));
+			Assert.That(new CharacterFile(runData.FileName).ToCharacter(new GameSystem4E()), Is.EqualTo(runData.Result));
 		}
 
 		public class CharacterExpectations
@@ -50,7 +50,7 @@ namespace Plugin.Dnd4e.Tests
 			{
 				FileName = new FileInfo(@"SampleData\Varis.dnd4e"),
 				Result =
-					new CharacterDnd4E
+					new CharacterDnd4E(new GameSystem4E())
 					{
 						Name = "Varis",
 						Gender = "Male",
@@ -171,7 +171,7 @@ namespace Plugin.Dnd4e.Tests
 			return new CharacterExpectations
 			{
 				FileName = new FileInfo(@"SampleData\Shivra.dnd4e"),
-				Result = new CharacterDnd4E
+				Result = new CharacterDnd4E(new GameSystem4E())
 				{
 					Name = "Shivra",
 					Gender = "female",
@@ -293,7 +293,7 @@ namespace Plugin.Dnd4e.Tests
 			{
 				FileName = new FileInfo(@"SampleData\Pieter.dnd4e"),
 				Result =
-					new CharacterDnd4E
+					new CharacterDnd4E(new GameSystem4E())
 					{
 						Name = "Pieter",
 						Gender = "Male",

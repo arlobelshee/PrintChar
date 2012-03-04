@@ -6,7 +6,7 @@ using PluginApi.Display.Helpers;
 
 namespace PluginApi.Model
 {
-	public class Character : IFirePropertyChanged, IEquatable<Character>
+	public abstract class Character : IFirePropertyChanged, IEquatable<Character>
 	{
 		[NotNull] protected readonly TrackingNonNullProperty<string> _gender;
 		[NotNull] protected readonly TrackingNonNullProperty<string> _name;
@@ -14,16 +14,15 @@ namespace PluginApi.Model
 
 		public virtual event PropertyChangedEventHandler PropertyChanged;
 
-		public Character([NotNull] GameSystem system)
+		protected Character()
 		{
-			System = system;
 			_gender = new TrackingNonNullProperty<string>(string.Empty, this, () => Gender);
 			_name = new TrackingNonNullProperty<string>(string.Empty, this, () => Name);
 			EqualityFields = new EqualityFingerprint(_gender, _name);
 		}
 
 		[NotNull]
-		public GameSystem System { get; private set; }
+		public abstract GameSystem GameSystem { get; }
 
 		[NotNull]
 		public string Name
@@ -64,6 +63,23 @@ namespace PluginApi.Model
 		public override int GetHashCode()
 		{
 			return EqualityFields.GetHashCode();
+		}
+	}
+
+	public class Character<TGameSystem> : Character where TGameSystem : GameSystem
+	{
+		public Character([NotNull] TGameSystem system)
+		{
+			Require.NotNull(system);
+			System = system;
+		}
+
+		[NotNull]
+		public TGameSystem System { get; private set; }
+
+		public override GameSystem GameSystem
+		{
+			get { return System; }
 		}
 	}
 }

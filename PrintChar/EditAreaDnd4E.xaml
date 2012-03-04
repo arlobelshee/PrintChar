@@ -9,14 +9,14 @@
 	x:Name="ConfigEditor4E"
 	d:DesignWidth="474.24" d:DesignHeight="636">
 
-	<Grid x:Name="LayoutRoot"  d:DataContext="{d:DesignInstance {x:Type Dnd4e:GameSystem4EDesignData}, IsDesignTimeCreatable=True}">
+	<Grid x:Name="LayoutRoot"  d:DataContext="{d:DesignInstance Dnd4e:CharacterDnd4EDesignData, IsDesignTimeCreatable=True}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="28"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
 		<StackPanel x:Name="CredentialsArea" Orientation="Horizontal">
-			<TextBox x:Name="Username" Margin="6,2,0,2" Width="144" Text="{Binding Login.Username}" />
-			<TextBox x:Name="Password" Margin="6,2,0,2" Width="144" Text="{Binding Login.Password}" />
+			<TextBox x:Name="Username" Margin="6,2,0,2" Width="144" Text="{Binding System.Login.Username}" />
+			<TextBox x:Name="Password" Margin="6,2,0,2" Width="144" Text="{Binding System.Login.Password}" />
 			<Button x:Name="LogInButton" Content="Log In ..." Margin="4,2,0,2" Padding="10,1" Command="{Binding Login.LogInCommand, Mode=OneWay}"/>
 		</StackPanel>
 		<Grid x:Name="EditorArea" Grid.Row="1" Visibility="{Binding IsValid, Mode=OneWay}" >
