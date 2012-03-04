@@ -8,9 +8,6 @@ namespace PluginApi.Model
 {
 	public abstract class GameSystem
 	{
-		[CanBeNull]
-		public Character Character { get; protected set; }
-
 		protected GameSystem(string systemLabel, string fileExtension)
 		{
 			Name = systemLabel;
@@ -38,10 +35,7 @@ namespace PluginApi.Model
 
 		public Character LoadCharacter([CanBeNull] string fileName)
 		{
-			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
-				return null;
-			Character = Parse(new CachedFile(new FileInfo(fileName)));
-			return Character;
+			return Parse(new CachedFile(new FileInfo(fileName)));
 		}
 
 		protected abstract Character Parse(IDataFile characterData);

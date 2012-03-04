@@ -11,10 +11,5 @@ namespace PluginApi.Tests
 		{
 			return new DescribeAGameSystem.SillyCharacter(characterData, this);
 		}
-
-		public DescribeAGameSystem.SillyCharacter CurrentCharacter
-		{
-			set { Character = value; }
-		}
 	}
 }
