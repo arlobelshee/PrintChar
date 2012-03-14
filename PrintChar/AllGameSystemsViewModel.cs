@@ -15,6 +15,8 @@ namespace PrintChar
 		[NotNull] private readonly GameSystem[] _allGameSystems;
 		[NotNull] private readonly TrackingNullableProperty<Character> _currentCharacter;
 
+		public AllGameSystemsViewModel() : this(Plugins.GameSystems()) {}
+
 		public AllGameSystemsViewModel([NotNull] params GameSystem[] gameSystems)
 		{
 			_allGameSystems = gameSystems;
@@ -78,7 +80,5 @@ namespace PrintChar
 		}
 	}
 
-	public class ViewModelWithShivraSelected : AllGameSystemsViewModel
-	{
-	}
+	public class ViewModelWithShivraSelected : AllGameSystemsViewModel {}
 }
