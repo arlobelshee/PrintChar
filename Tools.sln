@@ -5,10 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintChar", "PrintChar\Prin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrintChar.Tests", "PrintChar.Tests\PrintChar.Tests.csproj", "{D2A15A11-D92B-4E7E-9819-BAD27AE168CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WotcOnlineDataRepository", "WotcOnlineDataRepository\WotcOnlineDataRepository.csproj", "{4014825E-5907-46E8-933F-8FB124D4A6ED}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WotcOnlineDataRepository.Tests", "WotcOnlineDataRepository.Tests\WotcOnlineDataRepository.Tests.csproj", "{7B296AF5-E4A6-4A1A-9864-788066734856}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginApi", "PluginApi\PluginApi.csproj", "{349C1367-38EB-486A-8DE0-241A650E1EE6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PluginApi.Tests", "PluginApi.Tests\PluginApi.Tests.csproj", "{B56CD17C-821E-4A21-AF3B-DC7CDDE052F3}"
@@ -43,26 +39,6 @@ Global
 		{D2A15A11-D92B-4E7E-9819-BAD27AE168CC}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D2A15A11-D92B-4E7E-9819-BAD27AE168CC}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D2A15A11-D92B-4E7E-9819-BAD27AE168CC}.Release|x86.ActiveCfg = Release|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{4014825E-5907-46E8-933F-8FB124D4A6ED}.Release|x86.ActiveCfg = Release|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7B296AF5-E4A6-4A1A-9864-788066734856}.Release|x86.ActiveCfg = Release|Any CPU
 		{349C1367-38EB-486A-8DE0-241A650E1EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{349C1367-38EB-486A-8DE0-241A650E1EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{349C1367-38EB-486A-8DE0-241A650E1EE6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

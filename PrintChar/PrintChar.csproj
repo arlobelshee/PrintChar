@@ -62,10 +62,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="EditAreaDnd4E.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,9 +70,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="EditAreaDnd4E.xaml.cs">
-      <DependentUpon>EditAreaDnd4E.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -112,10 +105,6 @@
     <ProjectReference Include="..\PluginApi\PluginApi.csproj">
       <Project>{349C1367-38EB-486A-8DE0-241A650E1EE6}</Project>
       <Name>PluginApi</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\WotcOnlineDataRepository\WotcOnlineDataRepository.csproj">
-      <Project>{4014825E-5907-46E8-933F-8FB124D4A6ED}</Project>
-      <Name>WotcOnlineDataRepository</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

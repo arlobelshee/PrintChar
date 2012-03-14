@@ -68,10 +68,6 @@
       <Project>{BD8BE95C-88F9-42C5-A436-6F035D797C57}</Project>
       <Name>PrintChar</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WotcOnlineDataRepository\WotcOnlineDataRepository.csproj">
-      <Project>{4014825E-5907-46E8-933F-8FB124D4A6ED}</Project>
-      <Name>WotcOnlineDataRepository</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
