@@ -10,7 +10,7 @@ namespace PrintChar
 	public class Plugins
 	{
 		[CanBeNull] private static Plugins _instance;
-		[NotNull] private CompositionContainer _plugins;
+		[NotNull] private readonly CompositionContainer _plugins;
 
 		public Plugins()
 		{
