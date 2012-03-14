@@ -60,10 +60,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Plugin.Dnd4e\Plugin.Dnd4e.csproj">
-      <Project>{F4F5DACA-FD89-43C2-A671-2C8B88836D6C}</Project>
-      <Name>Plugin.Dnd4e</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PluginApi\PluginApi.csproj">
       <Project>{349C1367-38EB-486A-8DE0-241A650E1EE6}</Project>
       <Name>PluginApi</Name>

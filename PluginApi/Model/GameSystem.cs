@@ -2,7 +2,6 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows.Controls;
 using JetBrains.Annotations;
-using Microsoft.Win32;
 
 namespace PluginApi.Model
 {

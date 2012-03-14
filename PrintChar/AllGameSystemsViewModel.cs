@@ -5,7 +5,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 using Microsoft.Win32;
-using Plugin.Dnd4e;
 using PluginApi.Display.Helpers;
 using PluginApi.Model;
 
@@ -15,8 +14,6 @@ namespace PrintChar
 	{
 		[NotNull] private readonly GameSystem[] _allGameSystems;
 		[NotNull] private readonly TrackingNullableProperty<Character> _currentCharacter;
-
-		public AllGameSystemsViewModel() : this(new GameSystem4E()) {}
 
 		public AllGameSystemsViewModel([NotNull] params GameSystem[] gameSystems)
 		{
@@ -83,9 +80,5 @@ namespace PrintChar
 
 	public class ViewModelWithShivraSelected : AllGameSystemsViewModel
 	{
-		public ViewModelWithShivraSelected() : base(new GameSystem4E())
-		{
-			LoadCharacter(@"..\..\..\Plugin.Dnd4e.Tests\SampleData\Shivra.dnd4e");
-		}
 	}
 }

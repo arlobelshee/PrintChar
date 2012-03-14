@@ -11,7 +11,7 @@ namespace PluginApi.Display.Helpers
 	{
 		[NotNull] private readonly List<Expression<Func<object>>> _enclosingProperties;
 		[NotNull] private readonly IFirePropertyChanged _owner;
-		[NotNull] private TProperty _value;
+		[CanBeNull] private TProperty _value;
 
 		public TrackingNullableProperty([NotNull] IFirePropertyChanged owner,
 			[NotNull] params Expression<Func<object>>[] enclosingProperties)
@@ -29,13 +29,13 @@ namespace PluginApi.Display.Helpers
 			return Equals(other._value, _value);
 		}
 
-		[NotNull]
+		[CanBeNull]
 		public TProperty Value
 		{
 			get { return _value; }
 			set
 			{
-				if (_value.Equals(value))
+				if ((_value == null && value == null)|| (_value != null && _value.Equals(value)))
 					return;
 				_value = value;
 				foreach (var property in _enclosingProperties)
@@ -55,7 +55,7 @@ namespace PluginApi.Display.Helpers
 
 		public override int GetHashCode()
 		{
-			return _value.GetHashCode();
+			return _value == null ? 0 : _value.GetHashCode();
 		}
 
 		public static bool operator ==(TrackingNullableProperty<TProperty> left, TrackingNullableProperty<TProperty> right)
@@ -70,7 +70,7 @@ namespace PluginApi.Display.Helpers
 
 		public override string ToString()
 		{
-			return _value.ToString();
+			return _value.IfValid(v => v.ToString());
 		}
 	}
 }
