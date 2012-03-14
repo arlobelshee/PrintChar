@@ -3,13 +3,13 @@
 		  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:PrintChar" xmlns:Dnd4e="clr-namespace:Plugin.Dnd4e;assembly=Plugin.Dnd4e" mc:Ignorable="d" x:Class="PrintChar.MainWindow"
+		xmlns:local="clr-namespace:PrintChar" mc:Ignorable="d" x:Class="PrintChar.MainWindow"
 		  Title="Print Your Character" Height="700" Width="1200">
 	<Window.Resources>
-		<Dnd4e:DataFiles x:Key="DataSource" />
+		<local:AllGameSystemsViewModel x:Key="DataSource" />
 	</Window.Resources>
-	
-	<Grid d:DataContext="{d:DesignInstance {x:Type Dnd4e:DataFilesDesignData}, IsDesignTimeCreatable=True}" DataContext="{Binding Source={StaticResource DataSource}}">
+
+	<Grid d:DataContext="{d:DesignInstance {x:Type local:ViewModelWithShivraSelected}, IsDesignTimeCreatable=True}" DataContext="{Binding Source={StaticResource DataSource}}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="28"/>
 			<RowDefinition/>
@@ -34,6 +34,6 @@
 			<Button x:Name="BrowseButton" Content="Open ..." Margin="0,2" Padding="10,1" Command="{Binding OpenCharCommand, Mode=OneWay}" />
 			<Button x:Name="PrintButton" Content="Print ..." Margin="4,2,0,2" Padding="10,1" Visibility="{Binding IsValid, Mode=OneWay}"/>
 		</StackPanel>
-		<local:EditAreaDnd4E Grid.Row="1" DataContext="{Binding GameSystem}" />
+		<local:EditAreaDnd4E Grid.Row="1" DataContext="{Binding Character}" Visibility="{Binding IsValid}" />
 	</Grid>
 </Window>

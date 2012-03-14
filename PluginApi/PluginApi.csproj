@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Annotations.cs" />
+    <Compile Include="Display\Helpers\TrackingNullableProperty.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\IDataFile.cs" />

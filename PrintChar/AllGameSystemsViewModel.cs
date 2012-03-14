@@ -14,13 +14,18 @@ namespace PrintChar
 	public class AllGameSystemsViewModel : IFirePropertyChanged
 	{
 		[NotNull] private readonly GameSystem[] _allGameSystems;
+		[NotNull] private readonly TrackingNullableProperty<Character> _currentCharacter;
 
 		public AllGameSystemsViewModel() : this(new GameSystem4E()) {}
 
-		public AllGameSystemsViewModel(params GameSystem[] gameSystems)
+		public AllGameSystemsViewModel([NotNull] params GameSystem[] gameSystems)
 		{
 			_allGameSystems = gameSystems;
+			_currentCharacter = new TrackingNullableProperty<Character>(this, () => Character, () => IsValid);
+			OpenCharCommand = new SimpleCommand(() => true, SwitchCharacter);
 		}
+
+		public SimpleCommand OpenCharCommand { get; private set; }
 
 		public void SwitchCharacter()
 		{
@@ -32,8 +37,8 @@ namespace PrintChar
 			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
 				return;
 
-			var extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
-			Character = _allGameSystems.First(g=>g.FileExtension == extensionWithoutPeriod).LoadCharacter(fileName);
+			string extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
+			Character = _allGameSystems.First(g => g.FileExtension == extensionWithoutPeriod).LoadCharacter(fileName);
 		}
 
 		[NotNull]
@@ -51,7 +56,16 @@ namespace PrintChar
 		}
 
 		[CanBeNull]
-		public Character Character { get; protected set; }
+		public Character Character
+		{
+			get { return _currentCharacter.Value; }
+			protected set { _currentCharacter.Value = value; }
+		}
+
+		public bool IsValid
+		{
+			get { return _currentCharacter.Value == null; }
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -67,9 +81,9 @@ namespace PrintChar
 		}
 	}
 
-	public class AllGameSystemsViewModelDesignData : AllGameSystemsViewModel
+	public class ViewModelWithShivraSelected : AllGameSystemsViewModel
 	{
-		public AllGameSystemsViewModelDesignData() : base(new GameSystem4E())
+		public ViewModelWithShivraSelected() : base(new GameSystem4E())
 		{
 			LoadCharacter(@"..\..\..\Plugin.Dnd4e.Tests\SampleData\Shivra.dnd4e");
 		}
