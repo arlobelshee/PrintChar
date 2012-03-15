@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.Composition;
+using System.Windows.Controls;
 using PluginApi.Model;
+using SenseOfWonder.Views;
 
 namespace SenseOfWonder
 {
@@ -11,6 +13,11 @@ namespace SenseOfWonder
 		public override Character Parse(IDataFile characterData)
 		{
 			return new WonderCharacter(this);
+		}
+
+		public override Control EditorDisplay
+		{
+			get { return new Editor(); }
 		}
 	}
 }
