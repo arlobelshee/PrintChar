@@ -38,6 +38,6 @@ namespace PluginApi.Model
 			return Parse(new CachedFile(new FileInfo(fileName)));
 		}
 
-		protected abstract Character Parse(IDataFile characterData);
+		public abstract Character Parse(IDataFile characterData);
 	}
 }

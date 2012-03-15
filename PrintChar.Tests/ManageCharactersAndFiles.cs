@@ -117,7 +117,7 @@ namespace PrintChar.Tests
 			public _SimplisticGameSystem()
 				: base("Trivial", "simple") {}
 
-			protected override Character Parse(IDataFile characterData)
+			public override Character Parse(IDataFile characterData)
 			{
 				return new SillyCharacter(characterData, this);
 			}
@@ -129,7 +129,7 @@ namespace PrintChar.Tests
 				: base("Not Done", "nope") {}
 
 			[NotNull]
-			protected override Character Parse([NotNull] IDataFile characterData)
+			public override Character Parse([NotNull] IDataFile characterData)
 			{
 				return new SillyCharacter(characterData, this);
 			}

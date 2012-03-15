@@ -1,9 +1,7 @@
-using System;
-using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Linq;
 using JetBrains.Annotations;
 using PluginApi.Model;
-using System.Linq;
 
 namespace PrintChar
 {
@@ -15,7 +13,7 @@ namespace PrintChar
 		public Plugins()
 		{
 			var catalog = new AggregateCatalog();
-			catalog.Catalogs.Add(new AssemblyCatalog(typeof(Plugins).Assembly));
+			catalog.Catalogs.Add(new AssemblyCatalog(typeof (Plugins).Assembly));
 			catalog.Catalogs.Add(new DirectoryCatalog("plugins"));
 			_plugins = new CompositionContainer(catalog);
 		}
@@ -27,10 +25,10 @@ namespace PrintChar
 
 		private GameSystem[] _GameSystems()
 		{
-			return _plugins.GetExports<GameSystem>().Select(g=>g.Value).ToArray();
+			return _plugins.GetExports<GameSystem>().Select(g => g.Value).ToArray();
 		}
 
-		protected static Plugins _Instance
+		private static Plugins _Instance
 		{
 			get { return _instance ?? (_instance = new Plugins()); }
 		}

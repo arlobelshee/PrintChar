@@ -9,7 +9,7 @@ namespace PluginApi.Tests
 			: base("Trivial", "simple") {}
 
 		[NotNull]
-		protected override Character Parse([NotNull] IDataFile characterData)
+		public override Character Parse([NotNull] IDataFile characterData)
 		{
 			return new DescribeAGameSystem.SillyCharacter(characterData, this);
 		}
