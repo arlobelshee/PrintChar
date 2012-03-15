@@ -1,15 +1,15 @@
 ﻿<Window
-		  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:PrintChar" mc:Ignorable="d" x:Class="PrintChar.MainWindow"
-		  Title="Print Your Character" Height="700" Width="1200">
+		Title="Print Your Character" Height="700" Width="1200">
 	<Window.Resources>
 		<local:AllGameSystemsViewModel x:Key="DataSource" />
 	</Window.Resources>
 
-	<Grid d:DataContext="{d:DesignInstance {x:Type local:ViewModelWithShivraSelected}, IsDesignTimeCreatable=True}" DataContext="{Binding Source={StaticResource DataSource}}">
+	<Grid DataContext="{Binding Source={StaticResource DataSource}}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="28"/>
 			<RowDefinition/>
