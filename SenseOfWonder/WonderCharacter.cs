@@ -7,4 +7,13 @@ namespace SenseOfWonder
 	{
 		public WonderCharacter([NotNull] SenseOfWonderSystem system) : base(system) {}
 	}
+
+	public class WonderCharacterDesignData : WonderCharacter
+	{
+		public WonderCharacterDesignData() : base(new SenseOfWonderSystem())
+		{
+			Name = "Wonderful";
+			Gender = "Female";
+		}
+	}
 }
