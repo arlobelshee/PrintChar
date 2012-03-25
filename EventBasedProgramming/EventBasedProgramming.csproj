@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Binding\Impl\DependantProperty.cs" />
     <Compile Include="Binding\TrackingNullableProperty.cs" />
+    <Compile Include="Binding\TrackingProperty.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="TestSupport\Always.cs" />
     <Compile Include="Annotations.cs" />

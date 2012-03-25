@@ -14,18 +14,18 @@ namespace EventBasedProgramming.Tests.MakeItEasyToImplementINotifyPropertyChange
 		[Test]
 		public void ChangingAPropertyValueShouldFirePropertyChangedForAllAffectedProperties()
 		{
-			var testSubject = new _Notifier();
+			var testSubject = new _ClassShowingTypicalUsageOfTrackingProperties();
 			testSubject.MonitorEvents();
 			testSubject.Name = "just changing the property to trigger the event";
 			testSubject.ShouldRaisePropertyChangeFor(s => s.Name);
 			testSubject.ShouldRaisePropertyChangeFor(s => s.FullName);
 		}
 
-		private class _Notifier : IFirePropertyChanged
+		private class _ClassShowingTypicalUsageOfTrackingProperties : IFirePropertyChanged
 		{
 			[NotNull] private readonly TrackingNonNullProperty<string> _name;
 
-			public _Notifier()
+			public _ClassShowingTypicalUsageOfTrackingProperties()
 			{
 				_name = new TrackingNonNullProperty<string>(string.Empty, this, () => Name, () => FullName);
 			}

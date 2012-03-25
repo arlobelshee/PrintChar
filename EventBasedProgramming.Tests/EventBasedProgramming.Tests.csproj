@@ -51,10 +51,11 @@
     <Compile Include="MakeItEasyToImplementINotifyPropertyChanged\TrackingPropertiesAutomaticallyNotifyWhenValuesChange.cs" />
     <Compile Include="MakeItEasyToImplementINotifyPropertyChanged\ImplementINotifyPropertyChanged.cs" />
     <Compile Include="MakeItEasyToChainDependantProperties\ExtensionMethodsAllowDeclaringChangeDependencies.cs" />
+    <Compile Include="zzTestSupportData\_ClassWithSomeProperties.cs" />
     <Compile Include="zzTestSupportData\_ObjWithPropertyChangeNotification.cs" />
     <Compile Include="MakeBindingsTestable\SimpleCommandCanBeVerifiedWithoutCallingIt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackingNonNullProperty.cs" />
+    <Compile Include="MakeItEasyToImplementINotifyPropertyChanged\TrackingPropertiesMaintainNullnessInvariants.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventBasedProgramming\EventBasedProgramming.csproj">
