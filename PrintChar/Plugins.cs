@@ -1,4 +1,5 @@
-using System.ComponentModel.Composition.Hosting;
+﻿using System.ComponentModel.Composition.Hosting;
+using System.IO;
 using System.Linq;
 using JetBrains.Annotations;
 using PluginApi.Model;
@@ -14,7 +15,8 @@ namespace PrintChar
 		{
 			var catalog = new AggregateCatalog();
 			catalog.Catalogs.Add(new AssemblyCatalog(typeof (Plugins).Assembly));
-			catalog.Catalogs.Add(new DirectoryCatalog("plugins"));
+			if (Directory.Exists("plugins"))
+				catalog.Catalogs.Add(new DirectoryCatalog("plugins"));
 			_plugins = new CompositionContainer(catalog);
 		}
 

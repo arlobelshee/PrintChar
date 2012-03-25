@@ -7,6 +7,7 @@ using EventBasedProgramming.Binding;
 using JetBrains.Annotations;
 using Microsoft.Win32;
 using PluginApi.Model;
+using PrintChar.DesignTimeSupportData;
 
 namespace PrintChar
 {
@@ -70,7 +71,7 @@ namespace PrintChar
 
 		public bool IsValid
 		{
-			get { return _currentCharacter.Value == null; }
+			get { return _currentCharacter.Value != null; }
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -87,5 +88,19 @@ namespace PrintChar
 		}
 	}
 
-	public class ViewModelWithShivraSelected : AllGameSystemsViewModel {}
+	public class DesignTimeGameSystems : AllGameSystemsViewModel
+	{
+		private readonly DesignTimeGameSystem _gameSystem;
+
+		public DesignTimeGameSystems() : this(new DesignTimeGameSystem())
+		{
+			Character = new TheDesigner(_gameSystem);
+			
+		}
+
+		private DesignTimeGameSystems(DesignTimeGameSystem gameSystem) : base(gameSystem)
+		{
+			_gameSystem = gameSystem;
+		}
+	}
 }
