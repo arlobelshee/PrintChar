@@ -17,17 +17,10 @@ namespace EventBasedProgramming.Binding
 			handler(sender, e);
 		}
 
-		public static void PropagateFrom<TSource>(this IFirePropertyChanged sender,
-			[NotNull] Expression<Func<object>> propertyExpression,
-			[NotNull] TSource originator, [NotNull] Expression<Func<TSource, object>> whenThisFiresExpression)
-			where TSource : INotifyPropertyChanged
+		public static DependantProperty Propagate([NotNull] this IFirePropertyChanged sender,
+			[NotNull] Expression<Func<object>> propertyExpression)
 		{
-			var propertyToPropagate = Extract.PropertyNameFrom(whenThisFiresExpression);
-			originator.PropertyChanged += (s, e) =>
-			{
-				if (e.PropertyName == propertyToPropagate)
-					sender.FirePropertyChanged(propertyExpression);
-			};
+			return new DependantProperty(sender, propertyExpression);
 		}
 	}
 }

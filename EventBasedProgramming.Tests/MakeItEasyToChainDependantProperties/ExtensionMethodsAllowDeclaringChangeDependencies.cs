@@ -10,10 +10,10 @@ using FluentAssertions.EventMonitoring;
 namespace EventBasedProgramming.Tests.MakeItEasyToChainDependantProperties
 {
 	[TestFixture]
-	public class PropertyChangedEventExtensions
+	public class ExtensionMethodsAllowDeclaringChangeDependencies
 	{
 		[Test]
-		public void PropagatePropertyChanged()
+		public void ShouldFirePropertyChangedWhenDependencyChanges()
 		{
 			var source = new _ObjWithPropertyChangeNotification();
 			var listener = new _ObjWithPropagation(source);
@@ -29,7 +29,7 @@ namespace EventBasedProgramming.Tests.MakeItEasyToChainDependantProperties
 			public _ObjWithPropagation([NotNull] _ObjWithPropertyChangeNotification source)
 			{
 				_source = source;
-				this.PropagateFrom(() => DependsOnDescription, source, src => src.Description);
+				this.Propagate(() => DependsOnDescription).From(source, src => src.Description);
 			}
 
 			public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)

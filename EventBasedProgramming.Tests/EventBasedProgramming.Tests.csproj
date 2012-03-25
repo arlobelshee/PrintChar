@@ -48,8 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MakeItEasyToImplementINotifyPropertyChanged\TrackingPropertiesAutomaticallyNotifyWhenValuesChange.cs" />
     <Compile Include="MakeItEasyToImplementINotifyPropertyChanged\ImplementINotifyPropertyChanged.cs" />
-    <Compile Include="MakeItEasyToChainDependantProperties\PropertyChangedEventExtensions.cs" />
+    <Compile Include="MakeItEasyToChainDependantProperties\ExtensionMethodsAllowDeclaringChangeDependencies.cs" />
     <Compile Include="zzTestSupportData\_ObjWithPropertyChangeNotification.cs" />
     <Compile Include="MakeBindingsTestable\SimpleCommandCanBeVerifiedWithoutCallingIt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
