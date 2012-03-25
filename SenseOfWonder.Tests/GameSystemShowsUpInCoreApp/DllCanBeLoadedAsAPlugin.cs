@@ -3,10 +3,10 @@ using FluentAssertions;
 using NUnit.Framework;
 using PluginApi.Model;
 
-namespace SenseOfWonder.Tests
+namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 {
 	[TestFixture]
-	public class PluginInterfaces
+	public class DllCanBeLoadedAsAPlugin
 	{
 		[Test]
 		public void ShouldExportTheGameSystem()

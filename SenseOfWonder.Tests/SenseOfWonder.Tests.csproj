@@ -48,7 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharacterParsing.cs" />
-    <Compile Include="PluginInterfaces.cs" />
+    <Compile Include="GameSystemShowsUpInCoreApp\GameSystemPrividesInfoToConfigureCoreApplication.cs" />
+    <Compile Include="GameSystemShowsUpInCoreApp\DllCanBeLoadedAsAPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

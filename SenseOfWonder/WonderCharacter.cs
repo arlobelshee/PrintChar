@@ -12,7 +12,7 @@ namespace SenseOfWonder
 	{
 		public WonderCharacterDesignData() : base(new SenseOfWonderSystem())
 		{
-			Name = "Wonderful";
+			Name = "Wonderful Character";
 			Gender = "Female";
 		}
 	}
