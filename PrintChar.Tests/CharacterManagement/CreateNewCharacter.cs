@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using EventBasedProgramming.TestSupport;
+using FluentAssertions;
 using NUnit.Framework;
 using PluginApi.Model;
 using PrintChar.Tests.zzTestSupportData;
@@ -11,6 +12,7 @@ namespace PrintChar.Tests.CharacterManagement
 		private GameSystem _readOnlyGameSystem;
 		private GameSystem _anyGameSystem;
 		private GameSystem _writableGameSystem;
+		private AllGameSystemsViewModel testSubject;
 
 		[SetUp]
 		public void Setup()
@@ -32,10 +34,11 @@ namespace PrintChar.Tests.CharacterManagement
 			_With(_readOnlyGameSystem, _writableGameSystem).CreateCharCommand.CanExecute(null).Should().BeTrue();
 		}
 
-		[Test, Ignore("Work in progress. Test body is wrong.")]
+		[Test]
 		public void CreateCharCommandShouldBeBoundToTheCorrectMethod()
 		{
-			_With(_anyGameSystem).CreateCharCommand.CanExecute(null).Should().BeFalse();
+			testSubject = _With(_anyGameSystem);
+			Assert.That(testSubject.CreateCharCommand, Command.DelegatesTo(() => testSubject.CreateNewCharacter()));
 		}
 
 		private static AllGameSystemsViewModel _With(params GameSystem[] gameSystems)

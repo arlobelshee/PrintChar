@@ -15,6 +15,11 @@ namespace EventBasedProgramming.TestSupport
 			return Is.InstanceOf<SimpleCommand>().And.Property("MethodHandlingCanExecute").Calls(enabled, "CanExecute").And.Property("MethodHandlingExecute").Calls(call, "Execute");
 		}
 
+		public static ResolvableConstraintExpression DelegatesTo([NotNull] Expression<Action> call)
+		{
+			return Is.InstanceOf<SimpleCommand>().And.Property("MethodHandlingExecute").Calls(call, "Execute");
+		}
+
 		public static ResolvableConstraintExpression Calls<T>([NotNull] this ResolvableConstraintExpression expression, [NotNull] Expression<Func<T>> call, string functionName = null)
 		{
 			expression.Append(new CallToConstraint(Extract.BindingInfoFrom(call), functionName));

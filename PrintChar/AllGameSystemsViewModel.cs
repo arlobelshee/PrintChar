@@ -23,10 +23,10 @@ namespace PrintChar
 			_allGameSystems = gameSystems;
 			_currentCharacter = new TrackingNullableProperty<Character>(this, () => Character, () => IsValid);
 			OpenCharCommand = new SimpleCommand(() => true, SwitchCharacter);
-			CreateCharCommand = new SimpleCommand(_HasAtLesatOneWritableGameSystem, SwitchCharacter);
+			CreateCharCommand = new SimpleCommand(_HasAtLeastOneWritableGameSystem, CreateNewCharacter);
 		}
 
-		private bool _HasAtLesatOneWritableGameSystem()
+		private bool _HasAtLeastOneWritableGameSystem()
 		{
 			return _allGameSystems.FirstOrDefault(gs => gs.IsReadOnly == false) != null;
 		}
@@ -37,6 +37,11 @@ namespace PrintChar
 		public void SwitchCharacter()
 		{
 			LoadCharacter(_Open(CreateOpenDialog()));
+		}
+
+		public void CreateNewCharacter()
+		{
+
 		}
 
 		public void LoadCharacter([CanBeNull] string fileName)
