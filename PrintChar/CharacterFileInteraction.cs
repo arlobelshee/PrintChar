@@ -21,6 +21,22 @@ namespace PrintChar
 			_loader = loader;
 		}
 
+		[CanBeNull]
+		public Character LoadCharacter([CanBeNull] Character character)
+		{
+			return LoadCharacter(character, _Open(CreateDialog(character)));
+		}
+
+		[CanBeNull]
+		public Character LoadCharacter([CanBeNull] Character character, [CanBeNull] string fileName)
+		{
+			if (String.IsNullOrEmpty(fileName) || (character != null && character.File.Location.FullName == fileName))
+				return character;
+
+			string extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
+			return _loader(_gameSystems.First(g => g.FileExtension == extensionWithoutPeriod), fileName);
+		}
+
 		[NotNull]
 		public OpenFileDialog CreateDialog([CanBeNull] Character character)
 		{
@@ -35,20 +51,16 @@ namespace PrintChar
 			};
 		}
 
+		[CanBeNull]
+		private static string _Open([NotNull] FileDialog dialog)
+		{
+			return dialog.ShowDialog() == true ? dialog.FileName : null;
+		}
+
 		[NotNull]
 		private static string _FormatGameSystemFileInfo([NotNull] GameSystem g)
 		{
 			return String.Format("{0} file ({1})|{1}", g.Name, g.FilePattern);
-		}
-
-		[CanBeNull]
-		public Character LoadCharacter([CanBeNull] Character character, [CanBeNull] string fileName)
-		{
-			if (String.IsNullOrEmpty(fileName) || (character != null && character.File.Location.FullName == fileName))
-				return character;
-
-			string extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
-			return _loader(_gameSystems.First(g => g.FileExtension == extensionWithoutPeriod), fileName);
 		}
 	}
 }

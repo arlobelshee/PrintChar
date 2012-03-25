@@ -37,12 +37,12 @@ namespace PrintChar
 
 		public void SwitchCharacter()
 		{
-			Character = _openExistingCharacter.LoadCharacter(Character, _Open(_openExistingCharacter.CreateDialog(Character)));
+			Character = _openExistingCharacter.LoadCharacter(Character);
 		}
 
 		public void CreateNewCharacter()
 		{
-			Character = _createNewCharacter.LoadCharacter(Character, _Open(_createNewCharacter.CreateDialog(Character)));
+			Character = _createNewCharacter.LoadCharacter(Character);
 		}
 
 		[NotNull]
@@ -80,12 +80,6 @@ namespace PrintChar
 		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
 		{
 			PropertyChanged.Raise(this, propertyThatChanged);
-		}
-
-		[CanBeNull]
-		private string _Open([NotNull] OpenFileDialog dialog)
-		{
-			return dialog.ShowDialog() == true ? dialog.FileName : null;
 		}
 
 		private bool _HasAtLeastOneWritableGameSystem()
