@@ -56,7 +56,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterManagement\CreateNewCharacter.cs" />
     <Compile Include="CharacterManagement\OpenExistingCharacters.cs" />
+    <Compile Include="zzTestSupportData\_WritableGameSystem.cs" />
+    <Compile Include="zzTestSupportData\_SillyCharacter.cs" />
+    <Compile Include="zzTestSupportData\_ReadOnlyGameSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

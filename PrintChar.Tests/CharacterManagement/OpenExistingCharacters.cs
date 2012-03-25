@@ -1,9 +1,9 @@
 ﻿using System.IO;
 using FluentAssertions;
-using JetBrains.Annotations;
 using NUnit.Framework;
 using PluginApi;
 using PluginApi.Model;
+using PrintChar.Tests.zzTestSupportData;
 
 namespace PrintChar.Tests.CharacterManagement
 {
@@ -32,7 +32,7 @@ namespace PrintChar.Tests.CharacterManagement
 		[Test]
 		public void DefaultExtensionShouldBeSameAsCurrentCharacter()
 		{
-			_testSubject.CurrentCharacter = new SillyCharacter(_dataFile, new _IncompleteGameSystem());
+			_testSubject.CurrentCharacter = new _SillyCharacter(_dataFile, new _ReadOnlyGameSystem());
 			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
 			{
 				DefaultExt = "nope",
@@ -85,27 +85,19 @@ namespace PrintChar.Tests.CharacterManagement
 		}
 
 		private _AllGameSystemsViewModel _testSubject;
-		private SillyCharacter _arbitraryCharacter;
+		private _SillyCharacter _arbitraryCharacter;
 		private IDataFile _dataFile;
-		private _SimplisticGameSystem _simpleSystem;
-		private _IncompleteGameSystem _unfinishedSystem;
+		private _WritableGameSystem _simpleSystem;
+		private _ReadOnlyGameSystem _unfinishedSystem;
 
 		[SetUp]
 		public void Setup()
 		{
-			_simpleSystem = new _SimplisticGameSystem();
-			_unfinishedSystem = new _IncompleteGameSystem();
+			_simpleSystem = new _WritableGameSystem();
+			_unfinishedSystem = new _ReadOnlyGameSystem();
 			_testSubject = new _AllGameSystemsViewModel(_simpleSystem, _unfinishedSystem);
 			_dataFile = Data.EmptyAt(new FileInfo(@"R:\arbitrary\path\ee.dnd4e"));
-			_arbitraryCharacter = new SillyCharacter(_dataFile, new _SimplisticGameSystem());
-		}
-
-		public class SillyCharacter : Character<GameSystem>
-		{
-			public SillyCharacter(IDataFile data, GameSystem system) : base(system)
-			{
-				File = data;
-			}
+			_arbitraryCharacter = new _SillyCharacter(_dataFile, new _WritableGameSystem());
 		}
 
 		internal class _AllGameSystemsViewModel : AllGameSystemsViewModel
@@ -115,29 +107,6 @@ namespace PrintChar.Tests.CharacterManagement
 			public Character CurrentCharacter
 			{
 				set { Character = value; }
-			}
-		}
-
-		internal class _SimplisticGameSystem : GameSystem
-		{
-			public _SimplisticGameSystem()
-				: base("Trivial", "simple") {}
-
-			public override Character Parse(IDataFile characterData)
-			{
-				return new SillyCharacter(characterData, this);
-			}
-		}
-
-		internal class _IncompleteGameSystem : GameSystem
-		{
-			public _IncompleteGameSystem()
-				: base("Not Done", "nope") {}
-
-			[NotNull]
-			public override Character Parse([NotNull] IDataFile characterData)
-			{
-				return new SillyCharacter(characterData, this);
 			}
 		}
 	}
