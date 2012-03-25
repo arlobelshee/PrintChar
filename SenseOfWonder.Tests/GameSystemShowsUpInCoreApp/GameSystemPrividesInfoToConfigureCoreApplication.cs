@@ -15,12 +15,13 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		[Test]
 		public void ShouldProvideFileFilterInfo()
 		{
-			new SenseOfWonderSystem().ShouldHave().SharedProperties().EqualTo(new
-			{
-				FileExtension = "wonder",
-				Name = "Sense of Wonder",
-				FilePattern = "*.wonder"
-			});
+			new SenseOfWonderSystem().ShouldHave()
+				.Properties(w => w.FileExtension, w => w.FilePattern, w => w.Name).EqualTo(new
+				{
+					FileExtension = "wonder",
+					Name = "Sense of Wonder",
+					FilePattern = "*.wonder"
+				});
 		}
 	}
 }
