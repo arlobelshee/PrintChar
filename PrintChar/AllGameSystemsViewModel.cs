@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
@@ -16,21 +14,22 @@ namespace PrintChar
 	{
 		[NotNull] private readonly GameSystem[] _allGameSystems;
 		[NotNull] private readonly TrackingNullableProperty<Character> _currentCharacter;
+		private readonly CharacterFileInteraction _openExistingCharacter;
+		private readonly CharacterFileInteraction _createNewCharacter;
 
 		public AllGameSystemsViewModel() : this(Plugins.GameSystems()) {}
 
 		public AllGameSystemsViewModel([NotNull] params GameSystem[] gameSystems)
 		{
 			_allGameSystems = gameSystems;
+			_openExistingCharacter = new CharacterFileInteraction(_allGameSystems, true,
+				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
+			_createNewCharacter = new CharacterFileInteraction(_allGameSystems.Where(g => !g.IsReadOnly), false,
+				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
 			_currentCharacter = new TrackingNullableProperty<Character>(this,
 				() => Character, () => IsValid, () => CharFileName);
 			OpenCharCommand = new SimpleCommand(() => true, SwitchCharacter);
 			CreateCharCommand = new SimpleCommand(_HasAtLeastOneWritableGameSystem, CreateNewCharacter);
-		}
-
-		private bool _HasAtLeastOneWritableGameSystem()
-		{
-			return _allGameSystems.FirstOrDefault(gs => gs.IsReadOnly == false) != null;
 		}
 
 		public SimpleCommand OpenCharCommand { get; private set; }
@@ -38,53 +37,24 @@ namespace PrintChar
 
 		public void SwitchCharacter()
 		{
-			LoadCharacter(_Open(CreateOpenDialog()), (gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
+			Character = _openExistingCharacter.LoadCharacter(Character, _Open(_openExistingCharacter.CreateDialog(Character)));
 		}
 
 		public void CreateNewCharacter()
 		{
-			LoadCharacter(_Open(CreateCreateDialog()), (gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
-		}
-
-		public void LoadCharacter([CanBeNull] string fileName, Func<GameSystem, string, Character> loader)
-		{
-			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
-				return;
-
-			string extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
-			Character = loader(_allGameSystems.First(g => g.FileExtension == extensionWithoutPeriod), fileName);
+			Character = _createNewCharacter.LoadCharacter(Character, _Open(_createNewCharacter.CreateDialog(Character)));
 		}
 
 		[NotNull]
 		public OpenFileDialog CreateOpenDialog()
 		{
-			return _CreateDialogForSystems(_allGameSystems, true);
+			return _openExistingCharacter.CreateDialog(Character);
 		}
 
 		[NotNull]
 		public OpenFileDialog CreateCreateDialog()
 		{
-			return _CreateDialogForSystems(_allGameSystems.Where(g => !g.IsReadOnly), false);
-		}
-
-		[NotNull]
-		private OpenFileDialog _CreateDialogForSystems([NotNull] IEnumerable<GameSystem> gameSystems, bool requireFileToExist)
-		{
-			return new OpenFileDialog
-			{
-				Filter = string.Join("|", gameSystems
-					.Select(_FormatGameSystemFileInfo)),
-				DefaultExt = (Character == null ? gameSystems.First() : Character.GameSystem).FileExtension,
-				CheckFileExists = requireFileToExist,
-				Multiselect = false,
-				InitialDirectory = Character == null ? null : Character.File.Location.DirectoryName
-			};
-		}
-
-		[NotNull]
-		private static string _FormatGameSystemFileInfo([NotNull] GameSystem g)
-		{
-			return string.Format("{0} file ({1})|{1}", g.Name, g.FilePattern);
+			return _createNewCharacter.CreateDialog(Character);
 		}
 
 		[CanBeNull]
@@ -116,6 +86,11 @@ namespace PrintChar
 		private string _Open([NotNull] OpenFileDialog dialog)
 		{
 			return dialog.ShowDialog() == true ? dialog.FileName : null;
+		}
+
+		private bool _HasAtLeastOneWritableGameSystem()
+		{
+			return _allGameSystems.FirstOrDefault(gs => gs.IsReadOnly == false) != null;
 		}
 	}
 

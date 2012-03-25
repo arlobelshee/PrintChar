@@ -50,34 +50,34 @@ namespace PrintChar.Tests.CharacterManagement
 		public void CancellingTheOpenDialogShouldResultInNoChangeInOpenCharacter()
 		{
 			_testSubject.CurrentCharacter = _arbitraryCharacter;
-			_testSubject.LoadCharacter(null, (system, file) => system.LoadCharacter(file));
+			_openExistingCharacter.LoadCharacter(_testSubject.Character, null);
 			_testSubject.Character.Should().BeSameAs(_arbitraryCharacter);
 		}
 
 		[Test]
 		public void OpeningANewCharacterShouldUpdateTheCharacterFile()
 		{
-			string tempFile = MakeTempFile(_simpleSystem.FileExtension);
+			string tempFile = _MakeTempFile(_writableSystem.FileExtension);
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.LoadCharacter(tempFile, (system, file) => system.LoadCharacter(file));
-				_testSubject.Character.File.Location.FullName.Should().Be(tempFile);
-				_testSubject.Character.GameSystem.Should().BeSameAs(_simpleSystem);
+				var result = _openExistingCharacter.LoadCharacter(_testSubject.Character, tempFile);
+				result.File.Location.FullName.Should().Be(tempFile);
+				result.GameSystem.Should().BeSameAs(_writableSystem);
 			}
 		}
 
 		[Test]
 		public void NewCharactersShouldBeOpenedWithCorrectGameSystem()
 		{
-			string tempFile = MakeTempFile(_unfinishedSystem.FileExtension);
+			string tempFile = _MakeTempFile(_readOnlySystem.FileExtension);
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.LoadCharacter(tempFile, (system, file) => system.LoadCharacter(file));
-				_testSubject.Character.GameSystem.Should().BeSameAs(_unfinishedSystem);
+				var result = _openExistingCharacter.LoadCharacter(_testSubject.Character, tempFile);
+				result.GameSystem.Should().BeSameAs(_readOnlySystem);
 			}
 		}
 
-		private static string MakeTempFile(string extension)
+		private static string _MakeTempFile(string extension)
 		{
 			string tempFile = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName() + "." + extension);
 			File.WriteAllText(tempFile, string.Empty);
@@ -87,15 +87,17 @@ namespace PrintChar.Tests.CharacterManagement
 		private _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter _testSubject;
 		private _SillyCharacter _arbitraryCharacter;
 		private IDataFile _dataFile;
-		private _WritableGameSystem _simpleSystem;
-		private _ReadOnlyGameSystem _unfinishedSystem;
+		private _WritableGameSystem _writableSystem;
+		private _ReadOnlyGameSystem _readOnlySystem;
+		private CharacterFileInteraction _openExistingCharacter;
 
 		[SetUp]
 		public void Setup()
 		{
-			_simpleSystem = new _WritableGameSystem();
-			_unfinishedSystem = new _ReadOnlyGameSystem();
-			_testSubject = new _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter(_simpleSystem, _unfinishedSystem);
+			_writableSystem = new _WritableGameSystem();
+			_readOnlySystem = new _ReadOnlyGameSystem();
+			_openExistingCharacter = new CharacterFileInteraction(new GameSystem[] { _writableSystem, _readOnlySystem }, true, (gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
+			_testSubject = new _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter(_writableSystem, _readOnlySystem);
 			_dataFile = Data.EmptyAt(new FileInfo(@"R:\arbitrary\path\ee.dnd4e"));
 			_arbitraryCharacter = new _SillyCharacter(_dataFile, new _WritableGameSystem());
 		}
