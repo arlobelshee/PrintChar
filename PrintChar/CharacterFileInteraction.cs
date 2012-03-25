@@ -51,6 +51,23 @@ namespace PrintChar
 			};
 		}
 
+		[NotNull]
+		public IEnumerable<GameSystem> GameSystems
+		{
+			get { return _gameSystems; }
+		}
+
+		public bool RequireFileToExist
+		{
+			get { return _requireFileToExist; }
+		}
+
+		[NotNull]
+		public Func<GameSystem, string, Character> Loader
+		{
+			get { return _loader; }
+		}
+
 		[CanBeNull]
 		private static string _Open([NotNull] FileDialog dialog)
 		{
