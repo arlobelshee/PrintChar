@@ -21,8 +21,8 @@ namespace PrintChar.Tests.CharacterManagement
 		{
 			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
 			{
-				Filter = "Trivial file (*.simple)|*.simple|Not Done file (*.nope)|*.nope",
-				DefaultExt = "simple",
+				Filter = "Writable Characters file (*.write)|*.write|Read Only Characters file (*.read)|*.read",
+				DefaultExt = _WritableGameSystem.Extension,
 				CheckFileExists = true,
 				Multiselect = false,
 				InitialDirectory = string.Empty
@@ -35,7 +35,7 @@ namespace PrintChar.Tests.CharacterManagement
 			_testSubject.CurrentCharacter = new _SillyCharacter(_dataFile, new _ReadOnlyGameSystem());
 			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
 			{
-				DefaultExt = "nope",
+				DefaultExt = _ReadOnlyGameSystem.Extension,
 			});
 		}
 

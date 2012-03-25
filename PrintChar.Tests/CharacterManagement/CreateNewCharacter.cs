@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using FluentAssertions;
+using NUnit.Framework;
 using PluginApi.Model;
 using PrintChar.Tests.zzTestSupportData;
 
@@ -8,17 +9,25 @@ namespace PrintChar.Tests.CharacterManagement
 	public class CreateNewCharacter
 	{
 		private GameSystem _readOnlyGameSystem;
+		private GameSystem _writableGameSystem;
 
 		[SetUp]
 		public void Setup()
 		{
 			_readOnlyGameSystem = new _ReadOnlyGameSystem();
+			_writableGameSystem = new _WritableGameSystem();
 		}
 
 		[Test]
-		public void WithOnlyReadOnlySystemsLoadedCreateShouldBeDisabled()
+		public void WithOnlyReadOnlySystemsCreateShouldBeDisabled()
 		{
-			_With(_readOnlyGameSystem);
+			_With(_readOnlyGameSystem).CreateCharCommand.CanExecute(null).Should().BeFalse();
+		}
+
+		[Test]
+		public void WithSomeWritableSystemsCreateShouldBeEnabled()
+		{
+			_With(_readOnlyGameSystem, _writableGameSystem).CreateCharCommand.CanExecute(null).Should().BeTrue();
 		}
 
 		private static AllGameSystemsViewModel _With(params GameSystem[] gameSystems)

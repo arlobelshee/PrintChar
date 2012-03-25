@@ -22,9 +22,16 @@ namespace PrintChar
 			_allGameSystems = gameSystems;
 			_currentCharacter = new TrackingNullableProperty<Character>(this, () => Character, () => IsValid);
 			OpenCharCommand = new SimpleCommand(() => true, SwitchCharacter);
+			CreateCharCommand = new SimpleCommand(_HasAtLesatOneWritableGameSystem, SwitchCharacter);
+		}
+
+		private bool _HasAtLesatOneWritableGameSystem()
+		{
+			return _allGameSystems.FirstOrDefault(gs => gs.IsReadOnly == false) != null;
 		}
 
 		public SimpleCommand OpenCharCommand { get; private set; }
+		public SimpleCommand CreateCharCommand { get; private set; }
 
 		public void SwitchCharacter()
 		{
