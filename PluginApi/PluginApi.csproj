@@ -46,7 +46,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Annotations.cs" />
     <Compile Include="Display\Helpers\TrackingNullableProperty.cs" />
     <Compile Include="LinqExtensions.cs" />
     <Compile Include="Model\Data.cs" />
@@ -65,6 +64,12 @@
     <Compile Include="Model\GameSystem.cs" />
     <Compile Include="Model\UriExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventBasedProgramming\EventBasedProgramming.csproj">
+      <Project>{D5F1A1EB-9C2B-450C-A9D8-79A43F4E473B}</Project>
+      <Name>EventBasedProgramming</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.0\Microsoft.Expression.Blend.WPF.targets" />

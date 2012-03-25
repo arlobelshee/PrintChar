@@ -64,6 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EventBasedProgramming\EventBasedProgramming.csproj">
+      <Project>{D5F1A1EB-9C2B-450C-A9D8-79A43F4E473B}</Project>
+      <Name>EventBasedProgramming</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PluginApi\PluginApi.csproj">
       <Project>{349C1367-38EB-486A-8DE0-241A650E1EE6}</Project>
       <Name>PluginApi</Name>
