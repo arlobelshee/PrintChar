@@ -32,8 +32,8 @@ namespace PrintChar.Tests.CharacterManagement
 		[Test]
 		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
 		{
-			_AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter tempQualifier = _With(_readOnlyGameSystem, _writableGameSystem);
-			tempQualifier.CharacterCreator.CreateDialog(tempQualifier.Character).ShouldHave().SharedProperties().EqualTo(new
+			_AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter testSubject = _With(_readOnlyGameSystem, _writableGameSystem);
+			testSubject.CharacterCreator.CreateDialog(testSubject.Character).ShouldMatch(new
 			{
 				Filter = "Writable Characters file (*.write)|*.write",
 				DefaultExt = _WritableGameSystem.Extension,
@@ -50,7 +50,7 @@ namespace PrintChar.Tests.CharacterManagement
 			var testSubject = _With(_readOnlyGameSystem, _writableGameSystem, nonDefaultSystem);
 			testSubject.CurrentCharacter = new _SillyCharacter(Data.Anything(), nonDefaultSystem);
 
-			testSubject.CharacterCreator.CreateDialog(testSubject.Character).ShouldHave().SharedProperties().EqualTo(new
+			testSubject.CharacterCreator.CreateDialog(testSubject.Character).ShouldMatch(new
 			{
 				DefaultExt = nonDefaultSystem.FileExtension,
 			});

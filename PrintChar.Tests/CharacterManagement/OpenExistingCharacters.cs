@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using FluentAssertions;
-using Microsoft.Win32;
 using NUnit.Framework;
 using PluginApi;
 using PluginApi.Model;
@@ -18,23 +17,10 @@ namespace PrintChar.Tests.CharacterManagement
 		}
 
 		[Test]
-		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
-		{
-			_testSubject.CharacterOpener.CreateDialog(_testSubject.Character).ShouldHave().SharedProperties().EqualTo(new
-			{
-				Filter = "Writable Characters file (*.write)|*.write|Read Only Characters file (*.read)|*.read",
-				DefaultExt = _WritableGameSystem.Extension,
-				CheckFileExists = true,
-				Multiselect = false,
-				InitialDirectory = string.Empty
-			});
-		}
-
-		[Test]
 		public void DefaultExtensionShouldBeSameAsCurrentCharacter()
 		{
 			_testSubject.CurrentCharacter = new _SillyCharacter(_dataFile, new _ReadOnlyGameSystem());
-			_testSubject.CharacterOpener.CreateDialog(_testSubject.Character).ShouldHave().SharedProperties().EqualTo(new
+			_testSubject.CharacterOpener.CreateDialog(_testSubject.Character).ShouldMatch(new
 			{
 				DefaultExt = _ReadOnlyGameSystem.Extension,
 			});
