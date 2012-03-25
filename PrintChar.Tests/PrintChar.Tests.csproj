@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CharacterManagement\CreateNewCharacter.cs" />
     <Compile Include="CharacterManagement\CreateCorrectDialogs.cs" />
+    <Compile Include="CharacterManagement\LoadOrCreateCharactersUponDialogCompletion.cs" />
     <Compile Include="CharacterManagement\OpenExistingCharacters.cs" />
     <Compile Include="CharacterManagement\PrintCharacter.cs" />
     <Compile Include="zzTestSupportData\TestHelperExtensions.cs" />
