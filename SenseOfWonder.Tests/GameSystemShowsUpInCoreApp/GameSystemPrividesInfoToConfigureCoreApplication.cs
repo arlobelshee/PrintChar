@@ -31,6 +31,5 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		{
 			new SenseOfWonderSystem().EditorDisplay.Should().BeOfType<Editor>();
 		}
-
 	}
 }
