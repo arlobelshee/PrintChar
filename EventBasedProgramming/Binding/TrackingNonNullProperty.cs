@@ -1,12 +1,14 @@
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
+using System.Linq;
 
 namespace EventBasedProgramming.Binding
 {
 	public class TrackingNonNullProperty<TProperty> : IEquatable<TrackingNonNullProperty<TProperty>> where TProperty : class
 	{
-		[NotNull] private readonly Expression<Func<object>>[] _enclosingProperties;
+		[NotNull] private readonly List<Expression<Func<object>>> _enclosingProperties;
 		[NotNull] private readonly IFirePropertyChanged _owner;
 		[NotNull] private TProperty _value;
 
@@ -15,7 +17,7 @@ namespace EventBasedProgramming.Binding
 		{
 			_value = initialValue;
 			_owner = owner;
-			_enclosingProperties = enclosingProperties;
+			_enclosingProperties = enclosingProperties.ToList();
 		}
 
 		public bool Equals(TrackingNonNullProperty<TProperty> other)
@@ -41,6 +43,11 @@ namespace EventBasedProgramming.Binding
 				foreach (var property in _enclosingProperties)
 					_owner.FirePropertyChanged(property);
 			}
+		}
+
+		public void AddDependantProperty(Expression<Func<object>> enclosingProperty)
+		{
+			_enclosingProperties.Add(enclosingProperty);
 		}
 
 		public override bool Equals(object obj)

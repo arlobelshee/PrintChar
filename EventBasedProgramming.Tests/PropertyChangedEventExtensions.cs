@@ -8,8 +8,7 @@ using NUnit.Framework;
 namespace EventBasedProgramming.Tests
 {
 	[TestFixture]
-	public
-		class PropertyChangedEventExtensions
+	public class PropertyChangedEventExtensions
 	{
 		[SetUp]
 		public void Setup()

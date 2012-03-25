@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using EventBasedProgramming.Binding;
 using JetBrains.Annotations;
 using Microsoft.Win32;
-using PluginApi.Display.Helpers;
 using PluginApi.Model;
 
 namespace PrintChar

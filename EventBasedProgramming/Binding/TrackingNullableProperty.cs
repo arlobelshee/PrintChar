@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace PluginApi.Display.Helpers
+namespace EventBasedProgramming.Binding
 {
 	public class TrackingNullableProperty<TProperty> : IEquatable<TrackingNullableProperty<TProperty>>
 		where TProperty : class
@@ -35,7 +35,7 @@ namespace PluginApi.Display.Helpers
 			get { return _value; }
 			set
 			{
-				if ((_value == null && value == null)|| (_value != null && _value.Equals(value)))
+				if ((_value == null && value == null) || (_value != null && _value.Equals(value)))
 					return;
 				_value = value;
 				foreach (var property in _enclosingProperties)

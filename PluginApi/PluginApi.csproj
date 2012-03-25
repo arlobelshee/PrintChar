@@ -46,16 +46,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Display\Helpers\TrackingNullableProperty.cs" />
-    <Compile Include="LinqExtensions.cs" />
     <Compile Include="Model\Data.cs" />
     <Compile Include="Model\IDataFile.cs" />
     <Compile Include="Require.cs" />
     <Compile Include="Undo.cs" />
-    <Compile Include="Display\Helpers\IFirePropertyChanged.cs" />
-    <Compile Include="Display\Helpers\PropertyChangedExtensions.cs" />
-    <Compile Include="Display\Helpers\SimpleCommand.cs" />
-    <Compile Include="Display\Helpers\TrackingNonNullProperty.cs" />
     <Compile Include="Model\CachedFile.cs" />
     <Compile Include="Display\Helpers\VisibleIfValidConverter.cs" />
     <Compile Include="Model\Character.cs" />
