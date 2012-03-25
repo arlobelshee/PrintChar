@@ -1,5 +1,7 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using NUnit.Framework;
+using SenseOfWonder.Views;
 
 namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 {
@@ -23,5 +25,12 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 					FilePattern = "*.wonder"
 				});
 		}
+
+		[Test, Explicit, STAThread]
+		public void ShouldCreateEditorControlWhenAsked()
+		{
+			new SenseOfWonderSystem().EditorDisplay.Should().BeOfType<Editor>();
+		}
+
 	}
 }
