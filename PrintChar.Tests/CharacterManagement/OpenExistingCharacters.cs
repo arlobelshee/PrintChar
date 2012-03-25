@@ -5,10 +5,10 @@ using NUnit.Framework;
 using PluginApi;
 using PluginApi.Model;
 
-namespace PrintChar.Tests
+namespace PrintChar.Tests.CharacterManagement
 {
 	[TestFixture]
-	public class ManageCharactersAndFiles
+	public class OpenExistingCharacters
 	{
 		[Test]
 		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
