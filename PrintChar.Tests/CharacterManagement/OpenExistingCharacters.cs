@@ -1,5 +1,7 @@
 ﻿using System.IO;
+using EventBasedProgramming.TestSupport;
 using FluentAssertions;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using PluginApi;
 using PluginApi.Model;
@@ -11,17 +13,19 @@ namespace PrintChar.Tests.CharacterManagement
 	public class OpenExistingCharacters
 	{
 		[Test]
-		public void OpenFileButtonShouldAlwaysBeEnabled()
+		public void OpenFileButtonShouldAlwaysBeEnabledAndBoundCorrectly()
 		{
-			_testSubject.OpenCharCommand.CanExecute(null).Should().BeTrue();
+			var testSubject = _With(_AnyGames());
+			Assert.That(testSubject.OpenCharCommand,
+				Command.DelegatesTo(() => Always.Enabled(), () => testSubject.SwitchCharacter()));
 		}
 
 		[Test]
-		public void CharacterOpenerShouldBeInitializedCorrectly()
+		public void CharacterOpenerShouldUseAllGameSystems()
 		{
-			_testSubject.CharacterOpener.ShouldMatch(new
+			_With(_readOnlySystem, _writableSystem).CharacterOpener.ShouldMatch(new
 			{
-				GameSystems = _gameSystemsInUse,
+				GameSystems = new GameSystem[] { _readOnlySystem, _writableSystem },
 				RequireFileToExist = true
 			});
 		}
@@ -55,6 +59,17 @@ namespace PrintChar.Tests.CharacterManagement
 				Character result = _openExistingCharacter.LoadCharacter(_testSubject.Character, tempFile);
 				result.GameSystem.Should().BeSameAs(_readOnlySystem);
 			}
+		}
+
+		private static _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter _With(params GameSystem[] gameSystems)
+		{
+			return new _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter(gameSystems);
+		}
+
+		[NotNull]
+		private static GameSystem[] _AnyGames()
+		{
+			return new GameSystem[] {};
 		}
 
 		private static string _MakeTempFile(string extension)

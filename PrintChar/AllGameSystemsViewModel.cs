@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
+using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using PluginApi.Model;
 using PrintChar.DesignTimeSupportData;
@@ -27,7 +28,7 @@ namespace PrintChar
 				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
 			_currentCharacter = new TrackingNullableProperty<Character>(this,
 				() => Character, () => IsValid, () => CharFileName);
-			OpenCharCommand = new SimpleCommand(() => true, SwitchCharacter);
+			OpenCharCommand = new SimpleCommand(Always.Enabled, SwitchCharacter);
 			CreateCharCommand = new SimpleCommand(_HasAtLeastOneWritableGameSystem, CreateNewCharacter);
 		}
 
