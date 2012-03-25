@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using EventBasedProgramming.Binding.Impl;
 using JetBrains.Annotations;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.Binding
 {
 	public static class PropertyChangedExtensions
 	{

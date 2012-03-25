@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using JetBrains.Annotations;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.Binding.Impl
 {
 	public static class Extract
 	{

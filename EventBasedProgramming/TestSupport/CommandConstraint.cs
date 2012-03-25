@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq.Expressions;
+using EventBasedProgramming.Binding;
+using EventBasedProgramming.Binding.Impl;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.TestSupport
 {
 	public static class Command
 	{

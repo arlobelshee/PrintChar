@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
+using EventBasedProgramming.Binding;
+using EventBasedProgramming.Binding.Impl;
+using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using NUnit.Framework;
 

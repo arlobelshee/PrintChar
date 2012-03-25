@@ -45,18 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Always.cs" />
+    <Compile Include="TestSupport\Always.cs" />
     <Compile Include="Annotations.cs" />
-    <Compile Include="BindingInfo.cs" />
-    <Compile Include="CallToConstraint.cs" />
-    <Compile Include="CommandConstraint.cs" />
-    <Compile Include="Extract.cs" />
-    <Compile Include="IFirePropertyChanged.cs" />
+    <Compile Include="Binding\Impl\BindingInfo.cs" />
+    <Compile Include="TestSupport\CallToConstraint.cs" />
+    <Compile Include="TestSupport\CommandConstraint.cs" />
+    <Compile Include="Binding\Impl\Extract.cs" />
+    <Compile Include="Binding\IFirePropertyChanged.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyChangedExtensions.cs" />
-    <Compile Include="SimpleCommand.cs" />
-    <Compile Include="TrackingNonNullProperty.cs" />
-    <Compile Include="TrackingOnlyInitiallyNullProperty.cs" />
+    <Compile Include="Binding\PropertyChangedExtensions.cs" />
+    <Compile Include="Binding\SimpleCommand.cs" />
+    <Compile Include="Binding\TrackingNonNullProperty.cs" />
+    <Compile Include="Binding\TrackingOnlyInitiallyNullProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

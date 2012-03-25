@@ -1,4 +1,4 @@
-﻿namespace EventBasedProgramming
+﻿namespace EventBasedProgramming.TestSupport
 {
 	public static class Always
 	{

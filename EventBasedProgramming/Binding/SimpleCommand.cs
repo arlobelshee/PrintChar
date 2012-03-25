@@ -1,7 +1,8 @@
 using System;
 using System.Windows.Input;
+using EventBasedProgramming.Binding.Impl;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.Binding
 {
 	public class SimpleCommand : ICommand
 	{

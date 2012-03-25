@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Linq.Expressions;
+using EventBasedProgramming.Binding.Impl;
 using JetBrains.Annotations;
 using NUnit.Framework.Constraints;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.TestSupport
 {
 	public static class Calls
 	{

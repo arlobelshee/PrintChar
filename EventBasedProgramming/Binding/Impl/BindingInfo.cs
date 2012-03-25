@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.Binding.Impl
 {
 	public class BindingInfo : IEquatable<BindingInfo>
 	{

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.Binding
 {
 	public interface IFirePropertyChanged : INotifyPropertyChanged
 	{

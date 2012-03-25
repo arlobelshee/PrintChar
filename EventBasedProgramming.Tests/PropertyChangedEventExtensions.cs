@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using EventBasedProgramming.Binding;
 using JetBrains.Annotations;
 using NUnit.Framework;
 

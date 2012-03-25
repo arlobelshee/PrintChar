@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using EventBasedProgramming.Binding;
+using EventBasedProgramming.Binding.Impl;
 using JetBrains.Annotations;
 using NUnit.Framework;
 

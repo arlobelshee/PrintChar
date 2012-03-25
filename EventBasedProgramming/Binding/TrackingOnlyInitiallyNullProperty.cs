@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using JetBrains.Annotations;
 
-namespace EventBasedProgramming
+namespace EventBasedProgramming.Binding
 {
 	public class TrackingOnlyInitiallyNullProperty<TProperty> : IEquatable<TrackingOnlyInitiallyNullProperty<TProperty>> where TProperty : class
 	{
