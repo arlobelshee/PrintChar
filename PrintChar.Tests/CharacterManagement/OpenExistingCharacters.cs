@@ -11,6 +11,12 @@ namespace PrintChar.Tests.CharacterManagement
 	public class OpenExistingCharacters
 	{
 		[Test]
+		public void OpenFileButtonShouldAlwaysBeEnabled()
+		{
+			_testSubject.OpenCharCommand.CanExecute(null).Should().BeTrue();
+		}
+
+		[Test]
 		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
 		{
 			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
