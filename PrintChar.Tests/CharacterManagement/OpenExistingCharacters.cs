@@ -50,7 +50,7 @@ namespace PrintChar.Tests.CharacterManagement
 		public void CancellingTheOpenDialogShouldResultInNoChangeInOpenCharacter()
 		{
 			_testSubject.CurrentCharacter = _arbitraryCharacter;
-			_testSubject.LoadCharacter(null);
+			_testSubject.LoadCharacter(null, (system, file) => system.LoadCharacter(file));
 			_testSubject.Character.Should().BeSameAs(_arbitraryCharacter);
 		}
 
@@ -60,7 +60,7 @@ namespace PrintChar.Tests.CharacterManagement
 			string tempFile = MakeTempFile(_simpleSystem.FileExtension);
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.LoadCharacter(tempFile);
+				_testSubject.LoadCharacter(tempFile, (system, file) => system.LoadCharacter(file));
 				_testSubject.Character.File.Location.FullName.Should().Be(tempFile);
 				_testSubject.Character.GameSystem.Should().BeSameAs(_simpleSystem);
 			}
@@ -72,7 +72,7 @@ namespace PrintChar.Tests.CharacterManagement
 			string tempFile = MakeTempFile(_unfinishedSystem.FileExtension);
 			using (Undo.Step(() => File.Delete(tempFile)))
 			{
-				_testSubject.LoadCharacter(tempFile);
+				_testSubject.LoadCharacter(tempFile, (system, file) => system.LoadCharacter(file));
 				_testSubject.Character.GameSystem.Should().BeSameAs(_unfinishedSystem);
 			}
 		}

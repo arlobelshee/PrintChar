@@ -22,7 +22,8 @@ namespace PrintChar
 		public AllGameSystemsViewModel([NotNull] params GameSystem[] gameSystems)
 		{
 			_allGameSystems = gameSystems;
-			_currentCharacter = new TrackingNullableProperty<Character>(this, () => Character, () => IsValid);
+			_currentCharacter = new TrackingNullableProperty<Character>(this,
+				() => Character, () => IsValid, () => CharFileName);
 			OpenCharCommand = new SimpleCommand(() => true, SwitchCharacter);
 			CreateCharCommand = new SimpleCommand(_HasAtLeastOneWritableGameSystem, CreateNewCharacter);
 		}
@@ -37,26 +38,21 @@ namespace PrintChar
 
 		public void SwitchCharacter()
 		{
-			LoadCharacter(_Open(CreateOpenDialog()));
+			LoadCharacter(_Open(CreateOpenDialog()), (gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
 		}
 
 		public void CreateNewCharacter()
 		{
-			CreateCharacter(_Open(CreateCreateDialog()));
+			LoadCharacter(_Open(CreateCreateDialog()), (gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
 		}
 
-		public void LoadCharacter([CanBeNull] string fileName)
+		public void LoadCharacter([CanBeNull] string fileName, Func<GameSystem, string, Character> loader)
 		{
 			if (string.IsNullOrEmpty(fileName) || (Character != null && Character.File.Location.FullName == fileName))
 				return;
 
 			string extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
-			Character = _allGameSystems.First(g => g.FileExtension == extensionWithoutPeriod).LoadCharacter(fileName);
-		}
-
-		private void CreateCharacter([CanBeNull] string newFileName)
-		{
-			throw new NotImplementedException();
+			Character = loader(_allGameSystems.First(g => g.FileExtension == extensionWithoutPeriod), fileName);
 		}
 
 		[NotNull]
@@ -101,6 +97,12 @@ namespace PrintChar
 		public bool IsValid
 		{
 			get { return _currentCharacter.Value != null; }
+		}
+
+		[NotNull]
+		public string CharFileName
+		{
+			get { return _currentCharacter.Value == null ? string.Empty : _currentCharacter.Value.File.Location.FullName; }
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
