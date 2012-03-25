@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace PrintChar
 
 		public void CreateNewCharacter()
 		{
-
+			CreateCharacter(_Open(CreateCreateDialog()));
 		}
 
 		public void LoadCharacter([CanBeNull] string fileName)
@@ -53,18 +54,41 @@ namespace PrintChar
 			Character = _allGameSystems.First(g => g.FileExtension == extensionWithoutPeriod).LoadCharacter(fileName);
 		}
 
+		private void CreateCharacter([CanBeNull] string newFileName)
+		{
+			throw new NotImplementedException();
+		}
+
 		[NotNull]
 		public OpenFileDialog CreateOpenDialog()
 		{
+			return _CreateDialogForSystems(_allGameSystems, true);
+		}
+
+		[NotNull]
+		public OpenFileDialog CreateCreateDialog()
+		{
+			return _CreateDialogForSystems(_allGameSystems.Where(g => !g.IsReadOnly), false);
+		}
+
+		[NotNull]
+		private OpenFileDialog _CreateDialogForSystems([NotNull] IEnumerable<GameSystem> gameSystems, bool requireFileToExist)
+		{
 			return new OpenFileDialog
 			{
-				Filter = string.Join("|",
-					_allGameSystems.Select(g => string.Format("{0} file ({1})|{1}", g.Name, g.FilePattern))),
-				DefaultExt = (Character == null ? _allGameSystems[0] : Character.GameSystem).FileExtension,
-				CheckFileExists = true,
+				Filter = string.Join("|", gameSystems
+					.Select(_FormatGameSystemFileInfo)),
+				DefaultExt = (Character == null ? gameSystems.First() : Character.GameSystem).FileExtension,
+				CheckFileExists = requireFileToExist,
 				Multiselect = false,
 				InitialDirectory = Character == null ? null : Character.File.Location.DirectoryName
 			};
+		}
+
+		[NotNull]
+		private static string _FormatGameSystemFileInfo([NotNull] GameSystem g)
+		{
+			return string.Format("{0} file ({1})|{1}", g.Name, g.FilePattern);
 		}
 
 		[CanBeNull]
@@ -100,7 +124,6 @@ namespace PrintChar
 		public DesignTimeGameSystems() : this(new DesignTimeGameSystem())
 		{
 			Character = new TheDesigner(_gameSystem);
-			
 		}
 
 		private DesignTimeGameSystems(DesignTimeGameSystem gameSystem) : base(gameSystem)

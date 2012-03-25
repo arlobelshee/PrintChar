@@ -28,9 +28,35 @@ namespace PrintChar.Tests.CharacterManagement
 			Assert.That(testSubject.CreateCharCommand, Command.DelegatesTo(() => testSubject.CreateNewCharacter()));
 		}
 
-		private static AllGameSystemsViewModel _With(params GameSystem[] gameSystems)
+		[Test]
+		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
 		{
-			return new AllGameSystemsViewModel(gameSystems);
+			_With(_readOnlyGameSystem, _writableGameSystem).CreateCreateDialog().ShouldHave().SharedProperties().EqualTo(new
+			{
+				Filter = "Writable Characters file (*.write)|*.write",
+				DefaultExt = _WritableGameSystem.Extension,
+				CheckFileExists = false,
+				Multiselect = false,
+				InitialDirectory = string.Empty
+			});
+		}
+
+		[Test]
+		public void DefaultExtensionShouldBeSameAsCurrentCharacter()
+		{
+			var nonDefaultSystem = new _WritableGameSystem("unusualextension");
+			var testSubject = _With(_readOnlyGameSystem, _writableGameSystem, nonDefaultSystem);
+			testSubject.CurrentCharacter = new _SillyCharacter(Data.Anything(), nonDefaultSystem);
+
+			testSubject.CreateCreateDialog().ShouldHave().SharedProperties().EqualTo(new
+			{
+				DefaultExt = nonDefaultSystem.FileExtension,
+			});
+		}
+
+		private static _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter _With(params GameSystem[] gameSystems)
+		{
+			return new _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter(gameSystems);
 		}
 
 		[SetUp]

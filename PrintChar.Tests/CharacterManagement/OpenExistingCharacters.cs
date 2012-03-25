@@ -84,7 +84,7 @@ namespace PrintChar.Tests.CharacterManagement
 			return tempFile;
 		}
 
-		private _AllGameSystemsViewModel _testSubject;
+		private _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter _testSubject;
 		private _SillyCharacter _arbitraryCharacter;
 		private IDataFile _dataFile;
 		private _WritableGameSystem _simpleSystem;
@@ -95,19 +95,9 @@ namespace PrintChar.Tests.CharacterManagement
 		{
 			_simpleSystem = new _WritableGameSystem();
 			_unfinishedSystem = new _ReadOnlyGameSystem();
-			_testSubject = new _AllGameSystemsViewModel(_simpleSystem, _unfinishedSystem);
+			_testSubject = new _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter(_simpleSystem, _unfinishedSystem);
 			_dataFile = Data.EmptyAt(new FileInfo(@"R:\arbitrary\path\ee.dnd4e"));
 			_arbitraryCharacter = new _SillyCharacter(_dataFile, new _WritableGameSystem());
-		}
-
-		internal class _AllGameSystemsViewModel : AllGameSystemsViewModel
-		{
-			public _AllGameSystemsViewModel(params GameSystem[] gameSystems) : base(gameSystems) {}
-
-			public Character CurrentCharacter
-			{
-				set { Character = value; }
-			}
 		}
 	}
 }

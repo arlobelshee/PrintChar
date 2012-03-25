@@ -60,6 +60,7 @@
     <Compile Include="CharacterManagement\CreateNewCharacter.cs" />
     <Compile Include="CharacterManagement\OpenExistingCharacters.cs" />
     <Compile Include="CharacterManagement\PrintCharacter.cs" />
+    <Compile Include="zzTestSupportData\_AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter.cs" />
     <Compile Include="zzTestSupportData\_WritableGameSystem.cs" />
     <Compile Include="zzTestSupportData\_SillyCharacter.cs" />
     <Compile Include="zzTestSupportData\_ReadOnlyGameSystem.cs" />
