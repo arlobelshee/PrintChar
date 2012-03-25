@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using FluentAssertions;
+using Microsoft.Win32;
 using NUnit.Framework;
 using PluginApi;
 using PluginApi.Model;
@@ -19,7 +20,7 @@ namespace PrintChar.Tests.CharacterManagement
 		[Test]
 		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
 		{
-			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
+			_testSubject.CharacterOpener.CreateDialog(_testSubject.Character).ShouldHave().SharedProperties().EqualTo(new
 			{
 				Filter = "Writable Characters file (*.write)|*.write|Read Only Characters file (*.read)|*.read",
 				DefaultExt = _WritableGameSystem.Extension,
@@ -33,7 +34,7 @@ namespace PrintChar.Tests.CharacterManagement
 		public void DefaultExtensionShouldBeSameAsCurrentCharacter()
 		{
 			_testSubject.CurrentCharacter = new _SillyCharacter(_dataFile, new _ReadOnlyGameSystem());
-			_testSubject.CreateOpenDialog().ShouldHave().SharedProperties().EqualTo(new
+			_testSubject.CharacterOpener.CreateDialog(_testSubject.Character).ShouldHave().SharedProperties().EqualTo(new
 			{
 				DefaultExt = _ReadOnlyGameSystem.Extension,
 			});
@@ -43,7 +44,7 @@ namespace PrintChar.Tests.CharacterManagement
 		public void IfHaveAlreadyOpenedCharacterShouldSetOpenDialogToStartInThatLocation()
 		{
 			_testSubject.CurrentCharacter = _arbitraryCharacter;
-			_testSubject.CreateOpenDialog().InitialDirectory.Should().Be(_arbitraryCharacter.File.Location.DirectoryName);
+			_testSubject.CharacterOpener.CreateDialog(_testSubject.Character).InitialDirectory.Should().Be(_arbitraryCharacter.File.Location.DirectoryName);
 		}
 
 		[Test]

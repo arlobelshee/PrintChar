@@ -4,7 +4,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
 using JetBrains.Annotations;
-using Microsoft.Win32;
 using PluginApi.Model;
 using PrintChar.DesignTimeSupportData;
 
@@ -14,7 +13,7 @@ namespace PrintChar
 	{
 		[NotNull] private readonly GameSystem[] _allGameSystems;
 		[NotNull] private readonly TrackingNullableProperty<Character> _currentCharacter;
-		private readonly CharacterFileInteraction _openExistingCharacter;
+		private readonly CharacterFileInteraction _characterOpener;
 		private readonly CharacterFileInteraction _createNewCharacter;
 
 		public AllGameSystemsViewModel() : this(Plugins.GameSystems()) {}
@@ -22,7 +21,7 @@ namespace PrintChar
 		public AllGameSystemsViewModel([NotNull] params GameSystem[] gameSystems)
 		{
 			_allGameSystems = gameSystems;
-			_openExistingCharacter = new CharacterFileInteraction(_allGameSystems, true,
+			_characterOpener = new CharacterFileInteraction(_allGameSystems, true,
 				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
 			_createNewCharacter = new CharacterFileInteraction(_allGameSystems.Where(g => !g.IsReadOnly), false,
 				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
@@ -32,12 +31,15 @@ namespace PrintChar
 			CreateCharCommand = new SimpleCommand(_HasAtLeastOneWritableGameSystem, CreateNewCharacter);
 		}
 
+		[NotNull]
 		public SimpleCommand OpenCharCommand { get; private set; }
+
+		[NotNull]
 		public SimpleCommand CreateCharCommand { get; private set; }
 
 		public void SwitchCharacter()
 		{
-			Character = _openExistingCharacter.LoadCharacter(Character);
+			Character = _characterOpener.LoadCharacter(Character);
 		}
 
 		public void CreateNewCharacter()
@@ -46,15 +48,15 @@ namespace PrintChar
 		}
 
 		[NotNull]
-		public OpenFileDialog CreateOpenDialog()
+		public CharacterFileInteraction CharacterOpener
 		{
-			return _openExistingCharacter.CreateDialog(Character);
+			get { return _characterOpener; }
 		}
 
 		[NotNull]
-		public OpenFileDialog CreateCreateDialog()
+		public CharacterFileInteraction CharacterCreator
 		{
-			return _createNewCharacter.CreateDialog(Character);
+			get { return _createNewCharacter; }
 		}
 
 		[CanBeNull]

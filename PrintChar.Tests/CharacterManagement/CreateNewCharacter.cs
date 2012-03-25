@@ -1,5 +1,6 @@
 ﻿using EventBasedProgramming.TestSupport;
 using FluentAssertions;
+using Microsoft.Win32;
 using NUnit.Framework;
 using PluginApi.Model;
 using PrintChar.Tests.zzTestSupportData;
@@ -31,7 +32,8 @@ namespace PrintChar.Tests.CharacterManagement
 		[Test]
 		public void ShouldUseLabelAndExtensionCorrectlyToInitializeOpenDialog()
 		{
-			_With(_readOnlyGameSystem, _writableGameSystem).CreateCreateDialog().ShouldHave().SharedProperties().EqualTo(new
+			_AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter tempQualifier = _With(_readOnlyGameSystem, _writableGameSystem);
+			tempQualifier.CharacterCreator.CreateDialog(tempQualifier.Character).ShouldHave().SharedProperties().EqualTo(new
 			{
 				Filter = "Writable Characters file (*.write)|*.write",
 				DefaultExt = _WritableGameSystem.Extension,
@@ -48,7 +50,7 @@ namespace PrintChar.Tests.CharacterManagement
 			var testSubject = _With(_readOnlyGameSystem, _writableGameSystem, nonDefaultSystem);
 			testSubject.CurrentCharacter = new _SillyCharacter(Data.Anything(), nonDefaultSystem);
 
-			testSubject.CreateCreateDialog().ShouldHave().SharedProperties().EqualTo(new
+			testSubject.CharacterCreator.CreateDialog(testSubject.Character).ShouldHave().SharedProperties().EqualTo(new
 			{
 				DefaultExt = nonDefaultSystem.FileExtension,
 			});
