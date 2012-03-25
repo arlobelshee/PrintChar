@@ -6,13 +6,13 @@ using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using NUnit.Framework;
 
-namespace EventBasedProgramming.Tests
+namespace EventBasedProgramming.Tests.MakeBindingsTestable
 {
 	[TestFixture]
-	public class SimpleCommandExposesItsBindingsForTestVerification
+	public class SimpleCommandCanBeVerifiedWithoutCallingIt
 	{
 		[Test]
-		public void CanVerifyWithDisposesToConstraint()
+		public void CanVerifyEntireCommandAtOnce()
 		{
 			_testSubject = new SimpleCommand(_CorrectCanExecuteInstanceMethod, _CorrectExecuteInstanceMethod);
 			Assert.That(_testSubject, Command.DelegatesTo(() => _CorrectCanExecuteInstanceMethod(), () => _CorrectExecuteInstanceMethod()));
@@ -27,19 +27,9 @@ namespace EventBasedProgramming.Tests
 		}
 
 		[Test]
-		public void AssertionFiresWhenBindingIsNotAsExpected()
-		{
-			var other = new SimpleCommandExposesItsBindingsForTestVerification();
-			_testSubject = new SimpleCommand(_CorrectCanExecuteInstanceMethod, other._CorrectExecuteInstanceMethod);
-			var actualBinding = Extract.BindingInfoFrom(() => other._CorrectExecuteInstanceMethod()).ToString();
-			_AssertionShouldFail(() => _CorrectExecuteStaticMethod(), "bound to incorrect method", actualBinding);
-			_AssertionShouldFail(() => _CorrectExecuteInstanceMethod(), "bound to incorrect object instance", actualBinding);
-		}
-
-		[Test]
 		public void CanVerifyWhenIsBoundToInstanceMethodsOnAnotherObject()
 		{
-			var other = new SimpleCommandExposesItsBindingsForTestVerification();
+			var other = new SimpleCommandCanBeVerifiedWithoutCallingIt();
 			_testSubject = new SimpleCommand(other._CorrectCanExecuteInstanceMethod, other._CorrectExecuteInstanceMethod);
 			Assert.That(_testSubject.MethodHandlingCanExecute, Calls.To(() => other._CorrectCanExecuteInstanceMethod()));
 			Assert.That(_testSubject.MethodHandlingExecute, Calls.To(() => other._CorrectExecuteInstanceMethod()));
@@ -51,6 +41,16 @@ namespace EventBasedProgramming.Tests
 			_testSubject = new SimpleCommand(_CorrectCanExecuteStaticMethod, _CorrectExecuteStaticMethod);
 			Assert.That(_testSubject.MethodHandlingCanExecute, Calls.To(() => _CorrectCanExecuteStaticMethod()));
 			Assert.That(_testSubject.MethodHandlingExecute, Calls.To(() => _CorrectExecuteStaticMethod()));
+		}
+
+		[Test]
+		public void ShouldFireAssertionWhenBindingIsNotAsExpected()
+		{
+			var other = new SimpleCommandCanBeVerifiedWithoutCallingIt();
+			_testSubject = new SimpleCommand(_CorrectCanExecuteInstanceMethod, other._CorrectExecuteInstanceMethod);
+			var actualBinding = Extract.BindingInfoFrom(() => other._CorrectExecuteInstanceMethod()).ToString();
+			_AssertionShouldFail(() => _CorrectExecuteStaticMethod(), "bound to incorrect method", actualBinding);
+			_AssertionShouldFail(() => _CorrectExecuteInstanceMethod(), "bound to incorrect object instance", actualBinding);
 		}
 
 		private void _AssertionShouldFail([NotNull] Expression<Action> assertionToMake, string expectedMessage,
