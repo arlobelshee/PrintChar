@@ -9,11 +9,12 @@ namespace EventBasedProgramming.Tests.MakeItEasyToImplementINotifyPropertyChange
 	[TestFixture]
 	public class TrackingPropertiesMaintainNullnessInvariants
 	{
+		private const string TheNonNullPropertyValue = "the property value";
+
 		[Test]
 		public void NonNullablePropertyShouldNotAllowBeingSetToNull()
 		{
-			var testSubject = new TrackingNonNullProperty<string>(string.Empty, _target);
-			Assert.Throws<ArgumentNullException>(() => testSubject.Value = null);
+			Assert.Throws<ArgumentNullException>(() => _nonNullableProperty.Value = null);
 		}
 
 		[Test]
@@ -25,49 +26,50 @@ namespace EventBasedProgramming.Tests.MakeItEasyToImplementINotifyPropertyChange
 		[Test]
 		public void InitiallyNullablePropertyShouldNotAllowBeingSetToNull()
 		{
-			var testSubject = new TrackingOnlyInitiallyNullProperty<string>(_target);
-			Assert.Throws<ArgumentNullException>(() => testSubject.Value = null);
+			Assert.Throws<ArgumentNullException>(() => _initiallyNullProperty.Value = null);
 		}
 
 		[Test]
 		public void InitiallyNullablePropertyShouldDefaultToNull()
 		{
-			new TrackingOnlyInitiallyNullProperty<string>(_target).Value.Should().BeNull();
+			_initiallyNullProperty.Value.Should().BeNull();
 		}
 
 		[Test]
 		public void NullablePropertyShouldAllowBeingSetToNull()
 		{
-			var testSubject = new TrackingNullableProperty<string>(_target);
-			Assert.DoesNotThrow(() => testSubject.Value = null);
+			Assert.DoesNotThrow(() => _nullableProperty.Value = null);
 		}
 
 		[Test]
 		public void NullablePropertyShouldDefaultToNull()
 		{
-			new TrackingOnlyInitiallyNullProperty<string>(_target).Value.Should().BeNull();
+			_nullableProperty.Value.Should().BeNull();
 		}
 
 		[Test]
 		public void AllTrackingPropertiesShouldBeEqualityComparableBasedOnTheirValues()
 		{
-			const string thePropertyValue = "the property value";
-			var nullableProperty = new TrackingNullableProperty<string>(_target);
-			var initiallyNullProperty = new TrackingNullableProperty<string>(_target);
-			var nonNullableProperty = new TrackingNonNullProperty<string>(thePropertyValue, _target);
-			nullableProperty.Should().Be(initiallyNullProperty);
-			nullableProperty.Should().NotBe(nonNullableProperty);
-			nullableProperty.Value = thePropertyValue;
-			nullableProperty.Should().Be(nonNullableProperty);
-			nullableProperty.Should().NotBe(initiallyNullProperty);
+			_nullableProperty.Should().Be(_initiallyNullProperty);
+			_nullableProperty.Should().NotBe(_nonNullableProperty);
+
+			_nullableProperty.Value = TheNonNullPropertyValue;
+			_nullableProperty.Should().Be(_nonNullableProperty);
+			_nullableProperty.Should().NotBe(_initiallyNullProperty);
 		}
 
 		[SetUp]
 		public void Setup()
 		{
 			_target = new _ClassWithSomeProperties();
+			_nullableProperty = new TrackingNullableProperty<string>(_target);
+			_initiallyNullProperty = new TrackingOnlyInitiallyNullProperty<string>(_target);
+			_nonNullableProperty = new TrackingNonNullProperty<string>(TheNonNullPropertyValue, _target);
 		}
 
 		private _ClassWithSomeProperties _target;
+		private TrackingNullableProperty<string> _nullableProperty;
+		private TrackingOnlyInitiallyNullProperty<string> _initiallyNullProperty;
+		private TrackingNonNullProperty<string> _nonNullableProperty;
 	}
 }
