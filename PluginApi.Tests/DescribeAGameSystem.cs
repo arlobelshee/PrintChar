@@ -1,5 +1,4 @@
-﻿using System.IO;
-using FluentAssertions;
+﻿using FluentAssertions;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using PluginApi.Model;
@@ -25,11 +24,7 @@ namespace PluginApi.Tests
 		[Test]
 		public void ShouldLoadCharactersFromFilesOnCommand()
 		{
-			string tempFile = Path.GetTempFileName();
-			using (Undo.Step(() => File.Delete(tempFile)))
-			{
-				_testSubject.LoadCharacter(tempFile).File.Location.FullName.Should().Be(tempFile);
-			}
+			_testSubject.LoadCharacter(ArbitraryFile).File.Location.FullName.Should().Be(ArbitraryFile);
 		}
 
 		[Test]
@@ -52,6 +47,8 @@ namespace PluginApi.Tests
 		{
 			_testSubject = new _SimplisticGameSystem();
 		}
+
+		private const string ArbitraryFile = @"C:\irrelevant\file.name";
 
 		public class SillyCharacter : Character<GameSystem>
 		{

@@ -3,6 +3,8 @@ using JetBrains.Annotations;
 using NUnit.Framework;
 using PluginApi.Model;
 using PrintChar.Tests.zzTestSupportData;
+using FluentAssertions;
+using System.Linq;
 
 namespace PrintChar.Tests.CharacterManagement
 {
@@ -12,7 +14,7 @@ namespace PrintChar.Tests.CharacterManagement
 		[Test]
 		public void OpenFileButtonShouldAlwaysBeEnabledAndBoundCorrectly()
 		{
-			_AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter testSubject = _With(_AnyGames());
+			var testSubject = _With(_AnyGames());
 			Assert.That(testSubject.OpenCharCommand,
 				Command.DelegatesTo(() => Always.Enabled(), () => testSubject.SwitchCharacter()));
 		}
@@ -27,6 +29,16 @@ namespace PrintChar.Tests.CharacterManagement
 			});
 		}
 
+		[Test]
+		public void CharacterOpenerShouldDispatchToGameSystemLoadCharacter()
+		{
+			var trace = new _TracingGameSystem();
+			_With(_AnyGames()).CharacterOpener.Loader(trace, ArbitraryFileName);
+			trace.ShouldHaveLoaded(ArbitraryFileName);
+			trace.ShouldHaveCreatedNothing();
+		}
+
+		[NotNull]
 		private static _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter _With(params GameSystem[] gameSystems)
 		{
 			return new _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter(gameSystems);
@@ -38,14 +50,15 @@ namespace PrintChar.Tests.CharacterManagement
 			return new GameSystem[] {};
 		}
 
-		private _WritableGameSystem _writableSystem;
-		private _ReadOnlyGameSystem _readOnlySystem;
-
 		[SetUp]
 		public void Setup()
 		{
 			_writableSystem = new _WritableGameSystem();
 			_readOnlySystem = new _ReadOnlyGameSystem();
 		}
+
+		private _WritableGameSystem _writableSystem;
+		private _ReadOnlyGameSystem _readOnlySystem;
+		private const string ArbitraryFileName = @"C:\arbitry\path\and\file.whatever";
 	}
 }

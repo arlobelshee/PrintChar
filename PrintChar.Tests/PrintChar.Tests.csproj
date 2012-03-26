@@ -62,6 +62,7 @@
     <Compile Include="CharacterManagement\LoadOrCreateCharactersUponDialogCompletion.cs" />
     <Compile Include="CharacterManagement\OpenExistingCharacters.cs" />
     <Compile Include="CharacterManagement\PrintCharacter.cs" />
+    <Compile Include="zzTestSupportData\_TracingGameSystem.cs" />
     <Compile Include="zzTestSupportData\TestHelperExtensions.cs" />
     <Compile Include="zzTestSupportData\_AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter.cs" />
     <Compile Include="zzTestSupportData\_WritableGameSystem.cs" />

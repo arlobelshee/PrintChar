@@ -1,5 +1,7 @@
-﻿using EventBasedProgramming.TestSupport;
+﻿using System.Linq;
+using EventBasedProgramming.TestSupport;
 using FluentAssertions;
+using JetBrains.Annotations;
 using NUnit.Framework;
 using PluginApi.Model;
 using PrintChar.Tests.zzTestSupportData;
@@ -38,9 +40,25 @@ namespace PrintChar.Tests.CharacterManagement
 				});
 		}
 
+		[Test]
+		public void CharacterOpenerShouldDispatchToGameSystemLoadCharacter()
+		{
+			var trace = new _TracingGameSystem();
+			_With(_AnyGames()).CharacterCreator.Loader(trace, ArbitraryFileName);
+			trace.ShouldHaveCreated(ArbitraryFileName);
+			trace.ShouldHaveLoadedNothing();
+		}
+
+		[NotNull]
 		private static _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter _With(params GameSystem[] gameSystems)
 		{
 			return new _AllGameSystemsViewModelThatAllowsOverridingCurrentCharacter(gameSystems);
+		}
+
+		[NotNull]
+		private static GameSystem[] _AnyGames()
+		{
+			return new GameSystem[] { };
 		}
 
 		[SetUp]
@@ -54,5 +72,6 @@ namespace PrintChar.Tests.CharacterManagement
 		private GameSystem _readOnlyGameSystem;
 		private GameSystem _anyGameSystem;
 		private GameSystem _writableGameSystem;
+		private const string ArbitraryFileName = @"C:\arbitry\path\and\file.whatever";
 	}
 }

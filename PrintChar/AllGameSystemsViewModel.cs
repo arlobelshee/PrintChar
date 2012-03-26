@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
+using EventBasedProgramming.Binding.Impl;
 using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using PluginApi.Model;
@@ -25,7 +26,7 @@ namespace PrintChar
 			_characterOpener = new CharacterFileInteraction(_allGameSystems, true,
 				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
 			_createNewCharacter = new CharacterFileInteraction(_allGameSystems.Where(g => !g.IsReadOnly), false,
-				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
+				(gameSystem, fileName) => gameSystem.CreateCharacter(fileName));
 			_currentCharacter = new TrackingNullableProperty<Character>(this,
 				() => Character, () => IsValid, () => CharFileName);
 			OpenCharCommand = new SimpleCommand(Always.Enabled, SwitchCharacter);

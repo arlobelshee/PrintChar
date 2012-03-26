@@ -1,4 +1,6 @@
+using System.Linq;
 using FluentAssertions;
+using PluginApi.Model;
 
 namespace PrintChar.Tests.zzTestSupportData
 {
@@ -7,6 +9,11 @@ namespace PrintChar.Tests.zzTestSupportData
 		public static void ShouldMatch<T>(this T actual, object expected)
 		{
 			actual.ShouldHave().SharedProperties().EqualTo(expected);
+		}
+
+		public static void ShouldBeFor(this Character character, string expectedSourceFile)
+		{
+			character.File.Location.FullName.Should().Be(expectedSourceFile);
 		}
 	}
 }

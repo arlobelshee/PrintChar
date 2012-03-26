@@ -39,10 +39,29 @@ namespace PluginApi.Model
 		[NotNull]
 		public Character LoadCharacter([NotNull] string fileName)
 		{
-			return Parse(new CachedFile(new FileInfo(fileName)));
+			return Parse(LocateFile(new FileInfo(fileName)));
 		}
 
-		public abstract Character Parse(IDataFile characterData);
+		[NotNull]
+		public Character CreateCharacter([NotNull] string fileName)
+		{
+			return CreateIn(LocateFile(new FileInfo(fileName)));
+		}
+
+		[NotNull]
+		protected virtual IDataFile LocateFile([NotNull] FileInfo location)
+		{
+			return new CachedFile(location);
+		}
+
+		[NotNull]
+		public abstract Character Parse([NotNull] IDataFile characterData);
+
+		[NotNull]
+		public virtual Character CreateIn([NotNull] IDataFile characterData)
+		{
+			throw new NotImplementedException(string.Format("The {0} game system does not allow character creation.", Name));
+		}
 
 		public bool Equals(GameSystem other)
 		{
