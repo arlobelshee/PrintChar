@@ -28,9 +28,9 @@ namespace PluginApi.Model
 		public bool IsReadOnly { get; set; }
 
 		[NotNull]
-		public virtual Control EditorDisplay
+		public virtual ObservableCollection<Control> EditorPages
 		{
-			get { return new Control(); }
+			get { return new ObservableCollection<Control>(); }
 		}
 
 		[NotNull]

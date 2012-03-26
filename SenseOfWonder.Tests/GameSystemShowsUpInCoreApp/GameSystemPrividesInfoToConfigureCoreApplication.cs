@@ -29,7 +29,7 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		[Test, Explicit, STAThread]
 		public void ShouldCreateEditorControlWhenAsked()
 		{
-			new SenseOfWonderSystem().EditorDisplay.Should().BeOfType<Editor>();
+			new SenseOfWonderSystem().EditorPages.Should().HaveCount(1).And.ContainItemsAssignableTo<Editor>();
 		}
 	}
 }

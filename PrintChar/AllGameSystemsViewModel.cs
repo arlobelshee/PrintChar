@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
-using EventBasedProgramming.Binding.Impl;
 using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using PluginApi.Model;
@@ -23,10 +22,8 @@ namespace PrintChar
 		public AllGameSystemsViewModel([NotNull] params GameSystem[] gameSystems)
 		{
 			_allGameSystems = gameSystems;
-			_characterOpener = new CharacterFileInteraction(_allGameSystems, true,
-				(gameSystem, fileName) => gameSystem.LoadCharacter(fileName));
-			_createNewCharacter = new CharacterFileInteraction(_allGameSystems.Where(g => !g.IsReadOnly), false,
-				(gameSystem, fileName) => gameSystem.CreateCharacter(fileName));
+			_characterOpener = new CharacterFileInteraction(_allGameSystems, true, _HaveGameSystemLoadChar);
+			_createNewCharacter = new CharacterFileInteraction(_allGameSystems.Where(g => !g.IsReadOnly), false, _HaveGameSystemCreateChar);
 			_currentCharacter = new TrackingNullableProperty<Character>(this,
 				() => Character, () => IsValid, () => CharFileName);
 			OpenCharCommand = new SimpleCommand(Always.Enabled, SwitchCharacter);
@@ -89,6 +86,18 @@ namespace PrintChar
 		private bool _HasAtLeastOneWritableGameSystem()
 		{
 			return _allGameSystems.FirstOrDefault(gs => gs.IsReadOnly == false) != null;
+		}
+
+		[NotNull]
+		private static Character _HaveGameSystemCreateChar(GameSystem gameSystem, string fileName)
+		{
+			return gameSystem.CreateCharacter(fileName);
+		}
+
+		[NotNull]
+		private static Character _HaveGameSystemLoadChar(GameSystem gameSystem, string fileName)
+		{
+			return gameSystem.LoadCharacter(fileName);
 		}
 	}
 

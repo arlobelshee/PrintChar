@@ -8,6 +8,7 @@
 				 d:DesignHeight="300" d:DesignWidth="300">
 	<Grid d:DataContext="{d:DesignInstance {x:Type SenseOfWonder:WonderCharacterDesignData}, IsDesignTimeCreatable=True}">
 		<TextBox x:Name="Name" Height="23.2" Margin="22.6,30.4,71.8,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+		<TextBlock Margin="22.6,89.2,31.8,109.2" TextWrapping="Wrap"><Run Foreground="Red" FontSize="18.667" Text="It's Alive!!!!"/></TextBlock>
 		
 	 </Grid>
 </UserControl>
