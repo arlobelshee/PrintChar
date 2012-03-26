@@ -12,12 +12,12 @@ namespace SenseOfWonder
 
 		public override Character Parse(IDataFile characterData)
 		{
-			return new WonderCharacter(this);
+			return new WonderCharacter(this, characterData);
 		}
 
 		public override Character CreateIn(IDataFile characterData)
 		{
-			return new WonderCharacter(this);
+			return new WonderCharacter(this, characterData);
 		}
 
 		public override Control EditorDisplay

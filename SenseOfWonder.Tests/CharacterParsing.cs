@@ -12,7 +12,7 @@ namespace SenseOfWonder.Tests
 		{
 			var testSubject = new SenseOfWonderSystem();
 			var emptyFile = Data.EmptyAt("arbitrary.wonder");
-			var defaultCharacter = new WonderCharacter(testSubject);
+			var defaultCharacter = new WonderCharacter(testSubject, emptyFile);
 
 			testSubject.Parse(emptyFile).Should().Be(defaultCharacter);
 		}

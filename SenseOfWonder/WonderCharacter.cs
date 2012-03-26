@@ -5,12 +5,15 @@ namespace SenseOfWonder
 {
 	public class WonderCharacter : Character<SenseOfWonderSystem>
 	{
-		public WonderCharacter([NotNull] SenseOfWonderSystem system) : base(system) {}
+		public WonderCharacter([NotNull] SenseOfWonderSystem system, IDataFile characterData) : base(system)
+		{
+			File = characterData;
+		}
 	}
 
 	public class WonderCharacterDesignData : WonderCharacter
 	{
-		public WonderCharacterDesignData() : base(new SenseOfWonderSystem())
+		public WonderCharacterDesignData() : base(new SenseOfWonderSystem(), Data.Anything())
 		{
 			Name = "Wonderful Character";
 			Gender = "Female";
