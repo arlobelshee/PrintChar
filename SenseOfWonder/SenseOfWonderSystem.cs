@@ -15,6 +15,11 @@ namespace SenseOfWonder
 			return new WonderCharacter(this);
 		}
 
+		public override Character CreateIn(IDataFile characterData)
+		{
+			return new WonderCharacter(this);
+		}
+
 		public override Control EditorDisplay
 		{
 			get { return new Editor(); }
