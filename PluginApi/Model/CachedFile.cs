@@ -15,14 +15,18 @@ namespace PluginApi.Model
 		private Timer _currentSaver;
 		private _DataState _dataState;
 
-		public CachedFile([NotNull] FileInfo backingFile, bool requireToExistAlready = true)
+		public CachedFile([NotNull] FileInfo backingFile, bool? requireToExistAlready = null)
 		{
 			_backingFile = backingFile;
 			if (!_backingFile.Exists)
 			{
-				if (requireToExistAlready)
+				if (requireToExistAlready == true)
 					throw new FileNotFoundException("Data file not found.", _backingFile.FullName);
 				_backingFile.CreateText().Close();
+			}
+			else if (requireToExistAlready == false)
+			{
+				throw new FileNotFoundException("Expected to create new data file, but file already exists.", _backingFile.FullName);
 			}
 			_dataState = _DataState.FileIsCanonical;
 		}

@@ -66,8 +66,7 @@ namespace PluginApi.Tests
 
 		private void _WriteToTestSubject(string valueWritten)
 		{
-			using (var testSubject = new CachedFile(_backingFile, requireToExistAlready: false)
-				)
+			using (var testSubject = new CachedFile(_backingFile, requireToExistAlready: null))
 			{
 				testSubject.Contents = valueWritten;
 			}

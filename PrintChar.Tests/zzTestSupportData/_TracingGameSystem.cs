@@ -29,7 +29,7 @@ namespace PrintChar.Tests.zzTestSupportData
 			return new _SillyCharacter(characterData, this);
 		}
 
-		protected override IDataFile LocateFile(FileInfo location)
+		protected override IDataFile LocateFile(FileInfo location, bool requireToExistAlready)
 		{
 			return Data.EmptyAt(location);
 		}

@@ -39,19 +39,19 @@ namespace PluginApi.Model
 		[NotNull]
 		public Character LoadCharacter([NotNull] string fileName)
 		{
-			return Parse(LocateFile(new FileInfo(fileName)));
+			return Parse(LocateFile(new FileInfo(fileName), true));
 		}
 
 		[NotNull]
 		public Character CreateCharacter([NotNull] string fileName)
 		{
-			return CreateIn(LocateFile(new FileInfo(fileName)));
+			return CreateIn(LocateFile(new FileInfo(fileName), false));
 		}
 
 		[NotNull]
-		protected virtual IDataFile LocateFile([NotNull] FileInfo location)
+		protected virtual IDataFile LocateFile([NotNull] FileInfo location, bool requireToExistAlready)
 		{
-			return new CachedFile(location);
+			return new CachedFile(location, requireToExistAlready);
 		}
 
 		[NotNull]
