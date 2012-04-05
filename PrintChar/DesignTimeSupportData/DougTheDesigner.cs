@@ -2,11 +2,11 @@ using PluginApi.Model;
 
 namespace PrintChar.DesignTimeSupportData
 {
-	public class TheDesigner : Character
+	public class DougTheDesigner : Character
 	{
 		private readonly DesignTimeGameSystem _gameSystem;
 
-		public TheDesigner(DesignTimeGameSystem gameSystem)
+		public DougTheDesigner(DesignTimeGameSystem gameSystem)
 		{
 			_gameSystem = gameSystem;
 			Name = "Doug Designer";

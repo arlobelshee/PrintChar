@@ -60,7 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CharacterFileInteraction.cs" />
-    <Compile Include="DesignTimeSupportData\TheDesigner.cs" />
+    <Compile Include="DesignTimeSupportData\DougTheDesigner.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

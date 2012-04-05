@@ -107,7 +107,7 @@ namespace PrintChar
 
 		public DesignTimeGameSystems() : this(new DesignTimeGameSystem())
 		{
-			Character = new TheDesigner(_gameSystem);
+			Character = new DougTheDesigner(_gameSystem);
 		}
 
 		private DesignTimeGameSystems(DesignTimeGameSystem gameSystem) : base(gameSystem)
