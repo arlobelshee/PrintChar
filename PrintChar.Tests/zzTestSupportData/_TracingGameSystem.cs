@@ -6,7 +6,7 @@ using PluginApi.Model;
 
 namespace PrintChar.Tests.zzTestSupportData
 {
-	internal class _TracingGameSystem : GameSystem
+	internal class _TracingGameSystem : _TestDummyGameSystem
 	{
 		private List<IDataFile> _ParsedFiles { get; set; }
 		private List<IDataFile> _CreatedFiles { get; set; }
@@ -20,7 +20,7 @@ namespace PrintChar.Tests.zzTestSupportData
 		public override Character Parse(IDataFile characterData)
 		{
 			_ParsedFiles.Add(characterData);
-			return new _SillyCharacter(characterData, this);
+			return base.Parse(characterData);
 		}
 
 		public override Character CreateIn(IDataFile characterData)

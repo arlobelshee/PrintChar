@@ -28,10 +28,7 @@ namespace PluginApi.Model
 		public bool IsReadOnly { get; set; }
 
 		[NotNull]
-		public virtual ObservableCollection<Control> EditorPages
-		{
-			get { return new ObservableCollection<Control>(); }
-		}
+		public abstract ObservableCollection<TabItem> EditorPages { get; }
 
 		[NotNull]
 		public ObservableCollection<Control> Cards { get; private set; }

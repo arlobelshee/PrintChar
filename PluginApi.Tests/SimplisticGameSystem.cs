@@ -1,4 +1,6 @@
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Controls;
 using JetBrains.Annotations;
 using PluginApi.Model;
 using FluentAssertions;
@@ -21,6 +23,11 @@ namespace PluginApi.Tests
 		public override Character CreateIn(IDataFile characterData)
 		{
 			return new DescribeAGameSystem.SillyCharacter(characterData, this);
+		}
+
+		public override ObservableCollection<TabItem> EditorPages
+		{
+			get { throw new System.NotImplementedException(); }
 		}
 
 		protected override IDataFile LocateFile(FileInfo location, bool requireToExistAlready)

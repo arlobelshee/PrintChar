@@ -9,9 +9,7 @@ namespace SenseOfWonder
 	[Export(typeof (GameSystem))]
 	public class SenseOfWonderSystem : GameSystem
 	{
-		public SenseOfWonderSystem() : base("Sense of Wonder", "wonder")
-		{
-		}
+		public SenseOfWonderSystem() : base("Sense of Wonder", "wonder") {}
 
 		public override Character Parse(IDataFile characterData)
 		{
@@ -23,13 +21,17 @@ namespace SenseOfWonder
 			return new WonderCharacter(this, characterData);
 		}
 
-		public override ObservableCollection<Control> EditorPages
+		public override ObservableCollection<TabItem> EditorPages
 		{
 			get
 			{
-				return new ObservableCollection<Control>
+				return new ObservableCollection<TabItem>
 				{
-					new Editor()
+					new TabItem
+					{
+						Header = "Basics",
+						Content = new Editor()
+					}
 				};
 			}
 		}

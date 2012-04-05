@@ -1,8 +1,6 @@
-using PluginApi.Model;
-
 namespace PrintChar.Tests.zzTestSupportData
 {
-	internal class _WritableGameSystem : GameSystem
+	internal class _WritableGameSystem : _TestDummyGameSystem
 	{
 		internal const string Extension = "write";
 
@@ -11,10 +9,5 @@ namespace PrintChar.Tests.zzTestSupportData
 
 		public _WritableGameSystem(string extensionOverride)
 			: base("Writable Characters", extensionOverride) {}
-
-		public override Character Parse(IDataFile characterData)
-		{
-			return new _SillyCharacter(characterData, this);
-		}
 	}
 }
