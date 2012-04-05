@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using PluginApi.Model;
 
-namespace SenseOfWonder.Tests
+namespace SenseOfWonder.Tests.CharactersPersistInFiles
 {
 	[TestFixture]
 	public class CharacterParsing
