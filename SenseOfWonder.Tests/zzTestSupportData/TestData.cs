@@ -15,7 +15,10 @@ namespace SenseOfWonder.Tests.zzTestSupportData
 
 		public static WonderCharacter Character(string name, string gender)
 		{
-			return Character(name, gender, Data.Anything());
+			WonderCharacter testSubject = DefaultCharacter();
+			testSubject.Name = name;
+			testSubject.Gender = gender;
+			return testSubject;
 		}
 
 		public static WonderCharacter DefaultCharacter(IDataFile backingStore)
@@ -25,7 +28,7 @@ namespace SenseOfWonder.Tests.zzTestSupportData
 
 		public static WonderCharacter DefaultCharacter()
 		{
-			return DefaultCharacter(Data.Anything());
+			return WonderCharacter.CreateWithoutBackingDataStore(new SenseOfWonderSystem(), Data.Anything().Location);
 		}
 	}
 }

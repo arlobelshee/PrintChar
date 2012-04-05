@@ -12,7 +12,12 @@ namespace SenseOfWonder.Model
 			File = characterData;
 		}
 
-		public static WonderCharacter Create([NotNull] SenseOfWonderSystem system, IDataFile characterData)
+		public static WonderCharacter CreateWithoutBackingDataStore([NotNull] SenseOfWonderSystem system, [NotNull] FileInfo characterData)
+		{
+			return new WonderCharacter(system, characterData);
+		}
+
+		public static WonderCharacter Create([NotNull] SenseOfWonderSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCharacter(system, characterData.Location);
 			var serializer = new CharSerializer(result, characterData);
@@ -20,7 +25,7 @@ namespace SenseOfWonder.Model
 			return result;
 		}
 
-		public static WonderCharacter Load([NotNull] SenseOfWonderSystem system, IDataFile characterData)
+		public static WonderCharacter Load([NotNull] SenseOfWonderSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCharacter(system, characterData.Location);
 			var serializer = new CharSerializer(result, characterData);
