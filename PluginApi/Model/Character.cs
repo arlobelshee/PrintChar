@@ -1,7 +1,9 @@
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq.Expressions;
+using System.Windows.Controls;
 using EventBasedProgramming.Binding;
 using JetBrains.Annotations;
 
@@ -13,10 +15,13 @@ namespace PluginApi.Model
 		[NotNull] protected readonly TrackingNonNullProperty<string> _name;
 		[NotNull] protected readonly EqualityFingerprint EqualityFields;
 
+		[NotNull] private readonly Lazy<ObservableCollection<Control>> _cards;
+
 		public virtual event PropertyChangedEventHandler PropertyChanged;
 
 		protected Character()
 		{
+			_cards = new Lazy<ObservableCollection<Control>>(MakeCards);
 			_gender = new TrackingNonNullProperty<string>(string.Empty, this, () => Gender);
 			_name = new TrackingNonNullProperty<string>(string.Empty, this, () => Name);
 			EqualityFields = new EqualityFingerprint(_gender, _name);
@@ -37,6 +42,12 @@ namespace PluginApi.Model
 		{
 			get { return _gender.Value; }
 			set { _gender.Value = value; }
+		}
+
+		[NotNull]
+		public ObservableCollection<Control> Cards
+		{
+			get { return _cards.Value; }
 		}
 
 		[NotNull]
@@ -64,6 +75,15 @@ namespace PluginApi.Model
 		public override int GetHashCode()
 		{
 			return EqualityFields.GetHashCode();
+		}
+
+		protected virtual void AddInitialCards(ObservableCollection<Control> cards) {}
+
+		private ObservableCollection<Control> MakeCards()
+		{
+			var cards = new ObservableCollection<Control>();
+			AddInitialCards(cards);
+			return cards;
 		}
 	}
 

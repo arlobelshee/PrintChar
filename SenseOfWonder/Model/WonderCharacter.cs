@@ -1,7 +1,10 @@
+using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows.Controls;
 using JetBrains.Annotations;
 using PluginApi.Model;
 using SenseOfWonder.Model.Impl;
+using SenseOfWonder.Views;
 
 namespace SenseOfWonder.Model
 {
@@ -32,6 +35,12 @@ namespace SenseOfWonder.Model
 			serializer.LoadFromFile();
 			result.PropertyChanged += serializer.UpdateFile;
 			return result;
+		}
+
+		protected override void AddInitialCards(ObservableCollection<Control> cards)
+		{
+			base.AddInitialCards(cards);
+			cards.Add(new CharacterSummaryCard(){DataContext = this});
 		}
 	}
 

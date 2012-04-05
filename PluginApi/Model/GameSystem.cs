@@ -8,8 +8,6 @@ namespace PluginApi.Model
 {
 	public abstract class GameSystem : IEquatable<GameSystem>
 	{
-		private readonly Lazy<ObservableCollection<Control>> _cards = new Lazy<ObservableCollection<Control>>(()=> new ObservableCollection<Control>());
-
 		protected GameSystem(string systemLabel, string fileExtension)
 		{
 			Name = systemLabel;
@@ -30,9 +28,6 @@ namespace PluginApi.Model
 
 		[NotNull]
 		public abstract ObservableCollection<TabItem> EditorPages { get; }
-
-		[NotNull]
-		public ObservableCollection<Control> Cards { get { return _cards.Value; }}
 
 		[NotNull]
 		public Character LoadCharacter([NotNull] string fileName)
