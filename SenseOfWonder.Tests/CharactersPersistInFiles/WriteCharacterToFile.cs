@@ -6,7 +6,7 @@ using SenseOfWonder.Model;
 
 namespace SenseOfWonder.Tests.CharactersPersistInFiles
 {
-	[TestFixture, UseReporter(typeof(NUnitReporter))]
+	[TestFixture, UseReporter(typeof(DiffReporter))]
 	public class WriteCharacterToFile
 	{
 		[Test]
@@ -18,7 +18,7 @@ namespace SenseOfWonder.Tests.CharactersPersistInFiles
 				Name = "Bob",
 				Gender = "Male"
 			};
-			Approvals.Verify(backingStore.Contents + "\r\n");
+			Approvals.Verify(backingStore.Contents);
 		}
 	}
 }
