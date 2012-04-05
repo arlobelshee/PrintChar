@@ -25,14 +25,14 @@ namespace PluginApi.Tests
 		public void ShouldLoadCharactersFromFilesOnCommand()
 		{
 			_testSubject.FileShouldAlreadyExist = true;
-			_testSubject.LoadCharacter(ArbitraryFile).File.Location.FullName.Should().Be(ArbitraryFile);
+			_testSubject.LoadCharacter(ArbitraryFile).File.FullName.Should().Be(ArbitraryFile);
 		}
 
 		[Test]
 		public void ShouldCreateCharactersFromFilesOnCommand()
 		{
 			_testSubject.FileShouldAlreadyExist = false;
-			_testSubject.CreateCharacter(ArbitraryFile).File.Location.FullName.Should().Be(ArbitraryFile);
+			_testSubject.CreateCharacter(ArbitraryFile).File.FullName.Should().Be(ArbitraryFile);
 		}
 
 		[Test]
@@ -62,7 +62,7 @@ namespace PluginApi.Tests
 		{
 			public SillyCharacter([NotNull] IDataFile data, [NotNull] GameSystem system) : base(system)
 			{
-				File = data;
+				File = data.Location;
 			}
 		}
 	}

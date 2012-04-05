@@ -1,3 +1,4 @@
+using System.IO;
 using PluginApi.Model;
 
 namespace PrintChar.DesignTimeSupportData
@@ -11,7 +12,7 @@ namespace PrintChar.DesignTimeSupportData
 			_gameSystem = gameSystem;
 			Name = "Doug Designer";
 			Gender = "Robotic";
-			File = Data.EmptyAt(@"C:\some\path\to\doug.designdatafile");
+			File = new FileInfo(@"C:\some\path\to\doug.designdatafile");
 		}
 
 		public override GameSystem GameSystem

@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using PluginApi.Model;
 using SenseOfWonder.Model;
+using SenseOfWonder.Tests.zzTestSupportData;
 
 namespace SenseOfWonder.Tests.CharactersPersistInFiles
 {
@@ -13,9 +14,20 @@ namespace SenseOfWonder.Tests.CharactersPersistInFiles
 		{
 			var testSubject = new SenseOfWonderSystem();
 			var emptyFile = Data.EmptyAt("arbitrary.wonder");
-			var defaultCharacter = new WonderCharacter(testSubject, emptyFile);
 
-			testSubject.Parse(emptyFile).Should().Be(defaultCharacter);
+			testSubject.Parse(emptyFile).Should().Be(_TestData.DefaultCharacter());
+		}
+
+		[Test]
+		public void FileWithJustANameShouldSetJustTheName()
+		{
+			var testSubject = new SenseOfWonderSystem();
+			var input = Data.EmptyAt("arbitrary.wonder");
+			input.Contents = @"{""Name"":""Rogers Hammerstein""}";
+
+			var expected = _TestData.Character("Rogers Hammerstein", string.Empty);
+
+			testSubject.Parse(input).Should().Be(expected);
 		}
 	}
 }

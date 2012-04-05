@@ -73,7 +73,7 @@ namespace PrintChar
 		[NotNull]
 		public string CharFileName
 		{
-			get { return _currentCharacter.Value == null ? string.Empty : _currentCharacter.Value.File.Location.Name; }
+			get { return _currentCharacter.Value == null ? string.Empty : _currentCharacter.Value.File.Name; }
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

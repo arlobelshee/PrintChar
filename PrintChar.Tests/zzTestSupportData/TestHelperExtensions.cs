@@ -13,7 +13,7 @@ namespace PrintChar.Tests.zzTestSupportData
 
 		public static void ShouldBeFor(this Character character, string expectedSourceFile)
 		{
-			character.File.Location.FullName.Should().Be(expectedSourceFile);
+			character.File.FullName.Should().Be(expectedSourceFile);
 		}
 	}
 }

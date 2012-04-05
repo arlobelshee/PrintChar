@@ -20,7 +20,7 @@ namespace PrintChar.Tests.CharacterManagement
 		[Test]
 		public void NothingShouldHappenIfTheUserReloadsTheSameCharacter()
 		{
-			_testSubject.LoadCharacter(_previousCharacter, _previousCharacter.File.Location.FullName)
+			_testSubject.LoadCharacter(_previousCharacter, _previousCharacter.File.FullName)
 				.Should().BeSameAs(_previousCharacter);
 			_loadedFiles.Should().BeEmpty();
 		}

@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.IO;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
 using JetBrains.Annotations;
@@ -39,7 +40,7 @@ namespace PluginApi.Model
 		}
 
 		[NotNull]
-		public IDataFile File { get; protected set; }
+		public FileInfo File { get; protected set; }
 
 		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
 		{

@@ -6,7 +6,7 @@ namespace PrintChar.Tests.zzTestSupportData
 	{
 		public _SillyCharacter(IDataFile data, GameSystem system) : base(system)
 		{
-			File = data;
+			File = data.Location;
 		}
 	}
 }

@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharactersPersistInFiles\LoadCharacterFromFile.cs" />
+    <Compile Include="zzTestSupportData\TestData.cs" />
     <Compile Include="CharactersPersistInFiles\WriteCharacterToFile.cs" />
     <Compile Include="GameSystemShowsUpInCoreApp\GameSystemPrividesInfoToConfigureCoreApplication.cs" />
     <Compile Include="GameSystemShowsUpInCoreApp\DllCanBeLoadedAsAPlugin.cs" />
@@ -80,6 +81,7 @@
       <Name>SenseOfWonder</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -25,6 +25,9 @@ namespace SenseOfWonder.Model.Impl
 			_backingStore.Contents = WonderCharData.From(_who).ToJson();
 		}
 
-		public void LoadFromFile() {}
+		public void LoadFromFile()
+		{
+			(_backingStore.Contents.FromJson<WonderCharData>()?? new WonderCharData()).UpdateCharacter(_who);
+		}
 	}
 }

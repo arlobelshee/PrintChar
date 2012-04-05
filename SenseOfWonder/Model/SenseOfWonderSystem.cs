@@ -13,12 +13,12 @@ namespace SenseOfWonder.Model
 
 		public override Character Parse(IDataFile characterData)
 		{
-			return new WonderCharacter(this, characterData);
+			return WonderCharacter.Load(this, characterData);
 		}
 
 		public override Character CreateIn(IDataFile characterData)
 		{
-			return new WonderCharacter(this, characterData);
+			return WonderCharacter.Create(this, characterData);
 		}
 
 		public override ObservableCollection<TabItem> EditorPages

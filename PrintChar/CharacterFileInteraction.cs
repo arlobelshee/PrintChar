@@ -30,7 +30,7 @@ namespace PrintChar
 		[CanBeNull]
 		public Character LoadCharacter([CanBeNull] Character character, [CanBeNull] string fileName)
 		{
-			if (String.IsNullOrEmpty(fileName) || (character != null && character.File.Location.FullName == fileName))
+			if (String.IsNullOrEmpty(fileName) || (character != null && character.File.FullName == fileName))
 				return character;
 
 			string extensionWithoutPeriod = Path.GetExtension(fileName).Substring(1);
@@ -47,7 +47,7 @@ namespace PrintChar
 				DefaultExt = (character == null ? _gameSystems.First() : character.GameSystem).FileExtension,
 				CheckFileExists = _requireFileToExist,
 				Multiselect = false,
-				InitialDirectory = character == null ? null : character.File.Location.DirectoryName
+				InitialDirectory = character == null ? null : character.File.DirectoryName
 			};
 		}
 

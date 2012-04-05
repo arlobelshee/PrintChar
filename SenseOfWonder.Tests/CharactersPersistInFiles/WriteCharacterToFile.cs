@@ -3,6 +3,7 @@ using ApprovalTests.Reporters;
 using NUnit.Framework;
 using PluginApi.Model;
 using SenseOfWonder.Model;
+using SenseOfWonder.Tests.zzTestSupportData;
 
 namespace SenseOfWonder.Tests.CharactersPersistInFiles
 {
@@ -12,13 +13,11 @@ namespace SenseOfWonder.Tests.CharactersPersistInFiles
 		[Test]
 		public void ResultingFileShouldContainAllCharacterDataForSimpleCharacter()
 		{
-			var backingStore = Data.EmptyAt(@"arbitrary.wonder");
-			var testSubject = new WonderCharacter(new SenseOfWonderSystem(), backingStore)
-			{
-				Name = "Bob",
-				Gender = "Male"
-			};
-			Approvals.Verify(backingStore.Contents);
+			var dataFile = Data.EmptyAt(@"arbitrary.wonder");
+			var testSubject = _TestData.DefaultCharacter(dataFile);
+			testSubject.Name = "Bob";
+			testSubject.Gender = "Male";
+			Approvals.Verify(dataFile.Contents);
 		}
 	}
 }
