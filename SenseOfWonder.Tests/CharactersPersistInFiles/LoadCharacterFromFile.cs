@@ -1,11 +1,12 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
 using PluginApi.Model;
+using SenseOfWonder.Model;
 
 namespace SenseOfWonder.Tests.CharactersPersistInFiles
 {
 	[TestFixture]
-	public class CharacterParsing
+	public class LoadCharacterFromFile
 	{
 		[Test]
 		public void ShouldCreateEmptyCharacterFromEmptyFile()

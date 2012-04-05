@@ -5,7 +5,7 @@ using PluginApi.Model;
 
 namespace PluginApi.Tests
 {
-	[TestFixture]
+	[TestFixture, RequiresThread]
 	public class CachingFileIsBackedByDisk
 	{
 		[SetUp]

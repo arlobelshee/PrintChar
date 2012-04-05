@@ -2,6 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using PluginApi.Model;
+using SenseOfWonder.Model;
 
 namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 {

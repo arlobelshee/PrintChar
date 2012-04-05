@@ -3,11 +3,10 @@
 				 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 				 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 				 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-				 xmlns:SenseOfWonder="clr-namespace:SenseOfWonder"
-				 mc:Ignorable="d" 
+				 xmlns:SenseOfWonder="clr-namespace:SenseOfWonder" xmlns:Model="clr-namespace:SenseOfWonder.Model" mc:Ignorable="d" 
 				 d:DesignHeight="300" d:DesignWidth="300">
-	<Grid DataContext="{Binding Character}" d:DataContext="{d:DesignInstance {x:Type SenseOfWonder:WonderCharacterDesignData}, IsDesignTimeCreatable=True}">
-		<TextBox x:Name="Name" Height="23.2" Margin="22.6,30.4,71.8,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
+	<Grid DataContext="{Binding Character}" d:DataContext="{d:DesignInstance {x:Type Model:WonderCharacterDesignData}, IsDesignTimeCreatable=True}">
+		<TextBox x:Name="CharName" Height="23.2" Margin="22.6,30.4,71.8,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top"/>
 		<TextBlock Margin="22.6,89.2,31.8,109.2" TextWrapping="Wrap"><Run Foreground="Red" FontSize="18.667" Text="It's Alive!!!!"/></TextBlock>
 		
 	 </Grid>

@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ApprovalTests">
+      <HintPath>..\packages\ApprovalTests.1.4\lib\ApprovalTests.dll</HintPath>
+    </Reference>
+    <Reference Include="ApprovalUtilities">
+      <HintPath>..\packages\ApprovalTests.1.4\lib\ApprovalUtilities.dll</HintPath>
+    </Reference>
     <Reference Include="FluentAssertions">
       <HintPath>..\packages\FluentAssertions.1.7.0\Lib\net40\FluentAssertions.dll</HintPath>
     </Reference>
@@ -51,7 +57,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharactersPersistInFiles\CharacterParsing.cs" />
+    <Compile Include="CharactersPersistInFiles\LoadCharacterFromFile.cs" />
+    <Compile Include="CharactersPersistInFiles\WriteCharacterToFile.cs" />
     <Compile Include="GameSystemShowsUpInCoreApp\GameSystemPrividesInfoToConfigureCoreApplication.cs" />
     <Compile Include="GameSystemShowsUpInCoreApp\DllCanBeLoadedAsAPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

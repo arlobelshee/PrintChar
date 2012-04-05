@@ -1,6 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
+using SenseOfWonder.Model;
 using SenseOfWonder.Views;
 
 namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp

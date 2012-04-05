@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using PluginApi.Model;
 using SenseOfWonder.Views;
 
-namespace SenseOfWonder
+namespace SenseOfWonder.Model
 {
 	[Export(typeof (GameSystem))]
 	public class SenseOfWonderSystem : GameSystem
