@@ -61,7 +61,7 @@
     <Compile Include="CharactersPersistInFiles\LoadCharacterFromFile.cs" />
     <Compile Include="zzTestSupportData\TestData.cs" />
     <Compile Include="CharactersPersistInFiles\WriteCharacterToFile.cs" />
-    <Compile Include="GameSystemShowsUpInCoreApp\GameSystemPrividesInfoToConfigureCoreApplication.cs" />
+    <Compile Include="GameSystemShowsUpInCoreApp\GameSystemsProvideInfoToConfigureCoreApplication.cs" />
     <Compile Include="GameSystemShowsUpInCoreApp\DllCanBeLoadedAsAPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="zzTestSupportData\TestHelperExtensions.cs" />

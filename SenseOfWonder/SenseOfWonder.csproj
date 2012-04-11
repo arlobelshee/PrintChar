@@ -52,10 +52,15 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\WonderCard.cs" />
+    <Compile Include="Model\WonderCardHolder.cs" />
+    <Compile Include="Model\Impl\CardSerializer.cs" />
+    <Compile Include="Model\SenseOfWonderCards.cs" />
     <Compile Include="Model\Impl\CharSerializer.cs" />
     <Compile Include="Model\Impl\WonderCharData.cs" />
     <Compile Include="Model\SenseOfWonderSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\WonderCardViewModel.cs" />
     <Compile Include="Views\CharacterSummaryCard.xaml.cs">
       <DependentUpon>CharacterSummaryCard.xaml</DependentUpon>
     </Compile>
@@ -63,6 +68,9 @@
       <DependentUpon>Editor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\WonderCharacter.cs" />
+    <Compile Include="Views\WonderCardView.xaml.cs">
+      <DependentUpon>WonderCardView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EventBasedProgramming\EventBasedProgramming.csproj">
@@ -83,12 +91,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\WonderCardView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
