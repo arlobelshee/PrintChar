@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using EventBasedProgramming.Binding;
+using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using PluginApi.Model;
 using SenseOfWonder.Model.Impl;
@@ -13,9 +15,14 @@ namespace SenseOfWonder.Model
 			: base(system)
 		{
 			File = characterData;
+			CreateCardCommand = new SimpleCommand(Always.Enabled, _CreateCard);
 		}
 
-		public IEnumerable<WonderCard> CardData { get; private set; }
+		[NotNull]
+		public List<WonderCard> CardData { get; private set; }
+
+		[NotNull]
+		public SimpleCommand CreateCardCommand { get; private set; }
 
 		public static WonderCardHolder Create([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
 		{
@@ -38,10 +45,34 @@ namespace SenseOfWonder.Model
 		{
 			CardData = cards.ToList();
 			Cards.Clear();
-			CardData.Select(c => new WonderCardView
+			CardData.Select(WrapCardInView).Each(Cards.Add);
+		}
+
+		private void _CreateCard()
+		{
+			var newCard = new WonderCard()
+			{
+				Name = Name
+			};
+			CardData.Add(newCard);
+			Cards.Add(WrapCardInView(newCard));
+		}
+
+		private WonderCardView WrapCardInView(WonderCard c)
+		{
+			return new WonderCardView
 			{
 				DataContext = c
-			}).Each(Cards.Add);
+			};
+		}
+	}
+
+	public class WonderCardsDesignData : WonderCardHolder
+	{
+		public WonderCardsDesignData()
+			: base(new SenseOfWonderCards(), new FileInfo("anything.wonder"))
+		{
+			Name = "Agrippan Disk";
 		}
 	}
 }

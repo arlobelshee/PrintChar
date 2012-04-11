@@ -60,9 +60,13 @@
     <Compile Include="Model\Impl\WonderCharData.cs" />
     <Compile Include="Model\SenseOfWonderSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CreateNewCardModel.cs" />
     <Compile Include="ViewModels\WonderCardViewModel.cs" />
     <Compile Include="Views\CharacterSummaryCard.xaml.cs">
       <DependentUpon>CharacterSummaryCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateNewCard.xaml.cs">
+      <DependentUpon>CreateNewCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Editor.xaml.cs">
       <DependentUpon>Editor.xaml</DependentUpon>
@@ -84,6 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\CharacterSummaryCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CreateNewCard.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

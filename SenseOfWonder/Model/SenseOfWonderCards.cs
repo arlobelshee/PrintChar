@@ -27,8 +27,8 @@ namespace SenseOfWonder.Model
 				{
 					new TabItem
 					{
-						Header = "Basics",
-						Content = new Editor()
+						Header = "New Cards",
+						Content = new CreateNewCard()
 					}
 				};
 			}
