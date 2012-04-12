@@ -15,6 +15,18 @@ namespace SenseOfWonder.Model
 			File = characterData;
 		}
 
+		public override WonderCharData PersistableData
+		{
+			get
+			{
+				return new WonderCharData
+				{
+					Name = Name,
+					Gender = Gender
+				};
+			}
+		}
+
 		public static WonderCharacter CreateWithoutBackingDataStore([NotNull] SenseOfWonderSystem system,
 			[NotNull] FileInfo characterData)
 		{
@@ -45,6 +57,12 @@ namespace SenseOfWonder.Model
 			{
 				DataContext = this
 			});
+		}
+
+		public override void UpdateFrom(WonderCharData wonderCharData)
+		{
+			Name = wonderCharData.Name ?? string.Empty;
+			Gender = wonderCharData.Gender ?? string.Empty;
 		}
 	}
 

@@ -52,6 +52,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Impl\IPersistTo.cs" />
     <Compile Include="Model\JsonBackedCharacter.cs" />
     <Compile Include="Model\WonderCard.cs" />
     <Compile Include="Model\WonderCardHolder.cs" />
