@@ -56,7 +56,6 @@
     <Compile Include="Model\JsonBackedCharacter.cs" />
     <Compile Include="Model\WonderCard.cs" />
     <Compile Include="Model\WonderCardHolder.cs" />
-    <Compile Include="Model\Impl\CardSerializer.cs" />
     <Compile Include="Model\SenseOfWonderCards.cs" />
     <Compile Include="Model\Impl\CharSerializer.cs" />
     <Compile Include="Model\Impl\WonderCharData.cs" />
