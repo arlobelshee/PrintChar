@@ -2,7 +2,6 @@
 using System.ComponentModel.Composition;
 using System.Windows.Controls;
 using PluginApi.Model;
-using SenseOfWonder.Views;
 
 namespace SenseOfWonder.Model
 {

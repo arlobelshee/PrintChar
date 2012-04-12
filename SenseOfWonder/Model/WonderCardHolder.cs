@@ -5,11 +5,10 @@ using EventBasedProgramming.Binding;
 using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using PluginApi.Model;
-using SenseOfWonder.Model.Impl;
 
 namespace SenseOfWonder.Model
 {
-	public class WonderCardHolder : Character<SenseOfWonderCards>
+	public class WonderCardHolder : JsonBackedCharacter<SenseOfWonderCards, WonderRulesData>
 	{
 		protected WonderCardHolder([NotNull] SenseOfWonderCards system, [NotNull] FileInfo characterData)
 			: base(system)
@@ -27,25 +26,31 @@ namespace SenseOfWonder.Model
 		public static WonderCardHolder Create([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCardHolder(system, characterData.Location);
-			var serializer = new CardSerializer(result, characterData);
-			result.PropertyChanged += serializer.UpdateFile;
-			return result;
+			return (WonderCardHolder) result.FinishCreate(characterData);
 		}
 
 		public static WonderCardHolder Load([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCardHolder(system, characterData.Location);
-			var serializer = new CardSerializer(result, characterData);
-			serializer.LoadFromFile();
-			result.PropertyChanged += serializer.UpdateFile;
-			return result;
+			return (WonderCardHolder) result.FinishLoad(characterData);
 		}
 
-		public void UpdateFrom(WonderRulesData rules)
+		public override WonderRulesData PersistableData
+		{
+			get
+			{
+				return new WonderRulesData
+				{
+					Cards = CardData
+				};
+			}
+		}
+
+		public override void UpdateFrom(WonderRulesData rules)
 		{
 			CardData = rules.Cards.ToList();
 			Cards.Clear();
-			CardData.Select(WrapCardInView).Each(Cards.Add);
+			CardData.Select(_WrapCardInView).Each(Cards.Add);
 		}
 
 		private void _CreateCard()
@@ -55,10 +60,10 @@ namespace SenseOfWonder.Model
 				Name = Name
 			};
 			CardData.Add(newCard);
-			Cards.Add(WrapCardInView(newCard));
+			Cards.Add(_WrapCardInView(newCard));
 		}
 
-		private WonderCardView WrapCardInView(WonderCard c)
+		private static WonderCardView _WrapCardInView(WonderCard c)
 		{
 			return new WonderCardView
 			{
