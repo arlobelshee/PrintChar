@@ -14,7 +14,9 @@ namespace SenseOfWonder.Model
 			: base(system)
 		{
 			File = characterData;
+			CardData = new List<CardData>();
 			CreateCardCommand = new SimpleCommand(() => !string.IsNullOrWhiteSpace(Name), CreateCard);
+			EqualityFields.Add(CardData);
 		}
 
 		[NotNull]
@@ -54,7 +56,8 @@ namespace SenseOfWonder.Model
 
 		public override void UpdateFrom(RulesData characterData)
 		{
-			CardData = characterData.Cards.ToList();
+			CardData.Clear();
+			CardData.AddRange(characterData.Cards);
 			Cards.Clear();
 			CardData.Select(_WrapCardInView).Each(Cards.Add);
 		}
@@ -67,6 +70,7 @@ namespace SenseOfWonder.Model
 			};
 			CardData.Add(newCard);
 			Cards.Add(_WrapCardInView(newCard));
+			FirePropertyChanged(() => CardData);
 		}
 
 		private static WonderCardView _WrapCardInView(CardData c)
@@ -75,6 +79,11 @@ namespace SenseOfWonder.Model
 			{
 				DataContext = c
 			};
+		}
+
+		public override string ToString()
+		{
+			return string.Format("Rules with Cards: [{0}]", string.Join(", ", CardData.Select(c => c.Name)));
 		}
 	}
 
