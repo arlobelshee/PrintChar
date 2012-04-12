@@ -4,12 +4,12 @@ using ServiceStack.Text;
 
 namespace SenseOfWonder.Model.Impl
 {
-	public class CharSerializer
+	public class CharSerializer<TPersistableData> where TPersistableData : class, new()
 	{
-		private readonly WonderCharacter _who;
+		private readonly IPersistTo<TPersistableData> _who;
 		private readonly IDataFile _backingStore;
 
-		public CharSerializer(WonderCharacter who, IDataFile backingStore)
+		public CharSerializer(IPersistTo<TPersistableData> who, IDataFile backingStore)
 		{
 			_who = who;
 			_backingStore = backingStore;
@@ -27,7 +27,7 @@ namespace SenseOfWonder.Model.Impl
 
 		public void LoadFromFile()
 		{
-			_who.UpdateFrom((_backingStore.Contents.FromJson<WonderCharData>()?? new WonderCharData()));
+			_who.UpdateFrom((_backingStore.Contents.FromJson<TPersistableData>() ?? new TPersistableData()));
 		}
 	}
 }

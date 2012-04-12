@@ -3,12 +3,12 @@ using SenseOfWonder.Model.Impl;
 
 namespace SenseOfWonder.Model
 {
-	public abstract class JsonBackedCharacter<TGameSystem> : Character<TGameSystem>, IPersistTo<WonderCharData>
+	public abstract class JsonBackedCharacter<TGameSystem, TPersistableData> : Character<TGameSystem>, IPersistTo<TPersistableData>
 		where TGameSystem : GameSystem
 	{
 		protected JsonBackedCharacter(TGameSystem system) : base(system) {}
 
-		public abstract WonderCharData PersistableData { get; }
-		public abstract void UpdateFrom(WonderCharData wonderCharData);
+		public abstract TPersistableData PersistableData { get; }
+		public abstract void UpdateFrom(TPersistableData wonderCharData);
 	}
 }

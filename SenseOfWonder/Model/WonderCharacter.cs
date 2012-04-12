@@ -8,7 +8,7 @@ using SenseOfWonder.Views;
 
 namespace SenseOfWonder.Model
 {
-	public class WonderCharacter : JsonBackedCharacter<SenseOfWonderSystem>
+	public class WonderCharacter : JsonBackedCharacter<SenseOfWonderSystem, WonderCharData>
 	{
 		protected WonderCharacter([NotNull] SenseOfWonderSystem system, [NotNull] FileInfo characterData) : base(system)
 		{
@@ -36,7 +36,7 @@ namespace SenseOfWonder.Model
 		public static WonderCharacter Create([NotNull] SenseOfWonderSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCharacter(system, characterData.Location);
-			var serializer = new CharSerializer(result, characterData);
+			var serializer = new CharSerializer<WonderCharData>(result, characterData);
 			result.PropertyChanged += serializer.UpdateFile;
 			return result;
 		}
@@ -44,7 +44,7 @@ namespace SenseOfWonder.Model
 		public static WonderCharacter Load([NotNull] SenseOfWonderSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCharacter(system, characterData.Location);
-			var serializer = new CharSerializer(result, characterData);
+			var serializer = new CharSerializer<WonderCharData>(result, characterData);
 			serializer.LoadFromFile();
 			result.PropertyChanged += serializer.UpdateFile;
 			return result;
