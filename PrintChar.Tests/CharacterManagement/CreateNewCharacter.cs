@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using EventBasedProgramming.TestSupport;
+﻿using EventBasedProgramming.TestSupport;
 using FluentAssertions;
 using JetBrains.Annotations;
 using NUnit.Framework;
@@ -34,10 +33,10 @@ namespace PrintChar.Tests.CharacterManagement
 		public void CreateCharCommandShouldIncludeOnlyWritableSystems()
 		{
 			_With(_readOnlyGameSystem, _writableGameSystem).CharacterCreator.ShouldMatch(new
-				{
-					GameSystems = new[] { _writableGameSystem },
-					RequireFileToExist = false
-				});
+			{
+				GameSystems = new[] {_writableGameSystem},
+				RequireFileToExist = false
+			});
 		}
 
 		[Test]
@@ -58,7 +57,7 @@ namespace PrintChar.Tests.CharacterManagement
 		[NotNull]
 		private static GameSystem[] _AnyGames()
 		{
-			return new GameSystem[] { };
+			return new GameSystem[] {};
 		}
 
 		[SetUp]

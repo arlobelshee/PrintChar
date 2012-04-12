@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using EventBasedProgramming.Binding;
-using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using PluginApi.Model;
 using SenseOfWonder.Model.Serialization;
@@ -15,7 +14,7 @@ namespace SenseOfWonder.Model
 			: base(system)
 		{
 			File = characterData;
-			CreateCardCommand = new SimpleCommand(Always.Enabled, _CreateCard);
+			CreateCardCommand = new SimpleCommand(() => !string.IsNullOrWhiteSpace(Name), CreateCard);
 		}
 
 		[NotNull]
@@ -23,6 +22,12 @@ namespace SenseOfWonder.Model
 
 		[NotNull]
 		public SimpleCommand CreateCardCommand { get; private set; }
+
+		public static WonderRulesCharacter CreateWithoutBackingDataStore([NotNull] RulesEditingSystem system,
+			[NotNull] FileInfo characterData)
+		{
+			return new WonderRulesCharacter(system, characterData);
+		}
 
 		public static WonderRulesCharacter Create([NotNull] RulesEditingSystem system, [NotNull] IDataFile characterData)
 		{
@@ -54,9 +59,9 @@ namespace SenseOfWonder.Model
 			CardData.Select(_WrapCardInView).Each(Cards.Add);
 		}
 
-		private void _CreateCard()
+		public void CreateCard()
 		{
-			var newCard = new CardData()
+			var newCard = new CardData
 			{
 				Name = Name
 			};

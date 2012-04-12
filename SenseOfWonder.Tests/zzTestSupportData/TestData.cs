@@ -30,5 +30,15 @@ namespace SenseOfWonder.Tests.zzTestSupportData
 		{
 			return WonderCharacter.CreateWithoutBackingDataStore(new Model.SenseOfWonder(), Data.Anything().Location);
 		}
+
+		public static WonderRulesCharacter EmptyRulesetCharacter(IDataFile backingStore)
+		{
+			return WonderRulesCharacter.Create(new RulesEditingSystem(), backingStore);
+		}
+
+		public static WonderRulesCharacter EmptyRulesetCharacter()
+		{
+			return WonderRulesCharacter.CreateWithoutBackingDataStore(new RulesEditingSystem(), Data.Anything().Location);
+		}
 	}
 }
