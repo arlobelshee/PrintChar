@@ -12,19 +12,19 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		[Test]
 		public void ShouldAllowCharacterCreationAndEditing()
 		{
-			new SenseOfWonderSystem().IsReadOnly.Should().BeFalse();
+			new Model.SenseOfWonder().IsReadOnly.Should().BeFalse();
 		}
 
 		[Test]
 		public void ShouldAllowCardEditingButNotCreation()
 		{
-			new SenseOfWonderCards().IsReadOnly.Should().BeTrue();
+			new RulesEditingSystem().IsReadOnly.Should().BeTrue();
 		}
 
 		[Test]
 		public void ShouldProvideFileFilterInfo()
 		{
-			new SenseOfWonderSystem().ShouldHave()
+			new Model.SenseOfWonder().ShouldHave()
 				.Properties(w => w.FileExtension, w => w.FilePattern, w => w.Name).EqualTo(new
 				{
 					FileExtension = "wonder",
@@ -36,7 +36,7 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		[Test]
 		public void ShouldProvideFileFilterInfoForCardFile()
 		{
-			new SenseOfWonderCards().ShouldHave()
+			new RulesEditingSystem().ShouldHave()
 				.Properties(w => w.FileExtension, w => w.FilePattern, w => w.Name).EqualTo(new
 				{
 					FileExtension = "wonderrules",
@@ -48,7 +48,7 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		[Test, Explicit, STAThread]
 		public void ShouldCreateEditorControlWhenAsked()
 		{
-			new SenseOfWonderSystem().EditorPages.Should().HaveCount(1).And.ContainItemsAssignableTo<EditCharacter>();
+			new Model.SenseOfWonder().EditorPages.Should().HaveCount(1).And.ContainItemsAssignableTo<EditCharacter>();
 		}
 	}
 }

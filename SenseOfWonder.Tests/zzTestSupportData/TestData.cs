@@ -23,12 +23,12 @@ namespace SenseOfWonder.Tests.zzTestSupportData
 
 		public static WonderCharacter DefaultCharacter(IDataFile backingStore)
 		{
-			return WonderCharacter.Create(new SenseOfWonderSystem(), backingStore);
+			return WonderCharacter.Create(new Model.SenseOfWonder(), backingStore);
 		}
 
 		public static WonderCharacter DefaultCharacter()
 		{
-			return WonderCharacter.CreateWithoutBackingDataStore(new SenseOfWonderSystem(), Data.Anything().Location);
+			return WonderCharacter.CreateWithoutBackingDataStore(new Model.SenseOfWonder(), Data.Anything().Location);
 		}
 	}
 }

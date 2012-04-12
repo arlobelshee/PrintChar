@@ -12,7 +12,7 @@ namespace SenseOfWonder.Tests.CharactersPersistInFiles
 		[Test]
 		public void ShouldCreateEmptyCharacterFromEmptyFile()
 		{
-			var testSubject = new SenseOfWonderSystem();
+			var testSubject = new Model.SenseOfWonder();
 			var emptyFile = Data.EmptyAt("arbitrary.wonder");
 
 			testSubject.Parse(emptyFile).Should().Be(_TestData.DefaultCharacter());
@@ -21,7 +21,7 @@ namespace SenseOfWonder.Tests.CharactersPersistInFiles
 		[Test]
 		public void FileWithJustANameShouldSetJustTheName()
 		{
-			var testSubject = new SenseOfWonderSystem();
+			var testSubject = new Model.SenseOfWonder();
 			var input = Data.EmptyAt("arbitrary.wonder");
 			input.Contents = @"{""Name"":""Rogers Hammerstein""}";
 

@@ -13,7 +13,7 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		public void ShouldExportTheGameSystem()
 		{
 			var exportAsGameSystem = new ExportAttribute(typeof (GameSystem));
-			typeof (SenseOfWonderSystem).GetCustomAttributes(typeof (ExportAttribute), false)
+			typeof (Model.SenseOfWonder).GetCustomAttributes(typeof (ExportAttribute), false)
 				.Should().Equal(exportAsGameSystem);
 		}
 	}

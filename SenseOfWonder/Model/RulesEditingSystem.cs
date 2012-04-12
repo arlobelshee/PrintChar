@@ -6,9 +6,9 @@ using PluginApi.Model;
 namespace SenseOfWonder.Model
 {
 	[Export(typeof (GameSystem))]
-	public class SenseOfWonderCards : GameSystem
+	public class RulesEditingSystem : GameSystem
 	{
-		public SenseOfWonderCards() : base("Sense of Wonder Rule System", "wonderrules")
+		public RulesEditingSystem() : base("Sense of Wonder Rule System", "wonderrules")
 		{
 			IsReadOnly = true;
 		}

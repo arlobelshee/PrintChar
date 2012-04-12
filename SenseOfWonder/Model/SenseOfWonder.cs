@@ -7,9 +7,9 @@ using SenseOfWonder.Views;
 namespace SenseOfWonder.Model
 {
 	[Export(typeof (GameSystem))]
-	public class SenseOfWonderSystem : GameSystem
+	public class SenseOfWonder : GameSystem
 	{
-		public SenseOfWonderSystem() : base("Sense of Wonder", "wonder") {}
+		public SenseOfWonder() : base("Sense of Wonder", "wonder") {}
 
 		public override Character Parse(IDataFile characterData)
 		{

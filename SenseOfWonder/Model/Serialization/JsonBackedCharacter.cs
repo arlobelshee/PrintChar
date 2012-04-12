@@ -10,7 +10,7 @@ namespace SenseOfWonder.Model
 		protected JsonBackedCharacter(TGameSystem system) : base(system) {}
 
 		public abstract TPersistableData PersistableData { get; }
-		public abstract void UpdateFrom(TPersistableData wonderCharData);
+		public abstract void UpdateFrom(TPersistableData characterData);
 
 		protected Character FinishCreate(IDataFile characterData)
 		{

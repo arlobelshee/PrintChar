@@ -8,9 +8,9 @@ using PluginApi.Model;
 
 namespace SenseOfWonder.Model
 {
-	public class WonderRulesCharacter : JsonBackedCharacter<SenseOfWonderCards, WonderRulesData>
+	public class WonderRulesCharacter : JsonBackedCharacter<RulesEditingSystem, RulesData>
 	{
-		protected WonderRulesCharacter([NotNull] SenseOfWonderCards system, [NotNull] FileInfo characterData)
+		protected WonderRulesCharacter([NotNull] RulesEditingSystem system, [NotNull] FileInfo characterData)
 			: base(system)
 		{
 			File = characterData;
@@ -18,44 +18,44 @@ namespace SenseOfWonder.Model
 		}
 
 		[NotNull]
-		public List<WonderCard> CardData { get; private set; }
+		public List<CardData> CardData { get; private set; }
 
 		[NotNull]
 		public SimpleCommand CreateCardCommand { get; private set; }
 
-		public static WonderRulesCharacter Create([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
+		public static WonderRulesCharacter Create([NotNull] RulesEditingSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderRulesCharacter(system, characterData.Location);
 			return (WonderRulesCharacter) result.FinishCreate(characterData);
 		}
 
-		public static WonderRulesCharacter Load([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
+		public static WonderRulesCharacter Load([NotNull] RulesEditingSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderRulesCharacter(system, characterData.Location);
 			return (WonderRulesCharacter) result.FinishLoad(characterData);
 		}
 
-		public override WonderRulesData PersistableData
+		public override RulesData PersistableData
 		{
 			get
 			{
-				return new WonderRulesData
+				return new RulesData
 				{
 					Cards = CardData
 				};
 			}
 		}
 
-		public override void UpdateFrom(WonderRulesData rules)
+		public override void UpdateFrom(RulesData characterData)
 		{
-			CardData = rules.Cards.ToList();
+			CardData = characterData.Cards.ToList();
 			Cards.Clear();
 			CardData.Select(_WrapCardInView).Each(Cards.Add);
 		}
 
 		private void _CreateCard()
 		{
-			var newCard = new WonderCard()
+			var newCard = new CardData()
 			{
 				Name = Name
 			};
@@ -63,7 +63,7 @@ namespace SenseOfWonder.Model
 			Cards.Add(_WrapCardInView(newCard));
 		}
 
-		private static WonderCardView _WrapCardInView(WonderCard c)
+		private static WonderCardView _WrapCardInView(CardData c)
 		{
 			return new WonderCardView
 			{
@@ -75,7 +75,7 @@ namespace SenseOfWonder.Model
 	public class WonderCardsDesignData : WonderRulesCharacter
 	{
 		public WonderCardsDesignData()
-			: base(new SenseOfWonderCards(), new FileInfo("anything.wonder"))
+			: base(new RulesEditingSystem(), new FileInfo("anything.wonder"))
 		{
 			Name = "Agrippan Disk";
 		}

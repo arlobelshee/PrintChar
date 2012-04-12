@@ -1,8 +1,8 @@
 using JetBrains.Annotations;
 
-namespace SenseOfWonder.Model.Impl
+namespace SenseOfWonder.Model.Serialization
 {
-	public class WonderCharData
+	public class CharacterData
 	{
 		[CanBeNull]
 		public string Gender { get; set; }
