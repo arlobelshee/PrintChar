@@ -11,7 +11,7 @@ namespace SenseOfWonder.Model
 
 		public List<WonderCard> Cards { get; set; }
 
-		public static WonderRulesData From(WonderCardHolder who)
+		public static WonderRulesData From(WonderRulesCharacter who)
 		{
 			return new WonderRulesData
 			{

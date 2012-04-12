@@ -15,7 +15,7 @@ namespace SenseOfWonder.Model
 
 		public override Character Parse(IDataFile characterData)
 		{
-			return WonderCardHolder.Load(this, characterData);
+			return WonderRulesCharacter.Load(this, characterData);
 		}
 
 		public override ObservableCollection<TabItem> EditorPages

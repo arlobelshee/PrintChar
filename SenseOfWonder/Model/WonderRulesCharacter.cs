@@ -8,9 +8,9 @@ using PluginApi.Model;
 
 namespace SenseOfWonder.Model
 {
-	public class WonderCardHolder : JsonBackedCharacter<SenseOfWonderCards, WonderRulesData>
+	public class WonderRulesCharacter : JsonBackedCharacter<SenseOfWonderCards, WonderRulesData>
 	{
-		protected WonderCardHolder([NotNull] SenseOfWonderCards system, [NotNull] FileInfo characterData)
+		protected WonderRulesCharacter([NotNull] SenseOfWonderCards system, [NotNull] FileInfo characterData)
 			: base(system)
 		{
 			File = characterData;
@@ -23,16 +23,16 @@ namespace SenseOfWonder.Model
 		[NotNull]
 		public SimpleCommand CreateCardCommand { get; private set; }
 
-		public static WonderCardHolder Create([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
+		public static WonderRulesCharacter Create([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
 		{
-			var result = new WonderCardHolder(system, characterData.Location);
-			return (WonderCardHolder) result.FinishCreate(characterData);
+			var result = new WonderRulesCharacter(system, characterData.Location);
+			return (WonderRulesCharacter) result.FinishCreate(characterData);
 		}
 
-		public static WonderCardHolder Load([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
+		public static WonderRulesCharacter Load([NotNull] SenseOfWonderCards system, [NotNull] IDataFile characterData)
 		{
-			var result = new WonderCardHolder(system, characterData.Location);
-			return (WonderCardHolder) result.FinishLoad(characterData);
+			var result = new WonderRulesCharacter(system, characterData.Location);
+			return (WonderRulesCharacter) result.FinishLoad(characterData);
 		}
 
 		public override WonderRulesData PersistableData
@@ -72,7 +72,7 @@ namespace SenseOfWonder.Model
 		}
 	}
 
-	public class WonderCardsDesignData : WonderCardHolder
+	public class WonderCardsDesignData : WonderRulesCharacter
 	{
 		public WonderCardsDesignData()
 			: base(new SenseOfWonderCards(), new FileInfo("anything.wonder"))
