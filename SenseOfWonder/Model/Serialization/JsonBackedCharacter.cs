@@ -1,7 +1,6 @@
 using PluginApi.Model;
-using SenseOfWonder.Model.Impl;
 
-namespace SenseOfWonder.Model
+namespace SenseOfWonder.Model.Serialization
 {
 	public abstract class JsonBackedCharacter<TGameSystem, TPersistableData> : Character<TGameSystem>,
 		IPersistTo<TPersistableData>

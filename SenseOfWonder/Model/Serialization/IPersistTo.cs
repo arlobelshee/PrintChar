@@ -1,4 +1,4 @@
-namespace SenseOfWonder.Model.Impl
+namespace SenseOfWonder.Model.Serialization
 {
 	public interface IPersistTo<T>
 	{

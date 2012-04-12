@@ -5,6 +5,7 @@ using EventBasedProgramming.Binding;
 using EventBasedProgramming.TestSupport;
 using JetBrains.Annotations;
 using PluginApi.Model;
+using SenseOfWonder.Model.Serialization;
 
 namespace SenseOfWonder.Model
 {

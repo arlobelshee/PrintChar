@@ -2,7 +2,7 @@ using System.ComponentModel;
 using PluginApi.Model;
 using ServiceStack.Text;
 
-namespace SenseOfWonder.Model.Impl
+namespace SenseOfWonder.Model.Serialization
 {
 	public class CharSerializer<TPersistableData> where TPersistableData : class, new()
 	{

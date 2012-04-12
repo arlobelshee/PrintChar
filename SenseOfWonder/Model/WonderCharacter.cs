@@ -3,7 +3,6 @@ using System.IO;
 using System.Windows.Controls;
 using JetBrains.Annotations;
 using PluginApi.Model;
-using SenseOfWonder.Model.Impl;
 using SenseOfWonder.Model.Serialization;
 using SenseOfWonder.Views;
 

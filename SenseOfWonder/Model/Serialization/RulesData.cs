@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using JetBrains.Annotations;
 
-namespace SenseOfWonder.Model
+namespace SenseOfWonder.Model.Serialization
 {
 	public class RulesData
 	{
