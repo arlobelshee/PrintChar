@@ -8,14 +8,15 @@ using SenseOfWonder.Views;
 
 namespace SenseOfWonder.Model
 {
-	public class WonderCharacter : Character<SenseOfWonderSystem>
+	public class WonderCharacter : JsonBackedCharacter<SenseOfWonderSystem>
 	{
 		protected WonderCharacter([NotNull] SenseOfWonderSystem system, [NotNull] FileInfo characterData) : base(system)
 		{
 			File = characterData;
 		}
 
-		public static WonderCharacter CreateWithoutBackingDataStore([NotNull] SenseOfWonderSystem system, [NotNull] FileInfo characterData)
+		public static WonderCharacter CreateWithoutBackingDataStore([NotNull] SenseOfWonderSystem system,
+			[NotNull] FileInfo characterData)
 		{
 			return new WonderCharacter(system, characterData);
 		}
@@ -40,25 +41,10 @@ namespace SenseOfWonder.Model
 		protected override void AddInitialCards(ObservableCollection<Control> cards)
 		{
 			base.AddInitialCards(cards);
-			cards.Add(new CharacterSummaryCard(){DataContext = this});
-		}
-
-		public WonderCharData PersistableData
-		{
-			get
+			cards.Add(new CharacterSummaryCard
 			{
-				return new WonderCharData
-				{
-					Name = Name,
-					Gender = Gender
-				};
-			}
-		}
-
-		public void UpdateFrom(WonderCharData wonderCharData)
-		{
-			Name = wonderCharData.Name ?? string.Empty;
-			Gender = wonderCharData.Gender ?? string.Empty;
+				DataContext = this
+			});
 		}
 	}
 
