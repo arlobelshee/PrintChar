@@ -53,7 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Serialization\IPersistTo.cs" />
-    <Compile Include="Model\JsonBackedCharacter.cs" />
+    <Compile Include="Model\Serialization\JsonBackedCharacter.cs" />
     <Compile Include="Model\WonderCard.cs" />
     <Compile Include="Model\WonderRulesCharacter.cs" />
     <Compile Include="Model\SenseOfWonderCards.cs" />
@@ -70,8 +70,8 @@
     <Compile Include="Views\CreateNewCard.xaml.cs">
       <DependentUpon>CreateNewCard.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Editor.xaml.cs">
-      <DependentUpon>Editor.xaml</DependentUpon>
+    <Compile Include="Views\EditCharacter.xaml.cs">
+      <DependentUpon>EditCharacter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\WonderCharacter.cs" />
     <Compile Include="Views\WonderCardView.xaml.cs">
@@ -97,7 +97,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Editor.xaml">
+    <Page Include="Views\EditCharacter.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

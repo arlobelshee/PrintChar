@@ -8,7 +8,7 @@ namespace SenseOfWonder.Model
 	[Export(typeof (GameSystem))]
 	public class SenseOfWonderCards : GameSystem
 	{
-		public SenseOfWonderCards() : base("Sense of Wonder Cards", "wondercards")
+		public SenseOfWonderCards() : base("Sense of Wonder Rule System", "wonderrules")
 		{
 			IsReadOnly = true;
 		}

@@ -39,16 +39,16 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 			new SenseOfWonderCards().ShouldHave()
 				.Properties(w => w.FileExtension, w => w.FilePattern, w => w.Name).EqualTo(new
 				{
-					FileExtension = "wondercards",
-					Name = "Sense of Wonder Cards",
-					FilePattern = "*.wondercards"
+					FileExtension = "wonderrules",
+					Name = "Sense of Wonder Rule System",
+					FilePattern = "*.wonderrules"
 				});
 		}
 
 		[Test, Explicit, STAThread]
 		public void ShouldCreateEditorControlWhenAsked()
 		{
-			new SenseOfWonderSystem().EditorPages.Should().HaveCount(1).And.ContainItemsAssignableTo<Editor>();
+			new SenseOfWonderSystem().EditorPages.Should().HaveCount(1).And.ContainItemsAssignableTo<EditCharacter>();
 		}
 	}
 }

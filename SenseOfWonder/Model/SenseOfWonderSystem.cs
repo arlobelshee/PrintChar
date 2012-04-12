@@ -30,7 +30,7 @@ namespace SenseOfWonder.Model
 					new TabItem
 					{
 						Header = "Basics",
-						Content = new Editor()
+						Content = new EditCharacter()
 					}
 				};
 			}

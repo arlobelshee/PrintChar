@@ -3,11 +3,11 @@
 namespace SenseOfWonder.Views
 {
 	/// <summary>
-	/// 	Interaction logic for Editor.xaml
+	/// 	Interaction logic for EditCharacter.xaml
 	/// </summary>
-	public partial class Editor : UserControl
+	public partial class EditCharacter : UserControl
 	{
-		public Editor()
+		public EditCharacter()
 		{
 			InitializeComponent();
 		}
