@@ -15,18 +15,6 @@ namespace SenseOfWonder.Model
 			File = characterData;
 		}
 
-		public override WonderCharData PersistableData
-		{
-			get
-			{
-				return new WonderCharData
-				{
-					Name = Name,
-					Gender = Gender
-				};
-			}
-		}
-
 		public static WonderCharacter CreateWithoutBackingDataStore([NotNull] SenseOfWonderSystem system,
 			[NotNull] FileInfo characterData)
 		{
@@ -36,18 +24,13 @@ namespace SenseOfWonder.Model
 		public static WonderCharacter Create([NotNull] SenseOfWonderSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCharacter(system, characterData.Location);
-			var serializer = new CharSerializer<WonderCharData>(result, characterData);
-			result.PropertyChanged += serializer.UpdateFile;
-			return result;
+			return (WonderCharacter) result.FinishCreate(characterData);
 		}
 
 		public static WonderCharacter Load([NotNull] SenseOfWonderSystem system, [NotNull] IDataFile characterData)
 		{
 			var result = new WonderCharacter(system, characterData.Location);
-			var serializer = new CharSerializer<WonderCharData>(result, characterData);
-			serializer.LoadFromFile();
-			result.PropertyChanged += serializer.UpdateFile;
-			return result;
+			return (WonderCharacter) result.FinishLoad(characterData);
 		}
 
 		protected override void AddInitialCards(ObservableCollection<Control> cards)
@@ -63,6 +46,18 @@ namespace SenseOfWonder.Model
 		{
 			Name = wonderCharData.Name ?? string.Empty;
 			Gender = wonderCharData.Gender ?? string.Empty;
+		}
+
+		public override WonderCharData PersistableData
+		{
+			get
+			{
+				return new WonderCharData
+				{
+					Name = Name,
+					Gender = Gender
+				};
+			}
 		}
 	}
 
