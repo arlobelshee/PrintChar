@@ -52,13 +52,13 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Impl\IPersistTo.cs" />
+    <Compile Include="Model\Serialization\IPersistTo.cs" />
     <Compile Include="Model\JsonBackedCharacter.cs" />
     <Compile Include="Model\WonderCard.cs" />
     <Compile Include="Model\WonderRulesCharacter.cs" />
     <Compile Include="Model\SenseOfWonderCards.cs" />
-    <Compile Include="Model\Impl\CharSerializer.cs" />
-    <Compile Include="Model\Impl\WonderCharData.cs" />
+    <Compile Include="Model\Serialization\CharSerializer.cs" />
+    <Compile Include="Model\Serialization\WonderCharData.cs" />
     <Compile Include="Model\SenseOfWonderSystem.cs" />
     <Compile Include="Model\WonderRulesData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
