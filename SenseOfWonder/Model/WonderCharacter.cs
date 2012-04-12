@@ -42,6 +42,24 @@ namespace SenseOfWonder.Model
 			base.AddInitialCards(cards);
 			cards.Add(new CharacterSummaryCard(){DataContext = this});
 		}
+
+		public WonderCharData PersistableData
+		{
+			get
+			{
+				return new WonderCharData
+				{
+					Name = Name,
+					Gender = Gender
+				};
+			}
+		}
+
+		public void UpdateFrom(WonderCharData wonderCharData)
+		{
+			Name = wonderCharData.Name ?? string.Empty;
+			Gender = wonderCharData.Gender ?? string.Empty;
+		}
 	}
 
 	public class WonderCharacterDesignData : WonderCharacter

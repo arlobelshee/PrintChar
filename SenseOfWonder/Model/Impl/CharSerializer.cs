@@ -22,12 +22,12 @@ namespace SenseOfWonder.Model.Impl
 
 		public void UpdateFile()
 		{
-			_backingStore.Contents = WonderCharData.From(_who).ToJson();
+			_backingStore.Contents = _who.PersistableData.ToJson();
 		}
 
 		public void LoadFromFile()
 		{
-			(_backingStore.Contents.FromJson<WonderCharData>()?? new WonderCharData()).UpdateCharacter(_who);
+			_who.UpdateFrom((_backingStore.Contents.FromJson<WonderCharData>()?? new WonderCharData()));
 		}
 	}
 }
