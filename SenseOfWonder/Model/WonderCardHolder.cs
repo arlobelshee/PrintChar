@@ -41,9 +41,9 @@ namespace SenseOfWonder.Model
 			return result;
 		}
 
-		public void UpdateFrom(IEnumerable<WonderCard> cards)
+		public void UpdateFrom(WonderRulesData rules)
 		{
-			CardData = cards.ToList();
+			CardData = rules.Cards.ToList();
 			Cards.Clear();
 			CardData.Select(WrapCardInView).Each(Cards.Add);
 		}

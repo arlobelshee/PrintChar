@@ -24,12 +24,12 @@ namespace SenseOfWonder.Model.Impl
 
 		public void UpdateFile()
 		{
-			_backingStore.Contents = _who.CardData.ToJson();
+			_backingStore.Contents = WonderRulesData.From(_who).ToJson();
 		}
 
 		public void LoadFromFile()
 		{
-			_who.UpdateFrom(_backingStore.Contents.FromJson<List<WonderCard>>() ?? Enumerable.Empty<WonderCard>());
+			_who.UpdateFrom(_backingStore.Contents.FromJson<WonderRulesData>() ?? new WonderRulesData());
 		}
 	}
 }
