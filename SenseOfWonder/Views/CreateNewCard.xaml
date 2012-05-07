@@ -11,6 +11,6 @@
 	<Grid DataContext="{Binding Character}" d:DataContext="{d:DesignInstance {x:Type Model:WonderCardsDesignData}, IsDesignTimeCreatable=True}">
 		<TextBox x:Name="CharName" Height="23.2" Margin="46.297,8,8,0" TextWrapping="Wrap" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" TabIndex="1"/>
 		<TextBlock HorizontalAlignment="Left" Margin="8,11,0,0" TextWrapping="Wrap" Text="Name:" VerticalAlignment="Top"/>
-		<Button x:Name="CreateCard" Margin="0,35.2,8,0" HorizontalAlignment="Right" Height="28" VerticalAlignment="Top" Width="104.103" Content="Create Card" TabIndex="2" />
+		<Button x:Name="CreateCard" Margin="0,35.2,8,0" HorizontalAlignment="Right" Height="28" VerticalAlignment="Top" Width="104.103" Content="Create Card" TabIndex="2" Command="{Binding CreateCardCommand, Mode=OneWay}" />
 	</Grid>
 </UserControl>

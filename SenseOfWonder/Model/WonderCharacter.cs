@@ -13,6 +13,8 @@ namespace SenseOfWonder.Model
 		protected WonderCharacter([NotNull] SenseOfWonder system, [NotNull] FileInfo characterData) : base(system)
 		{
 			File = characterData;
+			_name.AddDependantProperty(() => PersistableData);
+			_gender.AddDependantProperty(() => PersistableData);
 		}
 
 		public static WonderCharacter CreateWithoutBackingDataStore([NotNull] SenseOfWonder system,

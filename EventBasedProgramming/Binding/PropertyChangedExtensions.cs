@@ -22,5 +22,18 @@ namespace EventBasedProgramming.Binding
 		{
 			return new DependantProperty(sender, propertyExpression);
 		}
+
+		public static PropertyChangedEventHandler ForProperty<TSender>([NotNull] this TSender sender,
+			[NotNull] Expression<Func<object>> propertyExpression, Action target) where TSender : INotifyPropertyChanged
+		{
+			var property = Extract.PropertyNameFrom(propertyExpression);
+			return (o, e) =>
+			{
+				if (e.PropertyName == property)
+				{
+					target();
+				}
+			};
+		}
 	}
 }

@@ -1,3 +1,4 @@
+using EventBasedProgramming.Binding;
 using PluginApi.Model;
 
 namespace SenseOfWonder.Model.Serialization
@@ -14,7 +15,7 @@ namespace SenseOfWonder.Model.Serialization
 		protected Character FinishCreate(IDataFile characterData)
 		{
 			var serializer = new CharSerializer<TPersistableData>(this, characterData);
-			PropertyChanged += serializer.UpdateFile;
+			PropertyChanged += this.ForProperty(() => PersistableData, serializer.UpdateFile);
 			return this;
 		}
 
@@ -22,7 +23,7 @@ namespace SenseOfWonder.Model.Serialization
 		{
 			var serializer = new CharSerializer<TPersistableData>(this, characterData);
 			serializer.LoadFromFile();
-			PropertyChanged += serializer.UpdateFile;
+			PropertyChanged += this.ForProperty(() => PersistableData, serializer.UpdateFile);
 			return this;
 		}
 	}

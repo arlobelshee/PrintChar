@@ -10,10 +10,12 @@ namespace EventBasedProgramming.Binding
 		where TProperty : class
 	{
 		private TProperty _value;
-		[NotNull] private List<Expression<Func<object>>> _enclosingProperties;
-		[NotNull] private IFirePropertyChanged _owner;
+		[NotNull] private readonly List<Expression<Func<object>>> _enclosingProperties;
+		[NotNull] private readonly IFirePropertyChanged _owner;
+		[NotNull] private readonly List<Action> _changeListeners = new List<Action>();
 
-		protected TrackingProperty(IFirePropertyChanged owner, IEnumerable<Expression<Func<object>>> enclosingProperties, TProperty initialValue)
+		protected TrackingProperty(IFirePropertyChanged owner, IEnumerable<Expression<Func<object>>> enclosingProperties,
+			TProperty initialValue)
 		{
 			_value = initialValue;
 			_owner = owner;
@@ -35,8 +37,8 @@ namespace EventBasedProgramming.Binding
 			if ((_value == null && value == null) || (_value != null && _value.Equals(value)))
 				return;
 			_value = value;
-			foreach (Expression<Func<object>> property in _enclosingProperties)
-				_owner.FirePropertyChanged(property);
+			_enclosingProperties.Each(property => _owner.FirePropertyChanged(property));
+			_changeListeners.Each(listener => listener());
 		}
 
 		protected TProperty GetValue()
@@ -49,6 +51,11 @@ namespace EventBasedProgramming.Binding
 		public void AddDependantProperty(Expression<Func<object>> enclosingProperty)
 		{
 			_enclosingProperties.Add(enclosingProperty);
+		}
+
+		public void WhenChanged(Action action)
+		{
+			_changeListeners.Add(action);
 		}
 
 		public override bool Equals(object obj)

@@ -7,4 +7,12 @@ namespace SenseOfWonder.Model.Serialization
 		[CanBeNull]
 		public string Name { get; set; }
 	}
+
+	public class CardDataDesignData : CardData
+	{
+		public CardDataDesignData()
+		{
+			Name = "Right Here, Right Now";
+		}
+	}
 }

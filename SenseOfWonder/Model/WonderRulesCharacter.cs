@@ -16,6 +16,7 @@ namespace SenseOfWonder.Model
 			File = characterData;
 			CardData = new List<CardData>();
 			CreateCardCommand = new SimpleCommand(() => !string.IsNullOrWhiteSpace(Name), CreateCard);
+			_name.WhenChanged(CreateCardCommand.NotifyThatCanExecuteChanged);
 			EqualityFields.Add(CardData);
 		}
 
@@ -70,7 +71,7 @@ namespace SenseOfWonder.Model
 			};
 			CardData.Add(newCard);
 			Cards.Add(_WrapCardInView(newCard));
-			FirePropertyChanged(() => CardData);
+			FirePropertyChanged(() => PersistableData);
 		}
 
 		private static WonderCardView _WrapCardInView(CardData c)

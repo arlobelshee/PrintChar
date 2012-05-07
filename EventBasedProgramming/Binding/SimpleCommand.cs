@@ -37,11 +37,11 @@ namespace EventBasedProgramming.Binding
 			get { return new BindingInfo(_execute.Method, _execute.Target); }
 		}
 
-		public void NotifyThatCanExecuteChanged(EventArgs e)
+		public void NotifyThatCanExecuteChanged()
 		{
 			var handler = CanExecuteChanged;
 			if (handler != null)
-				handler(this, e);
+				handler(this, new EventArgs());
 		}
 	}
 }
