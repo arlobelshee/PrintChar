@@ -3,9 +3,10 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
 using EventBasedProgramming.Tests.zzTestSupportData;
+using FluentAssertions.EventMonitoring;
 using JetBrains.Annotations;
 using NUnit.Framework;
-using FluentAssertions.EventMonitoring;
+using FluentAssertions;
 
 namespace EventBasedProgramming.Tests.MakeItEasyToChainDependantProperties
 {
@@ -20,6 +21,18 @@ namespace EventBasedProgramming.Tests.MakeItEasyToChainDependantProperties
 			listener.MonitorEvents();
 			source.FireDescriptionChangedBecauseTestSaidTo();
 			listener.ShouldRaisePropertyChangeFor(l => l.DependsOnDescription);
+		}
+
+		[Test]
+		public void ForPropertyShouldWrapAnActionAndCallItOnlyIfCalledWithPropertyChangeForTheRightProperty()
+		{
+			var source = new _ObjWithPropertyChangeNotification();
+			bool wasCalled = false;
+			var testSubject = source.ForProperty(() => source.Description, () => wasCalled = true);
+			testSubject(null, new PropertyChangedEventArgs("NotDescription"));
+			wasCalled.Should().BeFalse();
+			testSubject(null, new PropertyChangedEventArgs("Description"));
+			wasCalled.Should().BeTrue();
 		}
 
 		private class _ObjWithPropagation : IFirePropertyChanged
