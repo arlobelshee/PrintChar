@@ -62,8 +62,6 @@
     <Compile Include="Model\SenseOfWonder.cs" />
     <Compile Include="Model\Serialization\RulesData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CreateNewCardModel.cs" />
-    <Compile Include="ViewModels\WonderCardViewModel.cs" />
     <Compile Include="Views\CharacterSummaryCard.xaml.cs">
       <DependentUpon>CharacterSummaryCard.xaml</DependentUpon>
     </Compile>
@@ -108,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
