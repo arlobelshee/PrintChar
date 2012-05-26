@@ -8,7 +8,6 @@
 	<Window.Resources>
 		<local:AllGameSystemsViewModel x:Key="DataSource" />
 		<DataTemplate x:Key="ShowTabItemDisplay">
-		<!--	<TabItem Header="{Binding Header}" Content="{Binding Details}"/> -->
 			<TabItem Header="{Binding Header}">
 				Content goes here.
 			</TabItem>
@@ -26,12 +25,16 @@
 		</Grid.ColumnDefinitions>
 		<ScrollViewer x:Name="PrintPreviewArea" Grid.RowSpan="2" Grid.Column="1">
 			<Viewbox x:Name="PageWidthContinuousScroll">
-				<ItemsControl x:Name="AllTheCards" ItemsSource="{Binding Cards}" Width="1008">
+				<ItemsControl x:Name="AllTheCards" ItemsSource="{Binding Character.Cards}" Width="1008">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
 							<WrapPanel ItemWidth="336" ItemHeight="240" />
 						</ItemsPanelTemplate>
 					</ItemsControl.ItemsPanel>
+					<ItemsControl.ItemTemplate>
+						<DataTemplate><Button Content="Button supplied by hardcoding in the view." />
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
 				</ItemsControl>
 			</Viewbox>
 		</ScrollViewer>

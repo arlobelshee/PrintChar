@@ -13,7 +13,7 @@ namespace PrintChar.Tests.CharacterManagement
 			new AllGameSystemsViewModel(new _ReadOnlyGameSystem()).IsValid.Should().BeFalse();
 		}
 
-		[Test]
+		[Test, RequiresSTA]
 		public void ShouldAllowPrintingIfCharacterIsSelected()
 		{
 			new DesignTimeGameSystems().IsValid.Should().BeTrue();
