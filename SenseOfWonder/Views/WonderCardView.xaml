@@ -9,7 +9,7 @@
 	x:Class="SenseOfWonder.WonderCardView"
 	d:DesignWidth="640" d:DesignHeight="480">
 
-	<Grid x:Name="LayoutRoot" d:DataContext="{d:DesignInstance {x:Type Model:CardDataDesignData}, IsDesignTimeCreatable=True}">
+	<Grid x:Name="LayoutRoot" d:DataContext="{d:DesignInstance {x:Type Model:CardDataDesignData}, IsDesignTimeCreatable=True}" Background="White">
 		<TextBox Text="{Binding Name}" Height="24" VerticalAlignment="Top"/>
 	</Grid>
 </UserControl>

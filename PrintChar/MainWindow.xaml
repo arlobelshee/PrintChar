@@ -23,8 +23,8 @@
 			<ColumnDefinition Width="2*"/>
 			<ColumnDefinition Width="3*"/>
 		</Grid.ColumnDefinitions>
-		<ScrollViewer x:Name="PrintPreviewArea" Grid.RowSpan="2" Grid.Column="1">
-			<Viewbox x:Name="PageWidthContinuousScroll">
+		<ScrollViewer x:Name="PrintPreviewArea" Grid.RowSpan="2" Grid.Column="1" Background="#FFB3B3B3">
+			<Viewbox x:Name="PageWidthContinuousScroll" HorizontalAlignment="Left" VerticalAlignment="Top">
 				<ItemsControl x:Name="AllTheCards" ItemsSource="{Binding Character.Cards}" Width="1008">
 					<ItemsControl.ItemsPanel>
 						<ItemsPanelTemplate>
