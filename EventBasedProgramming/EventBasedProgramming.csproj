@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Binding\Impl\DependantProperty.cs" />
+    <Compile Include="Binding\TestableEvent.cs" />
     <Compile Include="Binding\TrackingNullableProperty.cs" />
     <Compile Include="Binding\TrackingProperty.cs" />
     <Compile Include="LinqExtensions.cs" />

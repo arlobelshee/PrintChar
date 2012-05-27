@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using EventBasedProgramming.Binding;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -32,6 +30,18 @@ namespace EventBasedProgramming.Tests.MakeBindingsTestable
 		}
 
 		[Test]
+		public void EventShouldSupportUnbinding()
+		{
+			var testSubject = new TestableEvent<int>();
+			testSubject.BindTo(_Target);
+			testSubject.Call(5);
+			testSubject.UnbindFrom(_Target);
+			testSubject.IsBoundTo(_Target).Should().BeFalse();
+			testSubject.Call(9);
+			_arg.Should().Be(5);
+		}
+
+		[Test]
 		public void EventShouldDifferentiateFunctionsOnSameTarget()
 		{
 			var testSubject = new TestableEvent<int>();
@@ -56,26 +66,6 @@ namespace EventBasedProgramming.Tests.MakeBindingsTestable
 		private void _FalseTarget(int arg)
 		{
 			_arg = arg;
-		}
-	}
-
-	public class TestableEvent<TArg1>
-	{
-		private readonly List<Action<TArg1>> _handlers = new List<Action<TArg1>>();
-
-		public void BindTo(Action<TArg1> handler)
-		{
-			_handlers.Add(handler);
-		}
-
-		public void Call(TArg1 arg1)
-		{
-			_handlers.Each(h => h(arg1));
-		}
-
-		public bool IsBoundTo(Action<TArg1> handler)
-		{
-			return _handlers.Contains(handler);
 		}
 	}
 }
