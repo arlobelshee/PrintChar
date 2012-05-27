@@ -59,6 +59,7 @@ namespace SenseOfWonder.Model
 		{
 			CardData.Clear();
 			CardData.AddRange(characterData.Cards);
+			characterData.Cards.Each(_PropagateChanges);
 			Cards.Clear();
 			CardData.Select(_WrapCardInView).Each(Cards.Add);
 		}
@@ -69,9 +70,15 @@ namespace SenseOfWonder.Model
 			{
 				Name = Name
 			};
+			_PropagateChanges(newCard);
 			CardData.Add(newCard);
 			Cards.Add(_WrapCardInView(newCard));
 			FirePropertyChanged(() => PersistableData);
+		}
+
+		private void _PropagateChanges(CardData newCard)
+		{
+			this.Propagate(() => PersistableData).From(newCard, c => c.Name);
 		}
 
 		private static WonderCardView _WrapCardInView(CardData c)

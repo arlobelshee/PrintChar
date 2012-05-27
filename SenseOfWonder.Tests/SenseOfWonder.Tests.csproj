@@ -60,6 +60,7 @@
     <Compile Include="CharactersHaveCards\ExposeCards.cs" />
     <Compile Include="CharactersPersistInFiles\LoadCharacterFromFile.cs" />
     <Compile Include="RulesEditorAllowsCardEditing\CanCreateNewCards.cs" />
+    <Compile Include="RulesEditorAllowsCardEditing\EditingCardWritesItToDisk.cs" />
     <Compile Include="zzTestSupportData\TestData.cs" />
     <Compile Include="CharactersPersistInFiles\WriteCharacterToFile.cs" />
     <Compile Include="GameSystemShowsUpInCoreApp\GameSystemsProvideInfoToConfigureCoreApplication.cs" />
