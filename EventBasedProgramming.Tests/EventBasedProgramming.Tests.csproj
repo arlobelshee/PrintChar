@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MakeBindingsTestable\HelperClassMakesEventSupportQuerying.cs" />
     <Compile Include="MakeItEasyToImplementINotifyPropertyChanged\TrackingPropertiesAutomaticallyNotifyWhenValuesChange.cs" />
     <Compile Include="MakeItEasyToImplementINotifyPropertyChanged\ImplementINotifyPropertyChanged.cs" />
     <Compile Include="MakeItEasyToChainDependantProperties\ExtensionMethodsAllowDeclaringChangeDependencies.cs" />
