@@ -6,6 +6,7 @@ TestCredentials.cs
 *.DS_Store
 
 #Visual Studio files
+*.g.cs
 *.[Oo]bj
 *.user
 *.aps
