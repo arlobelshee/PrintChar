@@ -9,7 +9,12 @@ namespace SenseOfWonder.Model.Serialization
 	public class CardData : IFirePropertyChanged
 	{
 		[NotNull] private readonly TrackingOnlyInitiallyNullProperty<string> _name;
-		public event PropertyChangedEventHandler PropertyChanged;
+		[NotNull] private readonly TestablePropertyChangedEvent _propertyChanged = new TestablePropertyChangedEvent();
+		public event PropertyChangedEventHandler PropertyChanged
+		{
+			add { _propertyChanged.BindTo(value); }
+			remove { _propertyChanged.UnbindFrom(value); }
+		}
 
 		public CardData()
 		{
@@ -25,7 +30,7 @@ namespace SenseOfWonder.Model.Serialization
 
 		public void FirePropertyChanged(Expression<Func<object>> propertyThatChanged)
 		{
-			PropertyChanged.Raise(this, propertyThatChanged);
+			_propertyChanged.Call(this, propertyThatChanged);
 		}
 	}
 

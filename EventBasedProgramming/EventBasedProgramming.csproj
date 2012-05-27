@@ -52,6 +52,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestableEvent.tt</DependentUpon>
     </Compile>
+    <Compile Include="Binding\TestablePropertyChangedEvent.cs" />
     <Compile Include="Binding\TrackingNullableProperty.cs" />
     <Compile Include="Binding\TrackingProperty.cs" />
     <Compile Include="LinqExtensions.cs" />

@@ -15,6 +15,11 @@ namespace EventBasedProgramming.Binding.Impl
 		public object Target { get; set; }
 		public string BoundAs { get; set; }
 
+		public virtual object Call(params object[] args)
+		{
+			return Method.Invoke(Target, args);
+		}
+
 		public bool Equals(BindingInfo other)
 		{
 			if (ReferenceEquals(null, other))
@@ -53,6 +58,27 @@ namespace EventBasedProgramming.Binding.Impl
 		public static bool operator !=(BindingInfo left, BindingInfo right)
 		{
 			return !left.Equals(right);
+		}
+	}
+
+	internal class BindingInfoForFunc : BindingInfo
+	{
+		public BindingInfoForFunc(MethodInfo method, object target) : base(method, target) { }
+	}
+
+	public class BindingInfoForDelegate : BindingInfo
+	{
+		private readonly Delegate _handler;
+
+		public BindingInfoForDelegate(Delegate handler)
+			: base(handler.Method, handler.Target)
+		{
+			_handler = handler;
+		}
+
+		public override object Call(params object[] args)
+		{
+			return _handler.DynamicInvoke(args);
 		}
 	}
 }

@@ -1,4 +1,7 @@
-﻿using EventBasedProgramming.Tests.zzTestSupportData;
+﻿using System.ComponentModel;
+using EventBasedProgramming.Binding.Impl;
+using EventBasedProgramming.Tests.zzTestSupportData;
+using FluentAssertions;
 using FluentAssertions.EventMonitoring;
 using NUnit.Framework;
 
@@ -7,6 +10,8 @@ namespace EventBasedProgramming.Tests.MakeItEasyToImplementINotifyPropertyChange
 	[TestFixture]
 	public class ImplementINotifyPropertyChanged
 	{
+		private string _propertyChanged;
+
 		[Test]
 		public void PropertyChangedShouldFireWhenClassFiresIt()
 		{
@@ -14,6 +19,30 @@ namespace EventBasedProgramming.Tests.MakeItEasyToImplementINotifyPropertyChange
 			testSubject.MonitorEvents();
 			testSubject.FireDescriptionChangedBecauseTestSaidTo();
 			testSubject.ShouldRaisePropertyChangeFor(s => s.Description);
+		}
+
+		[Test]
+		public void TrackablePropertyChangedShouldFireWhenClassFiresIt()
+		{
+			var testSubject = new _ObjWithTrackablePropertyChangeNotification();
+			testSubject.MonitorEvents();
+			testSubject.FireDescriptionChangedBecauseTestSaidTo();
+			testSubject.ShouldRaisePropertyChangeFor(s => s.Description);
+		}
+
+		[Test]
+		public void TrackablePropertyChangedShouldCorrectlyCallNonDynamicMethods()
+		{
+			var testSubject = new _ObjWithTrackablePropertyChangeNotification();
+			_propertyChanged = null;
+			testSubject.PropertyChanged += _GotNotified;
+			testSubject.FireDescriptionChangedBecauseTestSaidTo();
+			_propertyChanged.Should().Be(Extract.PropertyNameFrom(() => testSubject.Description));
+		}
+
+		private void _GotNotified(object sender, PropertyChangedEventArgs e)
+		{
+			_propertyChanged = e.PropertyName;
 		}
 	}
 }

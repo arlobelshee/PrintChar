@@ -9,7 +9,9 @@ namespace EventBasedProgramming.Binding.Impl
 	{
 		private const string MethodCall = "call to the appropriate method";
 		private const string PropertyAccess = "access to the appropriate property";
-		private const BindingFlags Anything = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
+
+		private const BindingFlags Anything =
+			BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static;
 
 		[NotNull]
 		public static string PropertyNameFrom([NotNull] Expression<Func<object>> propertyExpression)
@@ -38,7 +40,7 @@ namespace EventBasedProgramming.Binding.Impl
 		[NotNull]
 		private static BindingInfo _ExtractBindingInfo([NotNull] MethodCallExpression call, [NotNull] string expectedType)
 		{
-			return new BindingInfo(call.Method, _ExtractValueInstance(call.Object, expectedType));
+			return new BindingInfoForFunc(call.Method, _ExtractValueInstance(call.Object, expectedType));
 		}
 
 		private static object _ExtractValueInstance(Expression val, [NotNull] string expectedType)
@@ -47,8 +49,8 @@ namespace EventBasedProgramming.Binding.Impl
 				return null; // static method call.
 			if (val is MemberExpression)
 			{
-				var closure = _ExtractConstant((val as MemberExpression).Expression, expectedType);
-				var field = (val as MemberExpression).Member;
+				object closure = _ExtractConstant((val as MemberExpression).Expression, expectedType);
+				MemberInfo field = (val as MemberExpression).Member;
 				return field.ReflectedType.GetField(field.Name, Anything).GetValue(closure);
 			}
 			return _ExtractConstant(val, expectedType);
@@ -70,7 +72,7 @@ namespace EventBasedProgramming.Binding.Impl
 		[NotNull]
 		private static T _As<T>([NotNull] Expression expressionBody, string expectedType) where T : Expression
 		{
-			var body = _StripConversionNode<T>(expressionBody) ?? expressionBody as T;
+			T body = _StripConversionNode<T>(expressionBody) ?? expressionBody as T;
 			if (body == null)
 				throw _TooComplicated(expectedType);
 			return body;
@@ -83,7 +85,9 @@ namespace EventBasedProgramming.Binding.Impl
 
 		private static ArgumentException _TooComplicated(string expectedType)
 		{
-			return new ArgumentException(string.Format("The expression body should be a simple direct {0}. Please simplify your lambda.", expectedType));
+			return
+				new ArgumentException(
+					string.Format("The expression body should be a simple direct {0}. Please simplify your lambda.", expectedType));
 		}
 	}
 }

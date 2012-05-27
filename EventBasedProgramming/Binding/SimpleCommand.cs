@@ -29,12 +29,12 @@ namespace EventBasedProgramming.Binding
 
 		public BindingInfo MethodHandlingCanExecute
 		{
-			get { return new BindingInfo(_canExecute.Method, _canExecute.Target); }
+			get { return new BindingInfoForFunc(_canExecute.Method, _canExecute.Target); }
 		}
 
 		public BindingInfo MethodHandlingExecute
 		{
-			get { return new BindingInfo(_execute.Method, _execute.Target); }
+			get { return new BindingInfoForFunc(_execute.Method, _execute.Target); }
 		}
 
 		public void NotifyThatCanExecuteChanged()

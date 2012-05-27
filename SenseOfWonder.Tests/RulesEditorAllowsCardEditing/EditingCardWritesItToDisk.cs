@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Linq;
 using EventBasedProgramming.Binding;
-using EventBasedProgramming.TestSupport;
+using FluentAssertions;
 using FluentAssertions.Assertions;
 using FluentAssertions.EventMonitoring;
 using NUnit.Framework;
 using SenseOfWonder.Model;
 using SenseOfWonder.Model.Serialization;
 using SenseOfWonder.Tests.zzTestSupportData;
-using System.Linq;
-using FluentAssertions;
 
 namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 {
@@ -30,7 +29,7 @@ namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 		[Test, RequiresSTA]
 		public void RulesEditorShouldNotifyThatPersistableDataHasChangedWhenAnyCardDataChanges()
 		{
-			var testSubject = _TestData.EmptyRulesetCharacter();
+			WonderRulesCharacter testSubject = _TestData.EmptyRulesetCharacter();
 			testSubject.Name = "new card name";
 			testSubject.CreateCard();
 			PropagateChangesTo(testSubject.CardData.First().Should(), () => testSubject.PersistableData);

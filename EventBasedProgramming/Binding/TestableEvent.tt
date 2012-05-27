@@ -5,57 +5,75 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using EventBasedProgramming.Binding.Impl;
+using System.Reflection;
 
 namespace EventBasedProgramming.Binding
 {
-	public class TestableEvent
+	public class TestableEventBase
 	{
-		private readonly List<Action> _handlers = new List<Action>();
+		protected readonly List<BindingInfo> _handlers = new List<BindingInfo>();
 
-		public void BindTo(Action handler)
+		protected void _BindTo(BindingInfo handler)
 		{
 			_handlers.Add(handler);
 		}
 
-		public void Call()
+		protected void _UnbindFrom(MethodInfo method, object target)
 		{
-			_handlers.Each(h => h());
+			_handlers.RemoveAll(h => h.Method == method && h.Target == target);
 		}
 
-		public bool IsBoundTo(Action handler)
+		protected bool _IsBoundTo(MethodInfo method, object target)
 		{
-			return _handlers.Contains(handler);
+			return _handlers.Any(h => h.Method == method && h.Target == target);
+		}
+	}
+
+	public class TestableEvent : TestableEventBase
+	{
+		public void BindTo(Action handler)
+		{
+			_BindTo(new BindingInfo(handler.Method, handler.Target));
 		}
 
 		public void UnbindFrom(Action handler)
 		{
-			_handlers.Remove(handler);
+			_UnbindFrom(handler.Method, handler.Target);
+		}
+
+		public bool IsBoundTo(Action handler)
+		{
+			return _IsBoundTo(handler.Method, handler.Target);
+		}
+
+		public void Call()
+		{
+			_handlers.Each(h => h.Call());
 		}
 	}
 <# for(var i=1; i<17; ++i) { #>
 
-	public class TestableEvent<<#= TypeNames(i) #>>
+	public class TestableEvent<<#= TypeNames(i) #>> : TestableEventBase
 	{
-		private readonly List<Action<<#= TypeNames(i) #>>> _handlers = new List<Action<<#= TypeNames(i) #>>>();
-
 		public void BindTo(Action<<#= TypeNames(i) #>> handler)
 		{
-			_handlers.Add(handler);
-		}
-
-		public void Call(<#= DeclarationArguments(i) #>)
-		{
-			_handlers.Each(h => h(<#= Arguments(i) #>));
-		}
-
-		public bool IsBoundTo(Action<<#= TypeNames(i) #>> handler)
-		{
-			return _handlers.Contains(handler);
+			_BindTo(new BindingInfo(handler.Method, handler.Target));
 		}
 
 		public void UnbindFrom(Action<<#= TypeNames(i) #>> handler)
 		{
-			_handlers.Remove(handler);
+			_UnbindFrom(handler.Method, handler.Target);
+		}
+
+		public bool IsBoundTo(Action<<#= TypeNames(i) #>> handler)
+		{
+			return _IsBoundTo(handler.Method, handler.Target);
+		}
+
+		public void Call(<#= DeclarationArguments(i) #>)
+		{
+			_handlers.Each(h => h.Call(<#= Arguments(i) #>));
 		}
 	}
 <# } #>
