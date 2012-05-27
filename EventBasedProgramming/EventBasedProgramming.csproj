@@ -52,11 +52,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestableEvent.tt</DependentUpon>
     </Compile>
-    <Compile Include="Binding\TestableEventG.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestableEventG.tt</DependentUpon>
-    </Compile>
     <Compile Include="Binding\TrackingNullableProperty.cs" />
     <Compile Include="Binding\TrackingProperty.cs" />
     <Compile Include="LinqExtensions.cs" />
@@ -77,10 +72,6 @@
     <None Include="Binding\TestableEvent.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TestableEvent.g.cs</LastGenOutput>
-    </None>
-    <None Include="Binding\TestableEventG.tt">
-      <Generator>TextTemplatingFilePreprocessor</Generator>
-      <LastGenOutput>TestableEventG.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
   </ItemGroup>

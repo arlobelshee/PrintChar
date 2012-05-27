@@ -1,33 +1,83 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".g.cs" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace EventBasedProgramming.Binding
 {
-	public class TestableEvent<TArg1>
+	public class TestableEvent
 	{
-		private readonly List<Action<TArg1>> _handlers = new List<Action<TArg1>>();
+		private readonly List<Action> _handlers = new List<Action>();
 
-		public void BindTo(Action<TArg1> handler)
+		public void BindTo(Action handler)
 		{
 			_handlers.Add(handler);
 		}
 
-		public void Call(TArg1 arg1)
+		public void Call()
 		{
-			_handlers.Each(h => h(arg1));
+			_handlers.Each(h => h());
 		}
 
-		public bool IsBoundTo(Action<TArg1> handler)
+		public bool IsBoundTo(Action handler)
 		{
 			return _handlers.Contains(handler);
 		}
 
-		public void UnbindFrom(Action<TArg1> handler)
+		public void UnbindFrom(Action handler)
 		{
 			_handlers.Remove(handler);
 		}
 	}
+<# for(var i=1; i<17; ++i) { #>
+
+	public class TestableEvent<<#= TypeNames(i) #>>
+	{
+		private readonly List<Action<<#= TypeNames(i) #>>> _handlers = new List<Action<<#= TypeNames(i) #>>>();
+
+		public void BindTo(Action<<#= TypeNames(i) #>> handler)
+		{
+			_handlers.Add(handler);
+		}
+
+		public void Call(<#= DeclarationArguments(i) #>)
+		{
+			_handlers.Each(h => h(<#= Arguments(i) #>));
+		}
+
+		public bool IsBoundTo(Action<<#= TypeNames(i) #>> handler)
+		{
+			return _handlers.Contains(handler);
+		}
+
+		public void UnbindFrom(Action<<#= TypeNames(i) #>> handler)
+		{
+			_handlers.Remove(handler);
+		}
+	}
+<# } #>
 }
+<#+
+private string TypeNames(int max)
+{
+	return Sequence("TArg{0}", max);
+}
+
+private string DeclarationArguments(int max)
+{
+	return Sequence("TArg{0} arg{0}", max);
+}
+
+private string Arguments(int max)
+{
+	return Sequence("arg{0}", max);
+}
+
+private string Sequence(string format, int max)
+{
+	return string.Join(", ", Enumerable.Range(1,max).Select(n=>string.Format(format, n)));
+}
+#>
