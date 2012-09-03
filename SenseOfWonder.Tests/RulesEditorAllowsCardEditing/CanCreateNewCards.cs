@@ -27,20 +27,20 @@ namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 		{
 			WonderRulesCharacter testSubject = _TestData.EmptyRulesetCharacter();
 			Assert.That(testSubject.CreateCardCommand,
-				Command.DelegatesTo(() => testSubject.CreateCard()));
+				Command.DelegatesTo(() => testSubject.CreateCardAndView()));
 		}
 
 		[Test, RequiresSTA, Explicit]
 		public void CreatingNewCardShouldCreateBothDataAndTheControlAndSendProperNotification()
 		{
-			// This test checks a bunch of things at once because CreateCard actually creates controls, so
+			// This test checks a bunch of things at once because CreateCardAndView actually creates controls, so
 			// is very expensive to call.
 			WonderRulesCharacter testSubject = _TestData.EmptyRulesetCharacter();
 			const string cardName = "The new card";
 			testSubject.Name = cardName;
 
 			testSubject.MonitorEvents();
-			testSubject.CreateCard();
+			testSubject.CreateCardAndView();
 
 			testSubject.CardData.Select(c => c.Name).Should().Equal(new object[] {cardName});
 			testSubject.Cards.Select(c => c.DataContext.As<CardData>().Name).Should().Equal(new object[] {cardName});

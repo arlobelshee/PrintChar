@@ -15,7 +15,7 @@ namespace SenseOfWonder.Model
 		{
 			File = characterData;
 			CardData = new List<CardData>();
-			CreateCardCommand = new SimpleCommand(() => !string.IsNullOrWhiteSpace(Name), CreateCard);
+			CreateCardCommand = new SimpleCommand(() => !string.IsNullOrWhiteSpace(Name), CreateCardAndView);
 			_name.WhenChanged(CreateCardCommand.NotifyThatCanExecuteChanged);
 			EqualityFields.Add(CardData);
 		}
@@ -64,7 +64,13 @@ namespace SenseOfWonder.Model
 			CardData.Select(_WrapCardInView).Each(Cards.Add);
 		}
 
-		public void CreateCard()
+		public void CreateCardAndView()
+		{
+			Cards.Add(_WrapCardInView(CreateUnboundCard()));
+			FirePropertyChanged(() => PersistableData);
+		}
+
+		public CardData CreateUnboundCard()
 		{
 			var newCard = new CardData
 			{
@@ -72,8 +78,7 @@ namespace SenseOfWonder.Model
 			};
 			_PropagateChanges(newCard);
 			CardData.Add(newCard);
-			Cards.Add(_WrapCardInView(newCard));
-			FirePropertyChanged(() => PersistableData);
+			return newCard;
 		}
 
 		private void _PropagateChanges(CardData newCard)

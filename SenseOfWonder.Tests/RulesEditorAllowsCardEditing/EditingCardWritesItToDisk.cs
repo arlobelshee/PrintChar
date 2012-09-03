@@ -31,7 +31,7 @@ namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 		{
 			WonderRulesCharacter testSubject = _TestData.EmptyRulesetCharacter();
 			testSubject.Name = "new card name";
-			testSubject.CreateCard();
+			testSubject.CreateUnboundCard();
 			PropagateChangesTo(testSubject.CardData.First().Should(), () => testSubject.PersistableData);
 		}
 
