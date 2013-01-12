@@ -26,7 +26,7 @@ namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 			testSubject.ShouldRaisePropertyChangeFor(s => s.Name);
 		}
 
-		[Test, RequiresSTA]
+		[Test]
 		public void RulesEditorShouldNotifyThatPersistableDataHasChangedWhenAnyCardDataChanges()
 		{
 			WonderRulesCharacter testSubject = _TestData.EmptyRulesetCharacter();
