@@ -7,7 +7,7 @@ using SenseOfWonder.Views;
 
 namespace SenseOfWonder.Tests.CharactersHaveCards
 {
-	[TestFixture, Explicit]
+	[TestFixture, Explicit, RequiresSTA]
 	public class ExposeCards
 	{
 		[Test]

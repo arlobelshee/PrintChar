@@ -45,7 +45,7 @@ namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 			testSubject.CardData.Select(c => c.Name).Should().Equal(new object[] {cardName});
 			testSubject.Cards.Select(c => c.DataContext.As<CardData>().Name).Should().Equal(new object[] {cardName});
 
-			testSubject.ShouldRaisePropertyChangeFor(s => s.CardData);
+			testSubject.ShouldRaisePropertyChangeFor(s => s.PersistableData);
 		}
 	}
 }
