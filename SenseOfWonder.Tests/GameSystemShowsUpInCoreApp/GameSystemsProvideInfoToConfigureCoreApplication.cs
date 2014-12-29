@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Controls;
 using FluentAssertions;
 using NUnit.Framework;
 using SenseOfWonder.Model;
@@ -48,7 +51,9 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		[Test, Explicit, STAThread]
 		public void ShouldCreateEditorControlWhenAsked()
 		{
-			new Model.SenseOfWonder().EditorPages.Should().HaveCount(1).And.ContainItemsAssignableTo<EditCharacter>();
+			var editorPages = new Model.SenseOfWonder().EditorPages;
+			editorPages.Should().HaveCount(1);
+			editorPages.Single().Content.Should().BeAssignableTo<EditCharacter>();
 		}
 	}
 }
