@@ -1,87 +1,94 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D5F1A1EB-9C2B-450C-A9D8-79A43F4E473B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EventBasedProgramming</RootNamespace>
-    <AssemblyName>EventBasedProgramming</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Binding\Impl\DependantProperty.cs" />
-    <Compile Include="Binding\TestableEvent.g.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TestableEvent.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Binding\TestablePropertyChangedEvent.cs" />
-    <Compile Include="Binding\TrackingNullableProperty.cs" />
-    <Compile Include="Binding\TrackingProperty.cs" />
-    <Compile Include="LinqExtensions.cs" />
-    <Compile Include="TestSupport\Always.cs" />
-    <Compile Include="Annotations.cs" />
-    <Compile Include="Binding\Impl\BindingInfo.cs" />
-    <Compile Include="TestSupport\CallToConstraint.cs" />
-    <Compile Include="TestSupport\CommandConstraint.cs" />
-    <Compile Include="Binding\Impl\Extract.cs" />
-    <Compile Include="Binding\IFirePropertyChanged.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Binding\PropertyChangedExtensions.cs" />
-    <Compile Include="Binding\SimpleCommand.cs" />
-    <Compile Include="Binding\TrackingNonNullProperty.cs" />
-    <Compile Include="Binding\TrackingOnlyInitiallyNullProperty.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Binding\TestableEvent.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TestableEvent.g.cs</LastGenOutput>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProductVersion>8.0.30703</ProductVersion>
+		<SchemaVersion>2.0</SchemaVersion>
+		<ProjectGuid>{D5F1A1EB-9C2B-450C-A9D8-79A43F4E473B}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>EventBasedProgramming</RootNamespace>
+		<AssemblyName>EventBasedProgramming</AssemblyName>
+		<TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+		<FileAlignment>512</FileAlignment>
+		<TargetFrameworkProfile>Client</TargetFrameworkProfile>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Release\</OutputPath>
+		<DefineConstants>TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
+		</Reference>
+		<Reference Include="PresentationCore" />
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Xml.Linq" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Xml" />
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="Binding\Impl\DependantProperty.cs" />
+		<Compile Include="Binding\TestableEvent.g.cs">
+			<AutoGen>True</AutoGen>
+			<DesignTime>True</DesignTime>
+			<DependentUpon>TestableEvent.tt</DependentUpon>
+		</Compile>
+		<Compile Include="Binding\TestablePropertyChangedEvent.cs" />
+		<Compile Include="Binding\TrackingNullableProperty.cs" />
+		<Compile Include="Binding\TrackingProperty.cs" />
+		<Compile Include="LinqExtensions.cs" />
+		<Compile Include="TestSupport\Always.cs" />
+		<Compile Include="Annotations.cs" />
+		<Compile Include="Binding\Impl\BindingInfo.cs" />
+		<Compile Include="TestSupport\CallToConstraint.cs" />
+		<Compile Include="TestSupport\CommandConstraint.cs" />
+		<Compile Include="Binding\Impl\Extract.cs" />
+		<Compile Include="Binding\IFirePropertyChanged.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="Binding\PropertyChangedExtensions.cs" />
+		<Compile Include="Binding\SimpleCommand.cs" />
+		<Compile Include="Binding\TrackingNonNullProperty.cs" />
+		<Compile Include="Binding\TrackingOnlyInitiallyNullProperty.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Binding\TestableEvent.tt">
+			<Generator>TextTemplatingFileGenerator</Generator>
+			<LastGenOutput>TestableEvent.g.cs</LastGenOutput>
+		</None>
+		<None Include="packages.config" />
+	</ItemGroup>
+	<ItemGroup>
+		<Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+	</ItemGroup>
+	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+	<PropertyGroup>
+		<TransformOnBuild>true</TransformOnBuild>
+		<TransformOutOfDateOnly>true</TransformOutOfDateOnly>
+		<IncludeDslT4Settings>false</IncludeDslT4Settings>
+	</PropertyGroup>
+	<Import Project="$(SolutionDir)\buildtasks\Microsoft.TextTemplating.targets" />
+
+	<!-- To modify your build process, add your task inside one of the targets below and uncomment it. Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
   <Target Name="AfterBuild">
