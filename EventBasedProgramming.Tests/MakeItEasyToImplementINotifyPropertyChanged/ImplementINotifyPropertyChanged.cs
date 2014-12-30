@@ -2,7 +2,6 @@
 using EventBasedProgramming.Binding.Impl;
 using EventBasedProgramming.Tests.zzTestSupportData;
 using FluentAssertions;
-using FluentAssertions.EventMonitoring;
 using NUnit.Framework;
 
 namespace EventBasedProgramming.Tests.MakeItEasyToImplementINotifyPropertyChanged

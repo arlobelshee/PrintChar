@@ -1,11 +1,5 @@
-﻿using System;
-using System.Linq;
-using EventBasedProgramming.Binding;
-using FluentAssertions;
-using FluentAssertions.Assertions;
-using FluentAssertions.EventMonitoring;
+﻿using FluentAssertions;
 using NUnit.Framework;
-using SenseOfWonder.Model;
 using SenseOfWonder.Model.Serialization;
 using SenseOfWonder.Tests.zzTestSupportData;
 
@@ -29,16 +23,11 @@ namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 		[Test]
 		public void RulesEditorShouldNotifyThatPersistableDataHasChangedWhenAnyCardDataChanges()
 		{
-			WonderRulesCharacter testSubject = _TestData.EmptyRulesetCharacter();
+			var testSubject = _TestData.EmptyRulesetCharacter();
+			testSubject.MonitorEvents();
 			testSubject.Name = "new card name";
 			testSubject.CreateUnboundCard();
-			PropagateChangesTo(testSubject.CardData.First().Should(), () => testSubject.PersistableData);
-		}
-
-		private void PropagateChangesTo(ObjectAssertions changeNotifier, Func<object> propertyThatShouldChange)
-		{
-			changeNotifier.BeAssignableTo<IFirePropertyChanged>();
-			//changeNotifier.As<IFirePropertyChanged>().PropertyChanged += sf
+			testSubject.ShouldNotRaisePropertyChangeFor(self => self.PersistableData);
 		}
 	}
 }

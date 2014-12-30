@@ -2,9 +2,9 @@
 using System.ComponentModel;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
+using FluentAssertions;
 using JetBrains.Annotations;
 using NUnit.Framework;
-using FluentAssertions.EventMonitoring;
 
 namespace EventBasedProgramming.Tests.MakeItEasyToImplementINotifyPropertyChanged
 {

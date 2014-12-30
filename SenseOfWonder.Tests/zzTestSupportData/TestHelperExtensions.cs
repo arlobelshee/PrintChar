@@ -1,5 +1,4 @@
 using FluentAssertions;
-using PluginApi.Model;
 
 namespace SenseOfWonder.Tests.zzTestSupportData
 {
@@ -7,7 +6,7 @@ namespace SenseOfWonder.Tests.zzTestSupportData
 	{
 		public static void ShouldMatch<T>(this T actual, object expected)
 		{
-			actual.ShouldHave().SharedProperties().EqualTo(expected);
+			actual.ShouldBeEquivalentTo(expected, options => options.ExcludingMissingProperties());
 		}
 	}
 }

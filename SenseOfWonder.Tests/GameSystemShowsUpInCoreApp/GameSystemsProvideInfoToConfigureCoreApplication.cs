@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Controls;
 using FluentAssertions;
 using NUnit.Framework;
 using SenseOfWonder.Model;
@@ -27,25 +25,23 @@ namespace SenseOfWonder.Tests.GameSystemShowsUpInCoreApp
 		[Test]
 		public void ShouldProvideFileFilterInfo()
 		{
-			new Model.SenseOfWonder().ShouldHave()
-				.Properties(w => w.FileExtension, w => w.FilePattern, w => w.Name).EqualTo(new
-				{
-					FileExtension = "wonder",
-					Name = "Sense of Wonder",
-					FilePattern = "*.wonder"
-				});
+			new Model.SenseOfWonder().ShouldBeEquivalentTo(new
+			{
+				FileExtension = "wonder",
+				Name = "Sense of Wonder",
+				FilePattern = "*.wonder"
+			}, options => options.ExcludingMissingProperties());
 		}
 
 		[Test]
 		public void ShouldProvideFileFilterInfoForCardFile()
 		{
-			new RulesEditingSystem().ShouldHave()
-				.Properties(w => w.FileExtension, w => w.FilePattern, w => w.Name).EqualTo(new
+			new RulesEditingSystem().ShouldBeEquivalentTo(new
 				{
 					FileExtension = "wonderrules",
 					Name = "Sense of Wonder Rule System",
 					FilePattern = "*.wonderrules"
-				});
+				}, options => options.ExcludingMissingProperties());
 		}
 
 		[Test, Explicit, STAThread]

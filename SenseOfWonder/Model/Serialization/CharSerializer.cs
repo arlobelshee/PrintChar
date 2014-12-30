@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using PluginApi.Model;
-using ServiceStack.Text;
+using ServiceStack;
 
 namespace SenseOfWonder.Model.Serialization
 {

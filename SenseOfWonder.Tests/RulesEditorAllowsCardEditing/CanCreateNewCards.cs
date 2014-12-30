@@ -5,7 +5,6 @@ using NUnit.Framework;
 using SenseOfWonder.Model;
 using SenseOfWonder.Model.Serialization;
 using SenseOfWonder.Tests.zzTestSupportData;
-using FluentAssertions.EventMonitoring;
 
 namespace SenseOfWonder.Tests.RulesEditorAllowsCardEditing
 {

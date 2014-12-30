@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using EventBasedProgramming.Binding;
 using EventBasedProgramming.Tests.zzTestSupportData;
-using FluentAssertions.EventMonitoring;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using FluentAssertions;

@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ServiceStack.Text">
-      <HintPath>..\packages\ServiceStack.Text.3.6.7\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=4.0.34.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ServiceStack.Text.4.0.34\lib\net40\ServiceStack.Text.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -105,10 +106,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
